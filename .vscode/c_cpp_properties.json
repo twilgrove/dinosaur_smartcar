@@ -1,0 +1,16 @@
+{
+    "version": 4,
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/include",
+                "/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include"
+            ],
+            "compilerPath": "/usr/local/loongson-gnu-toolchain-8.3/bin/loongarch64-linux-gnu-g++", // C++ 编译器路径
+            "cStandard": "c99",
+            "cppStandard": "c++11",
+            "intelliSenseMode": "gcc-x64"
+        }
+    ]
+}
