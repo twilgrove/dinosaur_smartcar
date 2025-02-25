@@ -60,6 +60,7 @@
         "stdexcept": "c",
         "streambuf": "c",
         "typeinfo": "c",
-        "unistd.h": "c"
+        "unistd.h": "c",
+        "csignal": "cpp"
     }
 }

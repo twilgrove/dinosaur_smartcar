@@ -1,7 +1,8 @@
 #include "main.h"
 
-/* 线程运行标志 */
-std::atomic<bool> running(true);
+/* 运行标志 */
+std::atomic<bool> project::running(true);
+project my_project("smart_car");
 
 /* 电机：频率20-50khz，周期20000-50000ns*/
 pwm_ctrl rp(0, 0, 20000, 0, "right_motor");
@@ -32,59 +33,60 @@ int main()
     fans.join();
     imu.join();
     debug.join();
-
+    my_project.end();
     return 0;
 }
 
 void init()
 {
-    std::cout << "正在初始化..." << std::endl;
+    signal(SIGINT, my_project.signal_handler);
 }
 
 void opencv_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
+
 void fans_pwm_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
 
 void right_pid_pwm_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
 
 void left_pid_pwm_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
 
 void servo_pid_pwm_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
 
 void imu_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }
 
 void debug_thread()
 {
-    while (running)
+    while (my_project.running)
     {
     }
 }

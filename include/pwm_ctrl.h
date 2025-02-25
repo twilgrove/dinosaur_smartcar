@@ -29,8 +29,8 @@ public:
     ~pwm_ctrl();
 
     void set_period(uint32_t period_ns);         // 设置PWM周期
-    void set_duty_cycle(uint32_t duty_cycle_ns); // 设置PWM占空比
     void enable_or_disable(uint8_t enable);      // 使能或禁用PWM输出
+    void set_duty_cycle(uint32_t duty_cycle_ns); // 设置PWM占空比
 private:
     uint8_t pwmchip_number;     // pwmchip编号
     uint8_t pwmchip_pwm_number; // pwm编号

@@ -29,7 +29,7 @@ pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t 
     set_pwm_property("period", period_ns);
     set_pwm_property("duty_cycle", duty_cycle_ns);
     enable_or_disable(1);
-    std::cout << "PWM：" << pwm_name << " init success" << std::endl;
+    std::cout << "\33[34mPWM:\33[0m" << pwm_name << " init success" << std::endl;
 }
 
 /**
@@ -50,7 +50,7 @@ pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t 
     set_pwm_property("period", period_ns);
     set_pwm_property("duty_cycle", duty_cycle_ns);
     enable_or_disable(1);
-    std::cout << "PWM：" << pwm_name << " init success" << std::endl;
+    std::cout << "\33[34mPWM:\33[0m" << pwm_name << " init success" << std::endl;
 }
 
 /**
@@ -110,7 +110,7 @@ void pwm_ctrl::enable_or_disable(uint8_t enable)
     }
     else
     {
-        std::cerr << "PWM：" << pwm_name << " failed to enable or disable!!!" << std::endl;
+        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to enable or disable!!!" << std::endl;
     }
 }
 
@@ -145,7 +145,7 @@ void pwm_ctrl::set_pwm_property(const std::string &property, uint32_t value)
     }
     else
     {
-        std::cerr << "PWM：" << pwm_name << " failed to set property" << property << " to " << value << "!!!" << std::endl;
+        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to set property" << property << " to " << value << "!!!" << std::endl;
     }
 }
 
@@ -165,6 +165,6 @@ void pwm_ctrl::export_pwm()
     }
     else
     {
-        std::cerr << "PWM：" << pwm_name << " failed to export!!!" << std::endl;
+        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to export!!!" << std::endl;
     }
 }
