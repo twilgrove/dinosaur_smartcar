@@ -24,8 +24,6 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 file(GLOB_RECURSE SOURCES
     "src/*.c"
     "src/*.cpp"
-    "libs/*.c"
-    "libs/*.cpp"
 )
 
 # 输出信息

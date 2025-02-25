@@ -1,56 +1,90 @@
-// #include <opencv2/opencv.hpp>
-// #include <iostream>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <arpa/inet.h>
-#include <unistd.h>
 #include "main.h"
 
-#define SERVER_PORT 12345
-#define SERVER_IP "192.168.1.100" // 电脑的 IP 地址
+/* 线程运行标志 */
+std::atomic<bool> running(true);
+
+/* 电机：频率20-50khz，周期20000-50000ns*/
+pwm_ctrl rp(0, 0, 20000, 0, "right_motor");
+pwm_ctrl lp(1, 0, 20000, 0, "left_motor");
+
+/* 舵机：频率50hz，周期20000ns，占空比500-2500ns*/
+pwm_ctrl sp(2, 0, 20000, 1500, "servo");
 
 int main()
 {
-    pwm_init(0, 0, 0, 0);
-    // // 创建 UDP 套接字
-    // int sock = socket(AF_INET, SOCK_DGRAM, 0);
-    // if (sock < 0)
-    // {
-    //     std::cerr << "无法创建套接字!" << std::endl;
-    //     return -1;
-    // }
+    /* 初始化 */
+    init();
 
-    // // 设置目标服务器地址（电脑的 IP 和端口）
-    // sockaddr_in server_addr;
-    // server_addr.sin_family = AF_INET;
-    // server_addr.sin_port = htons(SERVER_PORT);
-    // server_addr.sin_addr.s_addr = inet_addr(SERVER_IP);
+    /* 创建线程 */
+    std::thread opencv(opencv_thread);             // opencv线程
+    std::thread right_motor(right_pid_pwm_thread); // 右轮控制线程
+    std::thread left_motor(left_pid_pwm_thread);   // 左轮控制线程
+    std::thread servo(servo_pid_pwm_thread);       // 舵机控制线程
+    std::thread fans(fans_pwm_thread);             // 负压风扇控制线程
+    std::thread imu(imu_thread);                   // 陀螺仪数据处理线程
+    std::thread debug(debug_thread);               // 调试线程
 
-    // // 创建 VideoCapture 对象，打开摄像头
-    // cv::VideoCapture cap(0); // 0 表示默认摄像头
-    // if (!cap.isOpened())
-    // {
-    //     std::cerr << "无法打开摄像头!" << std::endl;
-    //     return -1;
-    // }
+    /* 等待线程结束 */
+    opencv.join();
+    right_motor.join();
+    left_motor.join();
+    servo.join();
+    fans.join();
+    imu.join();
+    debug.join();
 
-    // cv::Mat frame;
-    // while (true)
-    // {
-    //     cap >> frame; // 捕获一帧图像
-    //     if (frame.empty())
-    //     {
-    //         std::cerr << "无法捕获图像!" << std::endl;
-    //         break;
-    //     }
-
-    //     // 将图像编码为 JPEG 格式
-    //     std::vector<uchar> buffer;
-    //     cv::imencode(".jpg", frame, buffer);
-    //     sendto(sock, buffer.data(), buffer.size(), 0, (struct sockaddr *)&server_addr, sizeof(server_addr));
-    // }
-
-    // cap.release();
-    // close(sock); // 关闭套接字
     return 0;
+}
+
+void init()
+{
+    std::cout << "正在初始化..." << std::endl;
+}
+
+void opencv_thread()
+{
+    while (running)
+    {
+    }
+}
+void fans_pwm_thread()
+{
+    while (running)
+    {
+    }
+}
+
+void right_pid_pwm_thread()
+{
+    while (running)
+    {
+    }
+}
+
+void left_pid_pwm_thread()
+{
+    while (running)
+    {
+    }
+}
+
+void servo_pid_pwm_thread()
+{
+    while (running)
+    {
+    }
+}
+
+void imu_thread()
+{
+    while (running)
+    {
+    }
+}
+
+void debug_thread()
+{
+    while (running)
+    {
+    }
 }

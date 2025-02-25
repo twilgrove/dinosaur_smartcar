@@ -1,53 +1,46 @@
-/*
- * 文件名: pwm_ctrl.h
- * 日期: 2025.02.07
- * 作者: T.Grove
- * 描述: PWM控制模块头文件，提供PWM配置和控制相关功能
- * 版本: v1.0.0
- * 修改:
- *   - v1.0.0 (2025.02.07): 初始版本
- */
+#ifndef __PWM_CTRL_H__
+#define __PWM_CTRL_H__
 
-#ifndef __PWM_CTRL_H
-#define __PWM_CTRL_H
-
-/* 外部依赖 */
-#include <sys/types.h>
-#include <sys/stat.h>
-#include <fcntl.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <string>
 #include <unistd.h>
-#include <string.h>
-#include <stdint.h>
-#include <stdio.h>
+#include <fcntl.h>
 
-/* 宏定义 */
-#define PWM_ID_MAX 6 // 支持的最大PWM通道数
+#define PWM_CHIP_PATH "/sys/class/pwm/pwmchip"
 
-#ifdef __cplusplus
-extern "C"
+/**
+ * ------------------------------------
+ * 引脚    pwmchip编号          pwm编号
+ * 64        0                    0
+ * 65        1                    0
+ * 66        2                    0
+ * 67        3                    0
+ * 88        4                    1
+ * 89        4                    2
+ * ------------------------------------
+ */
+class pwm_ctrl
 {
-#endif
+public:
+    pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns, uint32_t duty_cycle_ns);
+    pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns, uint32_t duty_cycle_ns, std::string pwm_name);
+    ~pwm_ctrl();
 
-    /* 类型定义 */
-    typedef struct
-    {
-        uint8_t fd;                 // pwm文件描述符
-        uint8_t fd_pwm_duty;        // pwm占空比文件描述符
-        uint32_t period_ns;         // pwm周期(纳秒)
-        uint32_t duty_cycle_ns;     // pwm占空比(纳秒)
-        uint8_t pwmchip_number;     // pwmchip编号
-        uint8_t pwmchip_pwm_number; // pwm编号
-    } PWM_Config;
+    void set_period(uint32_t period_ns);         // 设置PWM周期
+    void set_duty_cycle(uint32_t duty_cycle_ns); // 设置PWM占空比
+    void enable_or_disable(uint8_t enable);      // 使能或禁用PWM输出
+private:
+    uint8_t pwmchip_number;     // pwmchip编号
+    uint8_t pwmchip_pwm_number; // pwm编号
+    uint32_t period_ns;         // pwm周期(纳秒)
+    uint32_t duty_cycle_ns;     // pwm占空比(纳秒)
+    std::string pwm_name;       // pwm名称
 
-    /* 函数声明 */
-    void pwm_init(uint8_t pwm_id, uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns); // 初始化PWM通道
-    void pwm_set_period(uint8_t pwm_id, uint32_t period_ns);                                               // 设置PWM周期
-    void pwm_set_duty_cycle(uint8_t pwm_id, float duty_cycle_percent);                                     // 设置PWM占空比(百分比)
-    void pwm_enable_or_disable(uint8_t pwm_id, uint8_t enable);                                            // 使能或禁用PWM输出
-    void pwm_remove(uint8_t pwm_id);                                                                       // 移除PWM通道配置
+    std::string get_pwm_path(const std::string &property);              // 获取PWM的路径
+    void set_pwm_property(const std::string &property, uint32_t value); // 设置PWM属性（如周期和占空比）
+    void export_pwm();                                                  // 导出PWM通道
+};
 
-#ifdef __cplusplus
-}
-#endif
-
-#endif /* __PWM_CTRL_H */
+#endif // __PWM_CTRL_H__
