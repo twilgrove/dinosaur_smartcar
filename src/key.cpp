@@ -6,12 +6,6 @@ Key::Key(int gpioNum, std::string edge) : gpio(gpioNum, "in"), edge(edge)
     key_flag = 0;
     key_active = !gpio.readValue();
 }
-Key::Key(int gpioNum, int time_min, std::string edge) : gpio(gpioNum, "in"), time_min(time_min), edge(edge)
-{
-    key_s = 0;
-    key_flag = 0;
-    key_active = !gpio.readValue();
-}
 
 bool Key::readValue()
 {

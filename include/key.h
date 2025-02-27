@@ -2,13 +2,11 @@
 #define KEY_H
 
 #include "GPIO.h"
-void key();
 
 class Key
 {
 public:
     Key(int gpioNum, std::string edge);
-    Key(int gpioNum, int time_min, std::string edge);
     bool readValue();
 
 private:
