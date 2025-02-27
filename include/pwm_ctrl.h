@@ -24,7 +24,6 @@
 class pwm_ctrl
 {
 public:
-    pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns, uint32_t duty_cycle_ns);
     pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns, uint32_t duty_cycle_ns, std::string pwm_name);
     ~pwm_ctrl();
 
@@ -37,10 +36,10 @@ private:
     uint32_t period_ns;         // pwm周期(纳秒)
     uint32_t duty_cycle_ns;     // pwm占空比(纳秒)
     std::string pwm_name;       // pwm名称
+    int fd;                     // pwm占空比文件描述符
 
-    std::string get_pwm_path(const std::string &property);              // 获取PWM的路径
-    void set_pwm_property(const std::string &property, uint32_t value); // 设置PWM属性（如周期和占空比）
-    void export_pwm();                                                  // 导出PWM通道
+    std::string get_pwm_path(const std::string &property); // 获取PWM的路径
+    void export_pwm();                                     // 导出PWM通道
 };
 
 #endif // __PWM_CTRL_H__

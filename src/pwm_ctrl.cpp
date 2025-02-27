@@ -10,30 +10,8 @@
 
 #include "pwm_ctrl.h"
 
-/*
- * 功能: 构造函数重载1
- * 参数:
- *   pwmchip_number - pwmchip编号
- *   pwmchip_pwm_number - pwm编号
- *   period_ns - PWM周期(纳秒)
- *   duty_cycle_ns - PWM占空比(纳秒)
- *   period - PWM周期(纳秒)
- * 返回: 无
- */
-pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t period_ns, uint32_t duty_cycle_ns)
-    : pwmchip_number(pwmchip_number), pwmchip_pwm_number(pwmchip_pwm_number),
-      period_ns(period_ns), duty_cycle_ns(duty_cycle_ns)
-{
-    this->pwm_name = std::to_string(pwmchip_number) + "," + std::to_string(pwmchip_pwm_number);
-    export_pwm();
-    set_pwm_property("period", period_ns);
-    set_pwm_property("duty_cycle", duty_cycle_ns);
-    enable_or_disable(1);
-    std::cout << "\33[34mPWM:\33[0m" << pwm_name << " init success" << std::endl;
-}
-
 /**
- * 功能: 构造函数重载2
+ * 功能: 构造函数
  * 参数:
  *   pwmchip_number - pwmchip编号
  *   pwmchip_pwm_number - pwm编号
@@ -47,9 +25,11 @@ pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t 
       period_ns(period_ns), duty_cycle_ns(duty_cycle_ns), pwm_name(pwm_name)
 {
     export_pwm();
-    set_pwm_property("period", period_ns);
-    set_pwm_property("duty_cycle", duty_cycle_ns);
+    set_period(period_ns);
+    fd = open(get_pwm_path("duty_cycle").c_str(), O_WRONLY);
+    set_duty_cycle(duty_cycle_ns);
     enable_or_disable(1);
+
     std::cout << "\33[34mPWM:\33[0m" << pwm_name << " init success" << std::endl;
 }
 
@@ -67,6 +47,8 @@ pwm_ctrl::~pwm_ctrl()
         ofs << static_cast<char>('0' + pwmchip_pwm_number);
         ofs.close();
     }
+    close(fd);
+    std::cout << "\33[34mPWM:\33[0m" << pwm_name << " close success" << std::endl;
 }
 
 /**
@@ -78,7 +60,18 @@ pwm_ctrl::~pwm_ctrl()
 void pwm_ctrl::set_period(uint32_t period_ns)
 {
     this->period_ns = period_ns;
-    set_pwm_property("period", period_ns);
+
+    std::string path = get_pwm_path("period");
+    std::ofstream ofs(path);
+    if (ofs.is_open())
+    {
+        ofs << period_ns << "\n";
+        ofs.close();
+    }
+    else
+    {
+        throw std::runtime_error("Failed to set property period to " + std::to_string(period_ns));
+    }
 }
 
 /**
@@ -90,7 +83,10 @@ void pwm_ctrl::set_period(uint32_t period_ns)
 void pwm_ctrl::set_duty_cycle(uint32_t duty_cycle_ns)
 {
     this->duty_cycle_ns = duty_cycle_ns;
-    set_pwm_property("duty_cycle", duty_cycle_ns);
+    if (write(fd, std::to_string(duty_cycle_ns).c_str(), std::to_string(duty_cycle_ns).size()) == -1)
+    {
+        throw std::runtime_error("Failed to set property duty_cycle to " + std::to_string(duty_cycle_ns));
+    }
 }
 
 /**
@@ -110,7 +106,7 @@ void pwm_ctrl::enable_or_disable(uint8_t enable)
     }
     else
     {
-        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to enable or disable!!!" << std::endl;
+        throw std::runtime_error("Failed to set property enable to " + std::to_string(enable));
     }
 }
 
@@ -125,28 +121,6 @@ std::string pwm_ctrl::get_pwm_path(const std::string &property)
     std::ostringstream path;
     path << PWM_CHIP_PATH << static_cast<int>(pwmchip_number) << "/pwm" << static_cast<int>(pwmchip_pwm_number) << "/" << property;
     return path.str();
-}
-
-/**
- * 功能: 设置PWM属性
- * 参数:
- *   property - 属性
- *   value - 值
- * 返回: 无
- */
-void pwm_ctrl::set_pwm_property(const std::string &property, uint32_t value)
-{
-    std::string path = get_pwm_path(property);
-    std::ofstream ofs(path);
-    if (ofs.is_open())
-    {
-        ofs << value << "\n";
-        ofs.close();
-    }
-    else
-    {
-        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to set property" << property << " to " << value << "!!!" << std::endl;
-    }
 }
 
 /**
@@ -165,6 +139,6 @@ void pwm_ctrl::export_pwm()
     }
     else
     {
-        std::cerr << "\33[31mPWM:\33[0m" << pwm_name << " failed to export!!!" << std::endl;
+        throw std::runtime_error("Failed to export PWM: " + pwm_name);
     }
 }
