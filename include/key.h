@@ -6,7 +6,13 @@
 class Key
 {
 public:
-    Key(int gpioNum, std::string edge);
+    enum Key_mode
+    {
+        up,
+        down
+    };
+    Key(int gpioNum, Key_mode edge);
+    ~Key() = default;
     bool readValue();
 
 private:
@@ -15,6 +21,6 @@ private:
     bool key_active;
     int key_s;
     uint8_t key_flag;
-    std::string edge; // 按键类型: down:按下, up:松开
+    Key_mode edge; // 按键类型: down:按下, up:松开
 };
 #endif

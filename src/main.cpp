@@ -13,7 +13,7 @@ std::atomic<bool> running(true);
 // pwm_ctrl sp(2, 0, 20000, 1500, "servo");
 
 /* 按键 */
-Key key1(62, "up");
+Key key1(62, Key::up);
 
 int key_1_value = 0;
 
