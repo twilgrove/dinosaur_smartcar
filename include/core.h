@@ -10,7 +10,7 @@
 #include "GPIO.h"
 #include "key.h"
 #include "pid.h"
-
+#include "encoder.h"
 #define PROGRAM_NAME "Smart_Car"
 
 void init();              // 初始化
