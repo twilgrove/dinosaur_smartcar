@@ -17,10 +17,10 @@ public:
 
 private:
     GPIO gpio;
-    int time_min;
+    int time_min = 5; // 按键消抖时间
     bool key_active;
-    int key_s;
-    uint8_t key_flag;
+    int key_s = 0;
+    uint8_t key_flag = 0;
     Key_mode edge; // 按键类型: down:按下, up:松开
 };
 #endif

@@ -10,12 +10,8 @@
  */
 
 #include "pid.h"
-/*
- * 功能: 初始化位置式PID控制器
- * 参数:
- *   kp, ki, kd, max_out, min_out, max_iout, min_iout, alpha, deadband, threshold, i_sep, d_lead
- * 返回: PID_Config结构体
- */
+
+/* 位置式PID初始化 */
 PID_Config PID_Init_Position(
     float kp, // 比例系数
     float ki, // 积分系数
@@ -29,7 +25,6 @@ PID_Config PID_Init_Position(
     float alpha,     // 微分滤波系数
     float deadband,  // 死区范围
     float threshold, // 积分分离阈值
-    uint8_t i_sep,   // 积分分离使能
     uint8_t d_lead)  // 微分先行使能
 {
     PID_Config pid;
@@ -46,7 +41,6 @@ PID_Config PID_Init_Position(
     pid.alpha = alpha;
     pid.deadband = deadband;
     pid.separation_threshold = threshold;
-    pid.integral_separation = i_sep;
     pid.differential_lead = d_lead;
 
     // 初始化内部状态
@@ -64,12 +58,7 @@ PID_Config PID_Init_Position(
     return pid;
 }
 
-/*
- * 功能: 初始化增量式PID控制器
- * 参数:
- *   kp, ki, kd, max_out, min_out, max_delta_out, min_delta_out
- * 返回: PID_Config结构体
- */
+/*增量式PID初始化*/
 PID_Config PID_Init_Incremental(
     float kp, // 比例系数
     float ki, // 积分系数
@@ -108,7 +97,6 @@ PID_Config PID_Init_Incremental(
     pid.min_integral = 0.0f;
     pid.alpha = 0.0f;
     pid.separation_threshold = 0.0f;
-    pid.integral_separation = 0;
     pid.differential_lead = 0;
 
     return pid;
@@ -148,7 +136,7 @@ float PID_Get(PID_Config *pid, float setpoint, float measured_value)
         float proportional = pid->Kp * error;
 
         /* 积分项处理 */
-        if (!pid->integral_separation || fabs(error) <= pid->separation_threshold)
+        if (!pid->separation_threshold || fabs(error) <= pid->separation_threshold)
         {
             // 积分累加并限幅
             pid->integral += pid->Ki * error;

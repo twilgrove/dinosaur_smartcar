@@ -66,11 +66,10 @@ typedef struct
     float min_output;       // [通用] PID输出下限 - 必须设置且小于max_output
 
     /* 优化参数 */
-    float alpha;                 // [位置式] 微分滤波系数 - 范围0-1，不使用设为0
-    float deadband;              // [通用] 死区范围 - 不使用设为0
-    float separation_threshold;  // [位置式] 积分分离阈值 - 不使用设为0
-    uint8_t integral_separation; // [位置式] 积分分离使能 - 1:启用 0:禁用，不使用设为0
-    uint8_t differential_lead;   // [位置式] 微分先行使能 - 1:启用 0:禁用，不使用设为0
+    float alpha;                // [位置式] 微分滤波系数 - 范围0-1，不使用设为0
+    float deadband;             // [通用] 死区范围 - 不使用设为0
+    float separation_threshold; // [位置式] 积分分离阈值 - 不使用设为0
+    uint8_t differential_lead;  // [位置式] 微分先行使能 - 1:启用 0:禁用，不使用设为0
 
     /* 内部状态 */
     float prev_error;          // [通用] 上一次误差 - 初始化必须置0
@@ -96,7 +95,6 @@ PID_Config PID_Init_Position(
     float alpha,     // 微分滤波系数
     float deadband,  // 死区范围
     float threshold, // 积分分离阈值
-    uint8_t i_sep,   // 积分分离使能
     uint8_t d_lead); // 微分先行使能
 
 PID_Config PID_Init_Incremental(

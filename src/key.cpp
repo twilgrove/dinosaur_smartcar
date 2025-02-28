@@ -1,9 +1,6 @@
 #include "key.h"
 Key::Key(int gpioNum, Key_mode edge) : gpio(gpioNum, "in"), edge(edge)
 {
-    time_min = 5;
-    key_s = 0;
-    key_flag = 0;
     key_active = !gpio.readValue();
 }
 
