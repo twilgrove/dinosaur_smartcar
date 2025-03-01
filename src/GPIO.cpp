@@ -88,6 +88,7 @@ GPIO::GPIO(int gpioNum, std::string direction) : gpioNum(gpioNum), fd(-1)
  */
 GPIO::~GPIO(void)
 {
+    setDirection("in");
     /* 关闭GPIO */
     if (writeToFile("/sys/class/gpio/unexport", std::to_string(gpioNum)))
     {

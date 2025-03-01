@@ -40,6 +40,7 @@ pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t 
  */
 pwm_ctrl::~pwm_ctrl()
 {
+    enable_or_disable(0);
     std::string path = PWM_CHIP_PATH + std::to_string(pwmchip_number) + "/unexport";
     std::ofstream ofs(path);
     if (ofs.is_open())

@@ -32,7 +32,6 @@ ENCODER::ENCODER(int pwmNum, int gpioNum) : base_addr(PWM_BASE_ADDR + pwmNum * P
     full_buffer = map_register(base_addr + FULL_BUFFER_OFFSET, PAGE_SIZE);    // 脉冲周期缓冲寄存器映射
 
     printf("Registers mapped successfully\n");
-
     PWM_Init();
 }
 
