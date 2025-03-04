@@ -3,16 +3,16 @@
 /* 运行标志 */
 std::atomic<bool> running(true);
 
-/* 电机：频率20-50khz，周期20000-50000ns,极性为反*/
+/* 电机：频率20-50khz，周期20000-50000ns*/
 GPIO r_pin(73, "out", 0);
 pwm_ctrl rp(1, 0, 20000, 0, "right_motor");
 pid rp_pid(pid::Mode::INCREMENT, 0.1, 0.01, 0.001, 100, 100);
 GPIO l_pin(72, "out", 0);
-pwm_ctrl lp(2, 0, 20000, 0, "left_motor");
+pwm_ctrl lp(2, 0, 20000, 5000, "left_motor");
 pid lp_pid(pid::Mode::INCREMENT, 0.1, 0.01, 0.001, 100, 100);
 
-/* 舵机：频率50hz，周期20,000,000ns，占空比500,000-2,500,000ns，极性为反*/
-pwm_ctrl sp(8, 6, 20000000, 18500000, "servo");
+/* 舵机：频率50hz，周期20,000,000ns，占空比500,000-2,500,000ns*/
+pwm_ctrl sp(8, 6, 20000000, 1500000, "servo");
 
 // pid sp_pid(pid::Mode::POSITION, 0.1, 0.01, 0.001, 100, 100);
 
@@ -37,10 +37,10 @@ bool switch2_value = 1;
 GPIO buzzer(12, "out", 0);
 
 /* 编码器,10ms更新一次 */
-ENCODER left_encoder(0, 51);
-double left_encoder_value = 0;
-ENCODER right_encoder(3, 50);
-double right_encoder_value = 0;
+// ENCODER left_encoder(0, 51);
+// double left_encoder_value = 0;
+// ENCODER right_encoder(3, 50);
+// double right_encoder_value = 0;
 
 int main()
 {
@@ -103,7 +103,7 @@ void right_pid_pwm_thread()
 {
     while (running)
     {
-        right_encoder_value = right_encoder.pulse_counter_update();
+        // right_encoder_value = right_encoder.pulse_counter_update();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
@@ -112,7 +112,7 @@ void left_pid_pwm_thread()
 {
     while (running)
     {
-        left_encoder_value = left_encoder.pulse_counter_update();
+        // left_encoder_value = left_encoder.pulse_counter_update();
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
@@ -137,8 +137,8 @@ void debug_thread()
 {
     while (running)
     {
-        std::cout << "left_encoder_value: " << left_encoder_value << std::endl;
-        std::cout << "right_encoder_value: " << right_encoder_value << std::endl;
+        // std::cout << "left_encoder_value: " << left_encoder_value << std::endl;
+        // std::cout << "right_encoder_value: " << right_encoder_value << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
@@ -150,10 +150,16 @@ void gpio_thread()
         if (key1.readValue())
             if (!reset())
                 std::cout << "Program reset failed!!!" << std::endl;
-        key_2_value += key2.readValue() ? 1 : 0;
-        key_3_value += key3.readValue() ? 1 : 0;
-        key_4_value += key4.readValue() ? 1 : 0;
-
+        if (key2.readValue())
+        {
+            l_pin.setValue(1);
+            r_pin.setValue(1);
+        }
+        if (key3.readValue())
+        {
+            l_pin.setValue(0);
+            r_pin.setValue(0);
+        }
         switch1_value = switch1.readValue();
         if (switch1_value == 0)
             project(-1);

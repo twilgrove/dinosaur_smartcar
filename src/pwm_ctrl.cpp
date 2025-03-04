@@ -83,8 +83,8 @@ void pwm_ctrl::set_period(uint32_t period_ns)
  */
 void pwm_ctrl::set_duty_cycle(uint32_t duty_cycle_ns)
 {
-    this->duty_cycle_ns = duty_cycle_ns;
-    if (write(fd, std::to_string(duty_cycle_ns).c_str(), std::to_string(duty_cycle_ns).size()) == -1)
+    this->duty_cycle_ns = this->period_ns - duty_cycle_ns;
+    if (write(fd, std::to_string(this->duty_cycle_ns).c_str(), std::to_string(this->duty_cycle_ns).size()) == -1)
     {
         throw std::runtime_error("Failed to set property duty_cycle to " + std::to_string(duty_cycle_ns));
     }
