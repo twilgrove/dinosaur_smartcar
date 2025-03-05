@@ -27,7 +27,7 @@ pwm_ctrl::pwm_ctrl(uint8_t pwmchip_number, uint8_t pwmchip_pwm_number, uint32_t 
     export_pwm();
     set_period(period_ns);
     fd = open(get_pwm_path("duty_cycle").c_str(), O_WRONLY);
-    set_duty_cycle(duty_cycle_ns);
+    set_duty(duty_cycle_ns);
     enable_or_disable(1);
 
     std::cout << "\33[34mPWM:\33[0m" << pwm_name << " init success" << std::endl;
@@ -81,7 +81,7 @@ void pwm_ctrl::set_period(uint32_t period_ns)
  *   duty_cycle_ns - PWM占空比(纳秒)
  * 返回: 无
  */
-void pwm_ctrl::set_duty_cycle(uint32_t duty_cycle_ns)
+void pwm_ctrl::set_duty(uint32_t duty_cycle_ns)
 {
     this->duty_cycle_ns = this->period_ns - duty_cycle_ns;
     if (write(fd, std::to_string(this->duty_cycle_ns).c_str(), std::to_string(this->duty_cycle_ns).size()) == -1)

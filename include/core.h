@@ -14,11 +14,12 @@
 #include "pid.h"
 #include "encoder.h"
 #define PROGRAM_NAME "Smart_Car"
+#define MAX_OUTPUT_LIMIT(x, max) ((x) > (max) ? (max) : (x)) // 输出限幅
+#define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
 
 void init();              // 初始化
 void run();               // 准备运行
 void project(int signum); // 程序状态输出
-void close();             // 关闭程序
 bool reset();             // 重置程序
 
 void opencv_thread();        // opencv线程
