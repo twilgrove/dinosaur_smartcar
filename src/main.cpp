@@ -11,14 +11,14 @@ double left_encoder_value = 0;
 ENCODER right_encoder(3, 50);
 double right_encoder_value = 0;
 
-/* 左电机：频率20-50khz，周期20000-50000ns*/
+/* 左电机：频率20-50khz，周期20000-50000ns，占空比0-20000ns*/
 uint32_t lp_duty = 0;
 uint32_t lp_target = 0;
 GPIO l_pin(72, "out", 0);
 pwm_ctrl lp(2, 0, 20000, lp_duty, "left_motor");
 pid lp_pid(pid::Mode::INCREMENT, 0.1, 0.01, 0.001, 100, 100);
 
-/* 右电机：频率20-50khz，周期20000-50000ns*/
+/* 右电机：频率20-50khz，周期20000-50000ns，占空比0-20000ns*/
 uint32_t rp_duty = 0;
 uint32_t rp_target = 0;
 GPIO r_pin(73, "out", 0);
@@ -117,6 +117,8 @@ void right_pid_pwm_thread()
     while (running)
     {
         right_encoder_value = -right_encoder.pulse_counter_update();
+        rp_duty = MAX_OUTPUT_LIMIT(rp_duty, 20000);
+        rp_duty = MIN_OUTPUT_LIMIT(rp_duty, 0);
         rp.set_duty(rp_duty);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
@@ -127,6 +129,8 @@ void left_pid_pwm_thread()
     while (running)
     {
         left_encoder_value = left_encoder.pulse_counter_update();
+        lp_duty = MAX_OUTPUT_LIMIT(lp_duty, 20000);
+        lp_duty = MIN_OUTPUT_LIMIT(lp_duty, 0);
         lp.set_duty(lp_duty);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
@@ -158,8 +162,8 @@ void gpio_thread()
         if (key1.readValue())
         {
             std::cout << "key1" << std::endl;
-            // reset();
-            project(1);
+            reset();
+            // project(1);
         }
         if (key2.readValue())
         {
@@ -185,9 +189,11 @@ void debug_thread()
 {
     while (running)
     {
-        // std::cout << "left_encoder_value: " << left_encoder_value << std::endl;
+        std::cout << "left_encoder_value: " << left_encoder_value << std::endl;
         // std::cout << "right_encoder_value: " << right_encoder_value << std::endl;
-        std::cout << "sp_duty: " << sp_duty << std::endl;
+        // std::cout << "sp_duty: " << sp_duty << std::endl;
+        std::cout << "lp_duty: " << lp_duty << std::endl;
+        // std::cout << "rp_duty: " << rp_duty << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
