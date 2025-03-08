@@ -16,6 +16,7 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/pid.cpp" "CMakeFiles/smart_car_control.dir/src/pid.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/pid.cpp.o.d"
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/pwm_ctrl.cpp" "CMakeFiles/smart_car_control.dir/src/pwm_ctrl.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/pwm_ctrl.cpp.o.d"
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/register.cpp" "CMakeFiles/smart_car_control.dir/src/register.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/register.cpp.o.d"
+  "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/tty.cpp" "CMakeFiles/smart_car_control.dir/src/tty.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/tty.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

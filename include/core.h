@@ -13,7 +13,9 @@
 #include "key.h"
 #include "pid.h"
 #include "encoder.h"
+#include "tty.h"
 #define PROGRAM_NAME "Smart_Car"
+
 #define MAX_OUTPUT_LIMIT(x, max) ((x) > (max) ? (max) : (x)) // 输出限幅
 #define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
 
@@ -29,6 +31,7 @@ void left_pid_pwm_thread();  // 左轮控制线程
 void servo_pid_pwm_thread(); // 舵机控制线程
 void imu_thread();           // 陀螺仪数据处理线程
 void gpio_thread();          // GPIO控制线程
-void debug_thread();         // 调试线程
+void debugi_thread();        // 调试输入线程
+void debugo_thread();        // 调试输出线程
 
 #endif // __MAIN_H__

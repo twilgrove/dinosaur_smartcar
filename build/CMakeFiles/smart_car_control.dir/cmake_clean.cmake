@@ -15,6 +15,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/smart_car_control.dir/src/pwm_ctrl.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/src/register.cpp.o"
   "CMakeFiles/smart_car_control.dir/src/register.cpp.o.d"
+  "CMakeFiles/smart_car_control.dir/src/tty.cpp.o"
+  "CMakeFiles/smart_car_control.dir/src/tty.cpp.o.d"
   "smart_car_control"
   "smart_car_control.pdb"
 )

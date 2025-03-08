@@ -264,4 +264,8 @@ CMakeFiles/smart_car_control.dir/src/core.cpp.o: \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/mman-shared.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/sys/stat.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/statx.h \
- /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/register.h
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/register.h \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/tty.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/termios.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/termios.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/sys/ttydefaults.h

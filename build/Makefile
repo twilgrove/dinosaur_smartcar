@@ -321,6 +321,30 @@ src/register.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/register.cpp.s
 .PHONY : src/register.cpp.s
 
+src/tty.o: src/tty.cpp.o
+.PHONY : src/tty.o
+
+# target to build an object file
+src/tty.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/tty.cpp.o
+.PHONY : src/tty.cpp.o
+
+src/tty.i: src/tty.cpp.i
+.PHONY : src/tty.i
+
+# target to preprocess a source file
+src/tty.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/tty.cpp.i
+.PHONY : src/tty.cpp.i
+
+src/tty.s: src/tty.cpp.s
+.PHONY : src/tty.s
+
+# target to generate assembly for a file
+src/tty.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/tty.cpp.s
+.PHONY : src/tty.cpp.s
+
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -354,6 +378,9 @@ help:
 	@echo "... src/register.o"
 	@echo "... src/register.i"
 	@echo "... src/register.s"
+	@echo "... src/tty.o"
+	@echo "... src/tty.i"
+	@echo "... src/tty.s"
 .PHONY : help
 
 

@@ -5,6 +5,10 @@
 /* 运行标志 */
 std::atomic<bool> running(true);
 
+/* 串口 */
+SerialPort tty("/dev/ttyS1", B9600);
+std::string data;
+
 /* 编码器,10ms更新一次 */
 ENCODER left_encoder(0, 51);
 double left_encoder_value = 0;
@@ -67,7 +71,8 @@ int main()
         std::thread fans(fans_pwm_thread);             // 负压风扇控制线程
         std::thread imu(imu_thread);                   // 陀螺仪数据处理线程
         std::thread gpio(gpio_thread);                 // GPIO控制线程
-        std::thread debug(debug_thread);               // 调试线程
+        std::thread debugi(debugi_thread);             // 调试输入线程
+        std::thread debugo(debugo_thread);             // 调试输出线程
 
         /* 等待线程结束 */
         opencv.join();
@@ -77,7 +82,8 @@ int main()
         fans.join();
         imu.join();
         gpio.join();
-        debug.join();
+        debugi.join();
+        debugo.join();
     }
     catch (const std::exception &e)
     {
@@ -128,7 +134,7 @@ void left_pid_pwm_thread()
 {
     while (running)
     {
-        left_encoder_value = left_encoder.pulse_counter_update();
+        // left_encoder_value = left_encoder.pulse_counter_update();
         lp_duty = MAX_OUTPUT_LIMIT(lp_duty, 20000);
         lp_duty = MIN_OUTPUT_LIMIT(lp_duty, 0);
         lp.set_duty(lp_duty);
@@ -163,7 +169,6 @@ void gpio_thread()
         {
             std::cout << "key1" << std::endl;
             reset();
-            // project(1);
         }
         if (key2.readValue())
         {
@@ -185,15 +190,28 @@ void gpio_thread()
     }
 }
 
-void debug_thread()
+void debugo_thread()
 {
     while (running)
     {
-        std::cout << "left_encoder_value: " << left_encoder_value << std::endl;
-        // std::cout << "right_encoder_value: " << right_encoder_value << std::endl;
-        // std::cout << "sp_duty: " << sp_duty << std::endl;
-        std::cout << "lp_duty: " << lp_duty << std::endl;
-        // std::cout << "rp_duty: " << rp_duty << std::endl;
+        // 发送调试信息
+        tty.printf("encoder: %f\n", left_encoder_value);
+        std::cout << "encoder: " << left_encoder_value << std::endl;
+        left_encoder_value += 0.01;
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+    }
+}
+
+void debugi_thread()
+{
+    while (running)
+    {
+        // 读取数据并打印
+        if (tty.readData(data))
+        {
+            std::cout << "\33[32mDebug:\33[0m " << data << std::endl;
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
