@@ -7,7 +7,8 @@ std::atomic<bool> running(true);
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B9600);
-std::string data;
+uint8_t deta[8];
+float value = 0;
 
 /* 编码器,10ms更新一次 */
 ENCODER left_encoder(0, 51);
@@ -134,7 +135,7 @@ void left_pid_pwm_thread()
 {
     while (running)
     {
-        // left_encoder_value = left_encoder.pulse_counter_update();
+        left_encoder_value = left_encoder.pulse_counter_update();
         lp_duty = MAX_OUTPUT_LIMIT(lp_duty, 20000);
         lp_duty = MIN_OUTPUT_LIMIT(lp_duty, 0);
         lp.set_duty(lp_duty);
@@ -196,8 +197,6 @@ void debugo_thread()
     {
         // 发送调试信息
         tty.printf("encoder: %f\n", left_encoder_value);
-        std::cout << "encoder: " << left_encoder_value << std::endl;
-        left_encoder_value += 0.01;
 
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
@@ -207,10 +206,47 @@ void debugi_thread()
 {
     while (running)
     {
-        // 读取数据并打印
-        if (tty.readData(data))
+        if (tty.readData(deta, 8))
         {
-            std::cout << "\33[32mDebug:\33[0m " << data << std::endl;
+            if (deta[0] == 0x55)
+            {
+                std::memcpy(&value, &deta[4], sizeof(float)); // 复制4字节到 float 变量
+                if (deta[1] == 0x20)
+                {
+                    if (deta[2] == 0x01) // 通道1
+                    {
+                        std::cout << "channel_1" << std::endl;
+                    }
+                    else if (deta[2] == 0x02) // 通道2
+                    {
+                        std::cout << "channel_2" << std::endl;
+                    }
+                    else if (deta[2] == 0x03) // 通道3
+                    {
+                        std::cout << "channel_3" << std::endl;
+                    }
+                    else if (deta[2] == 0x04) // 通道4
+                    {
+                        std::cout << "channel_4" << std::endl;
+                    }
+                    else if (deta[2] == 0x05) // 通道5
+                    {
+                        std::cout << "channel_5" << std::endl;
+                    }
+                    else if (deta[2] == 0x06) // 通道6
+                    {
+                        std::cout << "channel_6" << std::endl;
+                    }
+                    else if (deta[2] == 0x07) // 通道7
+                    {
+                        std::cout << "channel_7" << std::endl;
+                    }
+                    else if (deta[2] == 0x08) // 通道8
+                    {
+                        std::cout << "channel_8" << std::endl;
+                    }
+                }
+            }
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }

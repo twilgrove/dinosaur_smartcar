@@ -8,15 +8,18 @@
 #include <cstdio>
 #include <cstring>
 #include <stdarg.h>
-
+#include <sstream>
+#include <iomanip>
 class SerialPort
 {
 public:
     SerialPort(const std::string &device, speed_t baud_rate);
     ~SerialPort();
 
-    void printf(const char *fmt, ...); // 写入数据
-    bool readData(std::string &data);  // 非阻塞读取数据
+    void printf(const char *fmt, ...);           // 写入数据
+    bool readData(uint8_t *data, size_t length); // 非阻塞读取数据
+    bool readString(std::string &data);          // 非阻塞读取字符串
+    bool readHexString(std::string &hex_data);   // 非阻塞读取十六进制字符串
 
 private:
     std::string device_;

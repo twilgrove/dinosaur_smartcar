@@ -268,4 +268,12 @@ CMakeFiles/smart_car_control.dir/src/core.cpp.o: \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/tty.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/termios.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/termios.h \
- /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/sys/ttydefaults.h
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/sys/ttydefaults.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/iomanip \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/locale \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/locale_facets_nonio.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/loongarch64-linux-gnu/bits/time_members.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/loongarch64-linux-gnu/bits/messages_members.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/libintl.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/locale_facets_nonio.tcc \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/locale_conv.h

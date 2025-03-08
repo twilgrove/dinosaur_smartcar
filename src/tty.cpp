@@ -125,7 +125,7 @@ void SerialPort::printf(const char *fmt, ...)
  * 参数: data: 读取到的数据
  * 返回: 是否成功
  */
-bool SerialPort::readData(std::string &data)
+bool SerialPort::readString(std::string &data)
 {
     if (fd_ == -1)
         return false;
@@ -147,5 +147,66 @@ bool SerialPort::readData(std::string &data)
         return true;
     }
 
-    return false; // 无数据或超时
+    return false;
+}
+/**
+ * 功能: 读取数据并转换为十六进制字符串 (如 "1A2B3C")
+ * 参数: data - 输出的十六进制字符串
+ * 返回: 是否成功读取到数据
+ */
+bool SerialPort::readHexString(std::string &hex_data)
+{
+    if (fd_ == -1)
+        return false;
+
+    uint8_t buffer[256];
+    ssize_t bytes_read = read(fd_, buffer, sizeof(buffer));
+
+    if (bytes_read == -1)
+    {
+        if (errno != EAGAIN && errno != EWOULDBLOCK)
+            std::cerr << "\33[31mSerialPort:\33[0m Read error: " << strerror(errno) << std::endl;
+        return false;
+    }
+    else if (bytes_read > 0)
+    {
+        std::stringstream ss;
+        ss << std::hex << std::uppercase << std::setfill('0');
+        for (int i = 0; i < bytes_read; ++i)
+        {
+            // if (i > 0)
+            //     ss << " "; // 用空格分隔（可改为":"等）
+            ss << std::setw(2) << static_cast<int>(buffer[i]);
+        }
+        hex_data = ss.str();
+        return true;
+    }
+    return false;
+}
+
+/**
+ * 功能: 读取数据
+ * 参数: data: 读取到的数据
+ * 返回: 是否成功
+ */
+bool SerialPort::readData(uint8_t *data, size_t length)
+{
+    if (fd_ == -1)
+        return false;
+
+    ssize_t bytes_read = read(fd_, data, length);
+
+    if (bytes_read == -1)
+    {
+        // 处理错误（非阻塞模式下可能为 EAGAIN）
+        if (errno != EAGAIN && errno != EWOULDBLOCK)
+            std::cerr << "\33[31mSerialPort:\33[0m Read error: " << strerror(errno) << std::endl;
+        return false;
+    }
+    else if (bytes_read > 0)
+    {
+        return true;
+    }
+
+    return false;
 }
