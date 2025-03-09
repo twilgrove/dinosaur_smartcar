@@ -67,3 +67,13 @@ void project(int signum)
         break;
     }
 }
+
+// 在应用PID前进行死区补偿
+bool apply_deadzone(float target_speed)
+{
+    if (fabs(target_speed) < SPEED_DEADBAND)
+    {
+        return false; // 目标速度在死区内时直接返回0
+    }
+    return true;
+}

@@ -11,7 +11,7 @@
 #include "pid.h"
 
 // 位置式PID初始化构造函数
-pid::pid(Mode mode, float kp, float ki, float kd, float abs_process, float abs_output_limit)
+pid::pid(Mode mode, float kp, float ki, float kd, float abs_process, float max_output, float min_output)
 {
     mode_ = mode;
     this->kp = kp;
@@ -24,11 +24,11 @@ pid::pid(Mode mode, float kp, float ki, float kd, float abs_process, float abs_o
     }
     else // 增量式PID,输出增量限幅
     {
-        this->max_delta_output = abs_output_limit;
-        this->min_delta_output = -abs_output_limit;
+        this->max_delta_output = abs_process;
+        this->min_delta_output = -abs_process;
     }
-    this->max_output = abs_output_limit;
-    this->min_output = -abs_output_limit;
+    this->max_output = max_output;
+    this->min_output = min_output;
 }
 
 float pid::get(float set_value, float now_value)

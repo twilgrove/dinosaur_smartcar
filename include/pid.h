@@ -31,8 +31,8 @@ public:
         POSITION, // 位置式PID
         INCREMENT // 增量式PID
     };
-    // 模式,      比例系数,    积分系数,   微分系数, (积分限幅/输出增量限幅)绝对值,pid输出限幅绝对值
-    pid(Mode mode, float kp, float ki, float kd, float abs_process, float abs_output_limit);
+    // 模式,      比例系数,    积分系数,   微分系数, (积分限幅/输出增量限幅)绝对值, pid输出限幅
+    pid(Mode mode, float kp, float ki, float kd, float abs_process, float max_output, float min_output);
 
     ~pid() = default;
 
@@ -45,13 +45,12 @@ public:
     void set_output(float min_output, float max_output);                   // [通用] 设置输出限幅
 
     void set_alpha(float alpha);                              // [位置式] 设置微分滤波系数
-    void set_deadband(float deadband);                        // [通用] 设置死区范围
+    void set_deadband(float deadband);                        // [通用] 设置误差死区范围
     void set_integral_separation(float separation_threshold); // [位置式] 设置积分分离阈值
     void set_differential_lead(bool differential_lead);       // [位置式] 设置微分先行使能
     void reset();                                             // [通用] 重置PID控制器内部状态
     float get(float set_value, float now_value);              // 计算PID输出
 
-private:
     Mode mode_; // PID模式
     /* 基础参数 */
     float kp = 0; // [通用] 比例系数 - 控制系统对偏差的响应强度，不能为0
@@ -68,7 +67,7 @@ private:
 
     /* 优化参数 */
     float alpha = 0;               // [位置式] 微分滤波系数 - 范围0-1，不使用设为0
-    float deadband = 0;            // [通用] 死区范围 - 不使用设为0
+    float deadband = 0;            // [通用] 误差死区范围 - 不使用设为0
     float integral_separation = 0; // [位置式] 积分分离阈值 - 不使用设为0
     bool differential_lead = 0;    // [位置式] 微分先行使能 - 1:启用 0:禁用，不使用设为0
 
