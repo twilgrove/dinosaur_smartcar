@@ -237,19 +237,19 @@ CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s"
 	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic/pid.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s
 
-CMakeFiles/smart_car_control.dir/src/core.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/src/core.cpp.o: /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/core.cpp
-CMakeFiles/smart_car_control.dir/src/core.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/smart_car_control.dir/src/core.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/core.cpp.o -MF CMakeFiles/smart_car_control.dir/src/core.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/core.cpp.o -c /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/core.cpp
+CMakeFiles/smart_car_control.dir/src/globle.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/globle.cpp.o: /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/globle.cpp
+CMakeFiles/smart_car_control.dir/src/globle.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/smart_car_control.dir/src/globle.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/globle.cpp.o -MF CMakeFiles/smart_car_control.dir/src/globle.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/globle.cpp.o -c /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/globle.cpp
 
-CMakeFiles/smart_car_control.dir/src/core.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/core.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/core.cpp > CMakeFiles/smart_car_control.dir/src/core.cpp.i
+CMakeFiles/smart_car_control.dir/src/globle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/globle.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/globle.cpp > CMakeFiles/smart_car_control.dir/src/globle.cpp.i
 
-CMakeFiles/smart_car_control.dir/src/core.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/core.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/core.cpp -o CMakeFiles/smart_car_control.dir/src/core.cpp.s
+CMakeFiles/smart_car_control.dir/src/globle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/globle.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/globle.cpp -o CMakeFiles/smart_car_control.dir/src/globle.cpp.s
 
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/main.cpp
@@ -265,6 +265,34 @@ CMakeFiles/smart_car_control.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/main.cpp.s"
 	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/main.cpp -o CMakeFiles/smart_car_control.dir/src/main.cpp.s
 
+CMakeFiles/smart_car_control.dir/src/program.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/program.cpp.o: /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/program.cpp
+CMakeFiles/smart_car_control.dir/src/program.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/smart_car_control.dir/src/program.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/program.cpp.o -MF CMakeFiles/smart_car_control.dir/src/program.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/program.cpp.o -c /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/program.cpp
+
+CMakeFiles/smart_car_control.dir/src/program.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/program.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/program.cpp > CMakeFiles/smart_car_control.dir/src/program.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/program.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/program.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/program.cpp -o CMakeFiles/smart_car_control.dir/src/program.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/thread.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/thread.cpp.o: /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/thread.cpp
+CMakeFiles/smart_car_control.dir/src/thread.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/smart_car_control.dir/src/thread.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/thread.cpp.o -MF CMakeFiles/smart_car_control.dir/src/thread.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/thread.cpp.o -c /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/thread.cpp
+
+CMakeFiles/smart_car_control.dir/src/thread.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/thread.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/thread.cpp > CMakeFiles/smart_car_control.dir/src/thread.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/thread.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/thread.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/thread.cpp -o CMakeFiles/smart_car_control.dir/src/thread.cpp.s
+
 # Object files for target smart_car_control
 smart_car_control_OBJECTS = \
 "CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o" \
@@ -279,8 +307,10 @@ smart_car_control_OBJECTS = \
 "CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o" \
-"CMakeFiles/smart_car_control.dir/src/core.cpp.o" \
-"CMakeFiles/smart_car_control.dir/src/main.cpp.o"
+"CMakeFiles/smart_car_control.dir/src/globle.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/main.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/program.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/thread.cpp.o"
 
 # External object files for target smart_car_control
 smart_car_control_EXTERNAL_OBJECTS =
@@ -297,8 +327,10 @@ smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/src/core.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/globle.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/src/main.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/program.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/thread.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/build.make
 smart_car_control: /home/cys/Project_Date/LS2K0300_workspace/opencv/install/lib/libopencv_core.so
 smart_car_control: /home/cys/Project_Date/LS2K0300_workspace/opencv/install/lib/libopencv_imgproc.so
@@ -306,7 +338,7 @@ smart_car_control: /home/cys/Project_Date/LS2K0300_workspace/opencv/install/lib/
 smart_car_control: /home/cys/Project_Date/LS2K0300_workspace/opencv/install/lib/libopencv_highgui.so
 smart_car_control: /home/cys/Project_Date/LS2K0300_workspace/opencv/install/lib/libopencv_videoio.so
 smart_car_control: CMakeFiles/smart_car_control.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Linking CXX executable smart_car_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Linking CXX executable smart_car_control"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/smart_car_control.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

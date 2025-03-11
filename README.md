@@ -39,8 +39,10 @@
 │   │   ├── [pid.cpp] PID库实现文件
 │   │   └── [pid.h] PID库头文件
 ├── [src] 源文件
-│   ├── [core.cpp] 核心程序实现文件
-│   └── [main.cpp] 主程序实现文件
+│   ├── [globle.cpp] 全局变量定义文件
+│   ├── [main.cpp] 主程序实现文件
+│   ├── [program.cpp] 程序管理文件
+│   └── [thread.cpp] 线程实现文件
 ├── [.gitignore] 忽略文件
 ├── [久久派引脚功能复用表.md] 久久派引脚功能复用表
 ├── [CMakeLists.txt] CMake编译文件 （需要修改路径）

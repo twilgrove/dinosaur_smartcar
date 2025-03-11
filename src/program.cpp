@@ -1,10 +1,7 @@
 #include "core.h"
 
-/* ----------------------------------------全局变量---------------------------------------- */
-extern std::atomic<bool> running;
-extern Key key1;
-
 /* ----------------------------------------程序管理---------------------------------------- */
+/* 按键（key1）启动程序 */
 void run()
 {
     while (running)
@@ -16,6 +13,7 @@ void run()
     }
 }
 
+/* 程序重启 */
 bool reset()
 {
     std::cout << "\33[33m" << PROGRAM_NAME << ":\33[0m program reset..." << std::endl;
@@ -66,14 +64,4 @@ void project(int signum)
         running = false;
         break;
     }
-}
-
-// 在应用PID前进行死区补偿
-bool apply_deadzone(float target_speed)
-{
-    if (fabs(target_speed) < SPEED_DEADBAND)
-    {
-        return false; // 目标速度在死区内时直接返回0
-    }
-    return true;
 }

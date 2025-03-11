@@ -20,8 +20,10 @@ set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic/path_circle.cpp" "CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o.d"
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic/path_side_search.cpp" "CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o.d"
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic/pid.cpp" "CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o.d"
-  "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/core.cpp" "CMakeFiles/smart_car_control.dir/src/core.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/core.cpp.o.d"
+  "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/globle.cpp" "CMakeFiles/smart_car_control.dir/src/globle.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/globle.cpp.o.d"
   "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/main.cpp" "CMakeFiles/smart_car_control.dir/src/main.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/main.cpp.o.d"
+  "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/program.cpp" "CMakeFiles/smart_car_control.dir/src/program.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/program.cpp.o.d"
+  "/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/thread.cpp" "CMakeFiles/smart_car_control.dir/src/thread.cpp.o" "gcc" "CMakeFiles/smart_car_control.dir/src/thread.cpp.o.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

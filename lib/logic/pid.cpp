@@ -163,3 +163,13 @@ void pid::reset()
     this->prev_derivative = 0;
     this->last_output = 0;
 }
+
+// 在应用PID前进行死区补偿
+bool apply_deadzone(float target_speed, float deadband)
+{
+    if (fabs(target_speed) < deadband)
+    {
+        return false; // 目标速度在死区内时直接返回0
+    }
+    return true;
+}

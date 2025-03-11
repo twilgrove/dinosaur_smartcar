@@ -417,29 +417,29 @@ lib/logic/pid.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s
 .PHONY : lib/logic/pid.cpp.s
 
-src/core.o: src/core.cpp.o
-.PHONY : src/core.o
+src/globle.o: src/globle.cpp.o
+.PHONY : src/globle.o
 
 # target to build an object file
-src/core.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/core.cpp.o
-.PHONY : src/core.cpp.o
+src/globle.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/globle.cpp.o
+.PHONY : src/globle.cpp.o
 
-src/core.i: src/core.cpp.i
-.PHONY : src/core.i
+src/globle.i: src/globle.cpp.i
+.PHONY : src/globle.i
 
 # target to preprocess a source file
-src/core.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/core.cpp.i
-.PHONY : src/core.cpp.i
+src/globle.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/globle.cpp.i
+.PHONY : src/globle.cpp.i
 
-src/core.s: src/core.cpp.s
-.PHONY : src/core.s
+src/globle.s: src/globle.cpp.s
+.PHONY : src/globle.s
 
 # target to generate assembly for a file
-src/core.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/core.cpp.s
-.PHONY : src/core.cpp.s
+src/globle.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/globle.cpp.s
+.PHONY : src/globle.cpp.s
 
 src/main.o: src/main.cpp.o
 .PHONY : src/main.o
@@ -464,6 +464,54 @@ src/main.s: src/main.cpp.s
 src/main.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/main.cpp.s
 .PHONY : src/main.cpp.s
+
+src/program.o: src/program.cpp.o
+.PHONY : src/program.o
+
+# target to build an object file
+src/program.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/program.cpp.o
+.PHONY : src/program.cpp.o
+
+src/program.i: src/program.cpp.i
+.PHONY : src/program.i
+
+# target to preprocess a source file
+src/program.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/program.cpp.i
+.PHONY : src/program.cpp.i
+
+src/program.s: src/program.cpp.s
+.PHONY : src/program.s
+
+# target to generate assembly for a file
+src/program.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/program.cpp.s
+.PHONY : src/program.cpp.s
+
+src/thread.o: src/thread.cpp.o
+.PHONY : src/thread.o
+
+# target to build an object file
+src/thread.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/thread.cpp.o
+.PHONY : src/thread.cpp.o
+
+src/thread.i: src/thread.cpp.i
+.PHONY : src/thread.i
+
+# target to preprocess a source file
+src/thread.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/thread.cpp.i
+.PHONY : src/thread.cpp.i
+
+src/thread.s: src/thread.cpp.s
+.PHONY : src/thread.s
+
+# target to generate assembly for a file
+src/thread.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/src/thread.cpp.s
+.PHONY : src/thread.cpp.s
 
 # Help Target
 help:
@@ -510,12 +558,18 @@ help:
 	@echo "... lib/logic/pid.o"
 	@echo "... lib/logic/pid.i"
 	@echo "... lib/logic/pid.s"
-	@echo "... src/core.o"
-	@echo "... src/core.i"
-	@echo "... src/core.s"
+	@echo "... src/globle.o"
+	@echo "... src/globle.i"
+	@echo "... src/globle.s"
 	@echo "... src/main.o"
 	@echo "... src/main.i"
 	@echo "... src/main.s"
+	@echo "... src/program.o"
+	@echo "... src/program.i"
+	@echo "... src/program.s"
+	@echo "... src/thread.o"
+	@echo "... src/thread.i"
+	@echo "... src/thread.s"
 .PHONY : help
 
 

@@ -61,6 +61,8 @@
         "streambuf": "c",
         "typeinfo": "c",
         "unistd.h": "c",
-        "csignal": "cpp"
+        "csignal": "cpp",
+        "forward_list": "cpp",
+        "valarray": "cpp"
     }
 }

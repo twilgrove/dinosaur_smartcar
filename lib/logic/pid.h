@@ -23,6 +23,8 @@
  * 舵机:位置式PD
  * 电机:增量式PID
  */
+bool apply_deadzone(float target_speed, float deadband); // 死区补偿
+
 class pid
 {
 public:
