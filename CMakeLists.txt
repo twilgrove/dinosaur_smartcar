@@ -22,8 +22,10 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 # 源文件收集（推荐显式列出，这里保持GLOB但增加CONFIGURE_DEPENDS）
 file(GLOB_RECURSE SOURCES
-    "src/*.c"
     "src/*.cpp"
+    "lib/*.cpp"
+    "lib/logic/*.cpp"
+    "lib/control/*.cpp"
 )
 
 # 输出信息
@@ -42,6 +44,9 @@ add_executable(${PROJECT_NAME} ${SOURCES})
 target_include_directories(${PROJECT_NAME} PRIVATE
     ${CMAKE_SOURCE_DIR}/include
     ${OPENCV_PATH}/install/include
+    ${CMAKE_SOURCE_DIR}/lib/logic
+    ${CMAKE_SOURCE_DIR}/lib/control
+    ${CMAKE_SOURCE_DIR}/src
 )
 
 # 链接库

@@ -1,13 +1,13 @@
 #ifndef __MAIN_H__
 #define __MAIN_H__
 
-#include <stdio.h>
-#include <iostream>
-#include <thread>
-#include <atomic>
-#include <csignal>
-#include <unistd.h>
-#include <cstring>
+#include "head_system.h"
+
+#include "path.h"
+
+#include "data_process.h"
+#include "image_process.h"
+#include "data_config.h"
 
 #include "pwm_ctrl.h"
 #include "GPIO.h"
@@ -15,6 +15,7 @@
 #include "pid.h"
 #include "encoder.h"
 #include "tty.h"
+
 #define PROGRAM_NAME "Smart_Car"
 
 #define WHEEL_MAX_PWM 20000

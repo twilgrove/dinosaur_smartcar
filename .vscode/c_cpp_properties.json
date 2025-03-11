@@ -5,6 +5,9 @@
             "name": "Linux",
             "includePath": [
                 "${workspaceFolder}/include",
+                "${workspaceFolder}/lib/logic",
+                "${workspaceFolder}/lib/control",
+                "${workspaceFolder}/src",
                 "/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include"
             ],
             "compilerPath": "/usr/local/loongson-gnu-toolchain-8.3/bin/loongarch64-linux-gnu-g++", // C++ 编译器路径
