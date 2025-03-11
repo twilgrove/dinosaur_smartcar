@@ -1,5 +1,4 @@
-#include "core.h"
-
+#include "main.h"
 /* ----------------------------------------全局变量---------------------------------------- */
 /* 运行标志 */
 std::atomic<bool> running(true);
@@ -10,12 +9,16 @@ Judge my_judge;            // 赛道决策
 SYNC my_sync;              // 同步
 
 /* 数据结构体指针定义 */
-Img_Store Img_Store_c;
-Img_Store *Img_Store_p = &Img_Store_c; // 图像存储与指针
-Function_EN Function_EN_c;
-Function_EN *Function_EN_p = &Function_EN_c; // 功能使能与指针
-Data_Path Data_Path_c;
-Data_Path *Data_Path_p = &Data_Path_c; // 赛道数据与指针
+Img_Store Img_Store_c, *Img_Store_p = &Img_Store_c;         // 图像存储与指针
+Function_EN Function_EN_c, *Function_EN_p = &Function_EN_c; // 功能使能与指针
+Data_Path Data_Path_c, *Data_Path_p = &Data_Path_c;         // 赛道数据与指针
+JSON_FunctionConfigData JSON_functionConfigData;
+JSON_TrackConfigData JSON_trackConfigData;
+/* 相机 */
+cv::VideoCapture Camera;
+
+/* 视频发送 */
+VideoSender sender("192.168.43.109", 8888, true);
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B9600);

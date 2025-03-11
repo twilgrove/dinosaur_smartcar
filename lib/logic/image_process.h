@@ -27,7 +27,7 @@ void CameraImgGetThread(cv::VideoCapture &Camera, Img_Store *Img_Store_p);
     @参数说明
     Img_Store_p 图像存储结构体指针
 */
-void CameraImgGet(Img_Store *Img_Store_p);
+void CameraImgGet(Img_Store *Img_Store_p, std::atomic<bool> &running);
 
 class ImgProcess
 {

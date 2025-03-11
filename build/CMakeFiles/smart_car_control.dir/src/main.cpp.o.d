@@ -1,7 +1,7 @@
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src/main.cpp \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/stdc-predef.h \
- /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/core.h \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/main.h \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/head_system.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/iostream \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/loongarch64-linux-gnu/bits/c++config.h \
@@ -468,4 +468,17 @@ CMakeFiles/smart_car_control.dir/src/main.cpp.o: \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/mman-linux.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/mman-shared.h \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control/register.h \
- /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control/tty.h
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control/tty.h \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control/udp.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/arpa/inet.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/netinet/in.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/sys/socket.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/socket.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/socket_type.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/sockaddr.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm/socket.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/socket.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm/sockios.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/sockios.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/types/struct_osockaddr.h \
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/in.h

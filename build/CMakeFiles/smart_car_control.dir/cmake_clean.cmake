@@ -11,6 +11,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o"
   "CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o.d"
+  "CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o"
+  "CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o"
   "CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o"

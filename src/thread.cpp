@@ -1,11 +1,12 @@
-#include "core.h"
+#include "main.h"
 
 /* ------------------------------------------线程------------------------------------------ */
 void opencv_thread()
 {
     while (running)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        std::cout << "opencv_thread" << std::endl;
+        CameraImgGetThread(Camera, Img_Store_p);
     }
 }
 
@@ -84,11 +85,8 @@ void gpio_thread()
 {
     while (running)
     {
-        if (key1.readValue())
-        {
-            std::cout << "key1" << std::endl;
-            reset();
-        }
+        reset(key1.readValue());
+
         if (key2.readValue())
         {
             std::cout << "key2" << std::endl;

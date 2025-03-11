@@ -273,6 +273,30 @@ lib/control/tty.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.s
 .PHONY : lib/control/tty.cpp.s
 
+lib/control/udp.o: lib/control/udp.cpp.o
+.PHONY : lib/control/udp.o
+
+# target to build an object file
+lib/control/udp.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o
+.PHONY : lib/control/udp.cpp.o
+
+lib/control/udp.i: lib/control/udp.cpp.i
+.PHONY : lib/control/udp.i
+
+# target to preprocess a source file
+lib/control/udp.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.i
+.PHONY : lib/control/udp.cpp.i
+
+lib/control/udp.s: lib/control/udp.cpp.s
+.PHONY : lib/control/udp.s
+
+# target to generate assembly for a file
+lib/control/udp.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.s
+.PHONY : lib/control/udp.cpp.s
+
 lib/logic/data_process.o: lib/logic/data_process.cpp.o
 .PHONY : lib/logic/data_process.o
 
@@ -540,6 +564,9 @@ help:
 	@echo "... lib/control/tty.o"
 	@echo "... lib/control/tty.i"
 	@echo "... lib/control/tty.s"
+	@echo "... lib/control/udp.o"
+	@echo "... lib/control/udp.i"
+	@echo "... lib/control/udp.s"
 	@echo "... lib/logic/data_process.o"
 	@echo "... lib/logic/data_process.i"
 	@echo "... lib/logic/data_process.s"

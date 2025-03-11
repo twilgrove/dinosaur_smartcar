@@ -5,14 +5,14 @@
 ```
 .
 ├── [.cursor] 存放Cursor的回答规则
-├── [.vscode] 存放VSCode的配置文件(需要修改路径)
+├── [.vscode] 存放VSCode的配置文件(需要修改opencv路径和编译链路径)
 ├── [config] 存放配置文件
 ├── [demo] 包含一些demo文件
 ├── [include] 头文件
-│   ├── [core.h] 核心程序头文件
 │   ├── [data_config.h] 全局参数定义头文件
 │   ├── [head_system.h] 工程调用的系统头文件
-│   └── [json.hpp] JSON库
+│   ├── [json.hpp] JSON库
+│   └── [main.h] 主程序头文件
 ├── [lib] 库文件
 │   ├── [control] 控制库
 │   │   ├── [encoder.cpp] 编码器库实现文件
@@ -45,7 +45,7 @@
 │   └── [thread.cpp] 线程实现文件
 ├── [.gitignore] 忽略文件
 ├── [久久派引脚功能复用表.md] 久久派引脚功能复用表
-├── [CMakeLists.txt] CMake编译文件 （需要修改路径）
+├── [CMakeLists.txt] CMake编译文件 （需要修改opencv路径）
 ├── [go] 自动编译脚本
 ├── [LICENSE] 开源协议
 ├── [README.md] 工程描述文件

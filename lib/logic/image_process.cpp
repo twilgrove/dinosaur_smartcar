@@ -58,29 +58,29 @@ bool CameraInit(VideoCapture &Camera, CameraKind Camera_EN, int FPS)
 void CameraImgGetThread(VideoCapture &Camera, Img_Store *Img_Store_p)
 {
 	Mat Img;
-	while (1)
+	Camera >> Img; // 将视频流转为图像流
+	CameraCapture_Mutex.lock();
+	if (!Img_Store_p->Img_Capture.empty())
 	{
-		Camera >> Img; // 将视频流转为图像流
-		CameraCapture_Mutex.lock();
-		if (!Img_Store_p->Img_Capture.empty())
-		{
-			(Img_Store_p->Img_Capture).pop();
-		}
-		(Img_Store_p->Img_Capture).push(Img);
-		CameraCapture_Mutex.unlock();
+		(Img_Store_p->Img_Capture).pop();
 	}
+	(Img_Store_p->Img_Capture).push(Img);
+	CameraCapture_Mutex.unlock();
 }
 
 /*
 	获取图像
 */
-void CameraImgGet(Img_Store *Img_Store_p)
+void CameraImgGet(Img_Store *Img_Store_p, std::atomic<bool> &running)
 {
 	while (Img_Store_p->Img_Capture.empty())
-		;
+	{
+		if (!running)
+			return;
+	}
+
 	CameraCapture_Mutex.lock();
-	Mat pic = (Img_Store_p->Img_Capture).front().clone();
-	flip(pic, (Img_Store_p->Img_Color), -1);
+	flip((Img_Store_p->Img_Capture).front().clone(), (Img_Store_p->Img_Color), -1); // 翻转图像
 	CameraCapture_Mutex.unlock();
 }
 

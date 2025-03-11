@@ -15,7 +15,7 @@
 #include "pid.h"
 #include "encoder.h"
 #include "tty.h"
-
+#include "udp.h"
 /* ----------------------------------------宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
@@ -43,6 +43,15 @@ extern Function_EN Function_EN_c;
 extern Function_EN *Function_EN_p; // 功能使能与指针
 extern Data_Path Data_Path_c;
 extern Data_Path *Data_Path_p; // 赛道数据与指针
+
+extern JSON_FunctionConfigData JSON_functionConfigData;
+extern JSON_TrackConfigData JSON_trackConfigData;
+
+/* 相机 */
+extern cv::VideoCapture Camera;
+
+/* 视频发送 */
+extern VideoSender sender;
 
 /* 串口 */
 extern SerialPort tty;
@@ -99,12 +108,11 @@ extern bool switch2_value;
 extern GPIO buzzer;
 
 /* ----------------------------------------函数声明---------------------------------------- */
-void init();              // 初始化
-void run();               // 准备运行
-void project(int signum); // 程序状态输出
-bool reset();             // 重置程序
-
-bool apply_deadzone(float target_speed); // 在应用PID前进行目标速度死区补偿
+void init();                     // 初始化
+void run();                      // 准备运行
+void close();                    // 关闭程序
+void project_manage(int signum); // 程序信息
+void reset(bool flag);           // 重置程序
 
 void opencv_thread();           // opencv线程
 void fans_pwm_thread();         // 负压风扇控制线程
