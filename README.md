@@ -85,3 +85,4 @@
 ## 链接
  第二十届智能车-极速光电龙芯组完赛代码:https://github.com/0Leeeezy0/20th_smart_car_loongson
  ls2k0300_peripheral_library:https://github.com/AirFortressIlikara/ls2k0300_peripheral_library
+ 逐飞龙芯LS2K0300开源库https://gitee.com/seekfree/LS2K0300_Library

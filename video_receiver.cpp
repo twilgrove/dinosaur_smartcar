@@ -8,8 +8,10 @@
 #define PACK_SIZE 1024
 #define PORT 8888 // 需要与发送端的目标端口一致
 
+uint64_t frame_count = 0;
 int main()
 {
+
     // 创建UDP socket
     int sockfd = socket(AF_INET, SOCK_DGRAM, 0);
     if (sockfd < 0)
@@ -59,7 +61,7 @@ int main()
         // 验证数据大小
         if (total_size <= 0 || total_size > 1024 * 1024)
         { // 限制最大1MB
-            std::cerr << "Invalid data size: " << total_size << std::endl;
+            // std::cerr << "Invalid data size: " << total_size << std::endl;
             continue;
         }
 
@@ -88,6 +90,9 @@ int main()
         // 解码并显示图像
         if (received == total_size)
         {
+            frame_count++;
+            std::cout << "frame_count: " << frame_count << std::endl;
+
             cv::Mat frame = cv::imdecode(buffer, cv::IMREAD_COLOR);
             if (!frame.empty())
             {
