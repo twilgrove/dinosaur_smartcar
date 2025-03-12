@@ -51,7 +51,7 @@ extern JSON_TrackConfigData JSON_trackConfigData;
 extern cv::VideoCapture Camera;
 
 /* 视频发送 */
-extern VideoSender sender;
+extern udp sender;
 
 /* 串口 */
 extern SerialPort tty;

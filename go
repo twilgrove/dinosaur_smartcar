@@ -41,6 +41,9 @@ makeme() {
         exit 1
     fi
 }
+video_receiver() {
+    g++ video_receiver.cpp -o receiver $(pkg-config --cflags --libs opencv4)
+}
 # 参数解析
 case "$1" in
 -c)
@@ -48,6 +51,9 @@ case "$1" in
     ;;
 -b)
     build
+    ;;
+-v)
+    video_receiver
     ;;
 *)
     makeme

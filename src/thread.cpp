@@ -5,7 +5,6 @@ void opencv_thread()
 {
     while (running)
     {
-        std::cout << "opencv_thread" << std::endl;
         CameraImgGetThread(Camera, Img_Store_p);
     }
 }

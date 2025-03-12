@@ -18,7 +18,7 @@ JSON_TrackConfigData JSON_trackConfigData;
 cv::VideoCapture Camera;
 
 /* 视频发送 */
-VideoSender sender("192.168.43.109", 8888, true);
+udp sender("192.168.43.180", 8888, true);
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B9600);

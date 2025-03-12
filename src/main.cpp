@@ -61,9 +61,10 @@ void car_main_control_thread()
         CameraImgGet(Img_Store_p, running);
         my_img_process.ImgCompress(Img_Store_p->Img_Color, JSON_functionConfigData.ImgCompress_EN); // 图像压缩
         my_img_process.ImgPrepare(Img_Store_p, Data_Path_p, Function_EN_p);                         // 图像预处理
-        ImgSideSearch(Img_Store_p, Data_Path_p);                                                    // 边线八邻域寻线
+        // ImgPathSearch(Img_Store_p, Data_Path_p);                                                    // 路径寻线
+        ImgSideSearch(Img_Store_p, Data_Path_p); // 边线八邻域寻线
 
-        sender.sendFrame(Img_Store_p->Img_Color);
+        sender.sendFrame(Img_Store_p->Img_Track);
 
         Img_Store_p->ImgNum++; // 图像帧数
         std::this_thread::sleep_for(std::chrono::milliseconds(0));

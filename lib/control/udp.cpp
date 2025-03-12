@@ -3,9 +3,10 @@
 #include <cerrno>
 #include <cstring>
 
-VideoSender::VideoSender(const std::string &dest_ip, int dest_port, bool enable_sending)
+udp::udp(const std::string &dest_ip, int dest_port, bool enable_sending)
     : destIP(dest_ip), destPort(dest_port), isEnabled(enable_sending)
 {
+    /*创建套接字*/
     sock = socket(AF_INET, SOCK_DGRAM, 0);
     if (sock == -1)
     {
@@ -13,30 +14,32 @@ VideoSender::VideoSender(const std::string &dest_ip, int dest_port, bool enable_
         exit(EXIT_FAILURE);
     }
 
-    destAddr.sin_family = AF_INET;
-    destAddr.sin_port = htons(destPort);
-    inet_pton(AF_INET, destIP.c_str(), &destAddr.sin_addr);
+    /*设置目标地址*/
+    destAddr.sin_family = AF_INET;                          // 协议族
+    destAddr.sin_port = htons(destPort);                    // 端口号
+    inet_pton(AF_INET, destIP.c_str(), &destAddr.sin_addr); // 将IP地址转换为网络字节序
+
     std::cout << "udp init complete" << std::endl;
 }
 
-VideoSender::~VideoSender()
+udp::~udp()
 {
     close(sock);
 }
 
-void VideoSender::setEnabled(bool enable)
+void udp::Enable(bool enable)
 {
     isEnabled = enable;
 }
 
-void VideoSender::sendFrame(const cv::Mat &frame)
+void udp::sendFrame(const cv::Mat &frame)
 {
     if (!isEnabled)
         return;
 
     std::vector<uchar> buffer;
-    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 20};
-    if (!cv::imencode(".jpg", frame, buffer, params))
+    std::vector<int> params = {cv::IMWRITE_JPEG_QUALITY, 100}; // 设置JPEG编码质量
+    if (!cv::imencode(".jpg", frame, buffer, params))          // 将图像编码为JPEG格式
     {
         std::cerr << "JPEG encode failed!" << std::endl;
         return;
@@ -52,15 +55,15 @@ void VideoSender::sendFrame(const cv::Mat &frame)
         return;
     }
 
-    for (int i = 0; i < dataSize; i += CHUNK_SIZE)
+    for (int i = 0; i < dataSize; i += PACK_SIZE)
     {
-        int chunkSize = std::min(CHUNK_SIZE, dataSize - i);
+        int chunkSize = std::min(PACK_SIZE, dataSize - i);
         sentBytes = sendto(sock, data + i, chunkSize, 0, (sockaddr *)&destAddr, sizeof(destAddr));
         if (sentBytes == -1)
         {
             std::cerr << "send data failed: " << strerror(errno) << std::endl;
             return;
         }
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        // std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }

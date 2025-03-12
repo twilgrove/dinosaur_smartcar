@@ -27,8 +27,8 @@
 │   │   ├── [register.h] 寄存器库头文件 
 │   │   ├── [tty.cpp] 串口库实现文件
 │   │   ├── [tty.h] 串口库头文件
-│   │   ├── [udp.cpp] 视频发送库实现文件
-│   │   └── [udp.h] 视频发送库头文件
+│   │   ├── [udp.cpp] udp发送库实现文件
+│   │   └── [udp.h] udp发送库头文件
 │   ├── [logic] 逻辑算法库
 │   │   ├── [data_process.cpp] 数据处理实现文件
 │   │   ├── [data_process.h] 数据处理头文件
@@ -51,8 +51,14 @@
 ├── [go] 自动编译脚本
 ├── [LICENSE] 开源协议
 ├── [README.md] 工程描述文件
+├── [receiver] 视频接收器(需要适配端口号)
 ├── [smart_car_control] 智能车控制程序
+├── [video_receiver.cpp] 视频接收器源文件
 └── [vmlinuz] 内核镜像
+```
+## 视频接收器使用
+```bash
+./receiver
 ```
 
 ## 脚本使用
@@ -69,6 +75,11 @@
 ### 清理中间文件
 ```bash
 ./go -c
+```
+
+### 编译视频接收器
+```bash
+./go -v
 ```
 
 ## 链接
