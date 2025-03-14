@@ -16,6 +16,7 @@
 #include "encoder.h"
 #include "tty.h"
 #include "udp.h"
+#include "memory.h"
 /* ----------------------------------------宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
@@ -30,6 +31,9 @@
 #define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
 /* ----------------------------------------全局变量---------------------------------------- */
 extern std::atomic<bool> running;
+
+/* 内存监控 */
+extern MemoryMonitor memory_monitor;
 
 /* 决策及处理 */
 extern ImgProcess my_img_process; // 图像处理
@@ -52,7 +56,7 @@ extern cv::VideoCapture Camera;
 
 /* 视频发送 */
 extern udp sender;
-
+extern bool sender_ready;
 /* 串口 */
 extern SerialPort tty;
 extern uint8_t deta[8];

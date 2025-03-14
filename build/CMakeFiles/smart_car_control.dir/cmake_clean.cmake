@@ -5,6 +5,8 @@ file(REMOVE_RECURSE
   "CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o"
   "CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o.d"
+  "CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o"
+  "CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o"
   "CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o.d"
   "CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o"

@@ -201,6 +201,30 @@ lib/control/key.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/key.cpp.s
 .PHONY : lib/control/key.cpp.s
 
+lib/control/memory.o: lib/control/memory.cpp.o
+.PHONY : lib/control/memory.o
+
+# target to build an object file
+lib/control/memory.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o
+.PHONY : lib/control/memory.cpp.o
+
+lib/control/memory.i: lib/control/memory.cpp.i
+.PHONY : lib/control/memory.i
+
+# target to preprocess a source file
+lib/control/memory.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.i
+.PHONY : lib/control/memory.cpp.i
+
+lib/control/memory.s: lib/control/memory.cpp.s
+.PHONY : lib/control/memory.s
+
+# target to generate assembly for a file
+lib/control/memory.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.s
+.PHONY : lib/control/memory.cpp.s
+
 lib/control/pwm_ctrl.o: lib/control/pwm_ctrl.cpp.o
 .PHONY : lib/control/pwm_ctrl.o
 
@@ -555,6 +579,9 @@ help:
 	@echo "... lib/control/key.o"
 	@echo "... lib/control/key.i"
 	@echo "... lib/control/key.s"
+	@echo "... lib/control/memory.o"
+	@echo "... lib/control/memory.i"
+	@echo "... lib/control/memory.s"
 	@echo "... lib/control/pwm_ctrl.o"
 	@echo "... lib/control/pwm_ctrl.i"
 	@echo "... lib/control/pwm_ctrl.s"

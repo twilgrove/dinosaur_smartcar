@@ -481,4 +481,5 @@ CMakeFiles/smart_car_control.dir/src/main.cpp.o: \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm/sockios.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/sockios.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/types/struct_osockaddr.h \
- /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/in.h
+ /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/in.h \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control/memory.h

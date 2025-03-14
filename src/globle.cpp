@@ -3,6 +3,9 @@
 /* 运行标志 */
 std::atomic<bool> running(true);
 
+/* 内存监控 */
+MemoryMonitor memory_monitor;
+
 /* 决策及处理 */
 ImgProcess my_img_process; // 图像处理
 Judge my_judge;            // 赛道决策
@@ -19,6 +22,7 @@ cv::VideoCapture Camera;
 
 /* 视频发送 */
 udp sender("192.168.43.180", 8888, true);
+bool sender_ready = false; // 发送准备状态
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B9600);

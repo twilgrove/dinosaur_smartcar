@@ -111,8 +111,9 @@ void debugo_thread()
     while (running)
     {
 
-        std::cout << "l_now: " << l_now << std::endl;
-        std::cout << "r_now: " << r_now << std::endl;
+        // std::cout << "l_now: " << l_now << std::endl;
+        // std::cout << "r_now: " << r_now << std::endl;
+        std::cout << "VmRSS: " << memory_monitor.getVmRSS() << "MB" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
@@ -159,6 +160,13 @@ void debugi_thread()
         // }
         // // 发送调试信息
         // tty.printf("encoder: %f,%f\n", l_now, l_target);
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
+        if (sender_ready)
+        {
+            sender.sendFrame_pro(Img_Store_p->Img_Track);
+            sender_ready = false;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }

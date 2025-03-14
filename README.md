@@ -21,6 +21,8 @@
 │   │   ├── [GPIO.h] GPIO库头文件
 │   │   ├── [key.cpp] 按键库实现文件
 │   │   ├── [key.h] 按键库头文件
+│   │   ├── [memory.cpp] 内存监控库实现文件
+│   │   ├── [memory.h] 内存监控库头文件
 │   │   ├── [pwm_ctrl.cpp] PWM库实现文件
 │   │   ├── [pwm_ctrl.h] PWM库头文件 
 │   │   ├── [register.cpp] 寄存器库实现文件
