@@ -5,7 +5,7 @@ void opencv_thread()
 {
     while (running)
     {
-        CameraImgGetThread(Camera, Img_Store_p);
+        // CameraImgGetThread(Camera, Img_Store_p);
     }
 }
 
@@ -76,7 +76,10 @@ void imu_thread()
 {
     while (running)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(100));
+        imu660ra_get_acc();
+        imu660ra_get_gyro();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
 
@@ -113,7 +116,14 @@ void debugo_thread()
 
         // std::cout << "l_now: " << l_now << std::endl;
         // std::cout << "r_now: " << r_now << std::endl;
-        std::cout << "VmRSS: " << memory_monitor.getVmRSS() << "MB" << std::endl;
+        // std::cout << "VmRSS: " << memory_monitor.getVmRSS() << "MB" << std::endl;
+        std::cout << "imu660ra_acc_x: " << imu660ra_acc_x << std::endl;
+        std::cout << "imu660ra_acc_y: " << imu660ra_acc_y << std::endl;
+        std::cout << "imu660ra_acc_z: " << imu660ra_acc_z << std::endl;
+        std::cout << "imu660ra_gyro_x: " << imu660ra_gyro_x << std::endl;
+        std::cout << "imu660ra_gyro_y: " << imu660ra_gyro_y << std::endl;
+        std::cout << "imu660ra_gyro_z: " << imu660ra_gyro_z << std::endl;
+        std::cout << "----------------------------------------" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
@@ -161,11 +171,11 @@ void debugi_thread()
         // // 发送调试信息
         // tty.printf("encoder: %f,%f\n", l_now, l_target);
 
-        if (sender_ready)
-        {
-            sender.sendFrame_pro(Img_Store_p->Img_Track);
-            sender_ready = false;
-        }
+        // if (sender_ready)
+        // {
+        //     sender.sendFrame_pro(Img_Store_p->Img_Track);
+        //     sender_ready = false;
+        // }
 
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }

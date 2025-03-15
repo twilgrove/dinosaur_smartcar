@@ -131,8 +131,6 @@ CMakeFiles/smart_car_control.dir/src/main.cpp.o: \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_device/zf_device_ips200_fb.h \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_common/zf_common_typedef.h \
  /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_device/zf_device_imu_core.h \
- /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_device/zf_device_imu660ra.h \
- /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/head_system.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/iostream \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/ostream \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/ios \
@@ -239,6 +237,8 @@ CMakeFiles/smart_car_control.dir/src/main.cpp.o: \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/ostream.tcc \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/istream \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/istream.tcc \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_device/zf_device_imu660ra.h \
+ /home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include/head_system.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/cmath \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/math.h \
  /usr/local/loongson-gnu-toolchain-8.3/loongarch64-linux-gnu/sysroot/usr/include/bits/math-vector.h \

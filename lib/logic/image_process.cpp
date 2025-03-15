@@ -42,12 +42,12 @@ bool CameraInit(VideoCapture &Camera, CameraKind Camera_EN, int FPS)
 
 	if (!Camera.isOpened())
 	{
-		cout << "<---------------------Camera init failed--------------------->" << endl;
+		std::cout << "\33[31mCamera:\33[0m init \33[31mfailed\33[0m" << std::endl;
 		return false;
 	}
 	else
 	{
-		cout << "<---------------------Camera init success--------------------->" << endl;
+		std::cout << "\33[34mCamera:\33[0m init success" << std::endl;
 		return true;
 	}
 }
