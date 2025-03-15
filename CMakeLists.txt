@@ -26,6 +26,9 @@ file(GLOB_RECURSE SOURCES
     "lib/*.cpp"
     "lib/logic/*.cpp"
     "lib/control/*.cpp"
+    "lib/zf_common/*.cpp"
+    "lib/zf_device/*.cpp"
+    "lib/zf_driver/*.cpp"
 )
 
 # 输出信息
@@ -46,6 +49,8 @@ target_include_directories(${PROJECT_NAME} PRIVATE
     ${OPENCV_PATH}/install/include
     ${CMAKE_SOURCE_DIR}/lib/logic
     ${CMAKE_SOURCE_DIR}/lib/control
+    ${CMAKE_SOURCE_DIR}/lib/zf_common
+    ${CMAKE_SOURCE_DIR}/lib/zf_device
     ${CMAKE_SOURCE_DIR}/src
 )
 

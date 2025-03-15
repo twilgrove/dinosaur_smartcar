@@ -8,6 +8,8 @@
                 "${workspaceFolder}/lib/logic",
                 "${workspaceFolder}/lib/control",
                 "${workspaceFolder}/src",
+                "${workspaceFolder}/lib/zf_common",
+                "${workspaceFolder}/lib/zf_device",
                 "/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include" // opencv库路径
             ],
             "compilerPath": "/usr/local/loongson-gnu-toolchain-8.3/bin/loongarch64-linux-gnu-g++", // C++ 编译器路径

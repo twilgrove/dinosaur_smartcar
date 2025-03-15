@@ -465,6 +465,150 @@ lib/logic/pid.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s
 .PHONY : lib/logic/pid.cpp.s
 
+lib/zf_common/zf_common_font.o: lib/zf_common/zf_common_font.cpp.o
+.PHONY : lib/zf_common/zf_common_font.o
+
+# target to build an object file
+lib/zf_common/zf_common_font.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o
+.PHONY : lib/zf_common/zf_common_font.cpp.o
+
+lib/zf_common/zf_common_font.i: lib/zf_common/zf_common_font.cpp.i
+.PHONY : lib/zf_common/zf_common_font.i
+
+# target to preprocess a source file
+lib/zf_common/zf_common_font.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.i
+.PHONY : lib/zf_common/zf_common_font.cpp.i
+
+lib/zf_common/zf_common_font.s: lib/zf_common/zf_common_font.cpp.s
+.PHONY : lib/zf_common/zf_common_font.s
+
+# target to generate assembly for a file
+lib/zf_common/zf_common_font.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.s
+.PHONY : lib/zf_common/zf_common_font.cpp.s
+
+lib/zf_common/zf_common_function.o: lib/zf_common/zf_common_function.cpp.o
+.PHONY : lib/zf_common/zf_common_function.o
+
+# target to build an object file
+lib/zf_common/zf_common_function.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o
+.PHONY : lib/zf_common/zf_common_function.cpp.o
+
+lib/zf_common/zf_common_function.i: lib/zf_common/zf_common_function.cpp.i
+.PHONY : lib/zf_common/zf_common_function.i
+
+# target to preprocess a source file
+lib/zf_common/zf_common_function.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.i
+.PHONY : lib/zf_common/zf_common_function.cpp.i
+
+lib/zf_common/zf_common_function.s: lib/zf_common/zf_common_function.cpp.s
+.PHONY : lib/zf_common/zf_common_function.s
+
+# target to generate assembly for a file
+lib/zf_common/zf_common_function.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.s
+.PHONY : lib/zf_common/zf_common_function.cpp.s
+
+lib/zf_common/zf_driver_file.o: lib/zf_common/zf_driver_file.cpp.o
+.PHONY : lib/zf_common/zf_driver_file.o
+
+# target to build an object file
+lib/zf_common/zf_driver_file.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o
+.PHONY : lib/zf_common/zf_driver_file.cpp.o
+
+lib/zf_common/zf_driver_file.i: lib/zf_common/zf_driver_file.cpp.i
+.PHONY : lib/zf_common/zf_driver_file.i
+
+# target to preprocess a source file
+lib/zf_common/zf_driver_file.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.i
+.PHONY : lib/zf_common/zf_driver_file.cpp.i
+
+lib/zf_common/zf_driver_file.s: lib/zf_common/zf_driver_file.cpp.s
+.PHONY : lib/zf_common/zf_driver_file.s
+
+# target to generate assembly for a file
+lib/zf_common/zf_driver_file.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.s
+.PHONY : lib/zf_common/zf_driver_file.cpp.s
+
+lib/zf_device/zf_device_imu660ra.o: lib/zf_device/zf_device_imu660ra.cpp.o
+.PHONY : lib/zf_device/zf_device_imu660ra.o
+
+# target to build an object file
+lib/zf_device/zf_device_imu660ra.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o
+.PHONY : lib/zf_device/zf_device_imu660ra.cpp.o
+
+lib/zf_device/zf_device_imu660ra.i: lib/zf_device/zf_device_imu660ra.cpp.i
+.PHONY : lib/zf_device/zf_device_imu660ra.i
+
+# target to preprocess a source file
+lib/zf_device/zf_device_imu660ra.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.i
+.PHONY : lib/zf_device/zf_device_imu660ra.cpp.i
+
+lib/zf_device/zf_device_imu660ra.s: lib/zf_device/zf_device_imu660ra.cpp.s
+.PHONY : lib/zf_device/zf_device_imu660ra.s
+
+# target to generate assembly for a file
+lib/zf_device/zf_device_imu660ra.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.s
+.PHONY : lib/zf_device/zf_device_imu660ra.cpp.s
+
+lib/zf_device/zf_device_imu_core.o: lib/zf_device/zf_device_imu_core.cpp.o
+.PHONY : lib/zf_device/zf_device_imu_core.o
+
+# target to build an object file
+lib/zf_device/zf_device_imu_core.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o
+.PHONY : lib/zf_device/zf_device_imu_core.cpp.o
+
+lib/zf_device/zf_device_imu_core.i: lib/zf_device/zf_device_imu_core.cpp.i
+.PHONY : lib/zf_device/zf_device_imu_core.i
+
+# target to preprocess a source file
+lib/zf_device/zf_device_imu_core.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.i
+.PHONY : lib/zf_device/zf_device_imu_core.cpp.i
+
+lib/zf_device/zf_device_imu_core.s: lib/zf_device/zf_device_imu_core.cpp.s
+.PHONY : lib/zf_device/zf_device_imu_core.s
+
+# target to generate assembly for a file
+lib/zf_device/zf_device_imu_core.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.s
+.PHONY : lib/zf_device/zf_device_imu_core.cpp.s
+
+lib/zf_device/zf_device_ips200_fb.o: lib/zf_device/zf_device_ips200_fb.cpp.o
+.PHONY : lib/zf_device/zf_device_ips200_fb.o
+
+# target to build an object file
+lib/zf_device/zf_device_ips200_fb.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o
+.PHONY : lib/zf_device/zf_device_ips200_fb.cpp.o
+
+lib/zf_device/zf_device_ips200_fb.i: lib/zf_device/zf_device_ips200_fb.cpp.i
+.PHONY : lib/zf_device/zf_device_ips200_fb.i
+
+# target to preprocess a source file
+lib/zf_device/zf_device_ips200_fb.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.i
+.PHONY : lib/zf_device/zf_device_ips200_fb.cpp.i
+
+lib/zf_device/zf_device_ips200_fb.s: lib/zf_device/zf_device_ips200_fb.cpp.s
+.PHONY : lib/zf_device/zf_device_ips200_fb.s
+
+# target to generate assembly for a file
+lib/zf_device/zf_device_ips200_fb.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/smart_car_control.dir/build.make CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.s
+.PHONY : lib/zf_device/zf_device_ips200_fb.cpp.s
+
 src/globle.o: src/globle.cpp.o
 .PHONY : src/globle.o
 
@@ -612,6 +756,24 @@ help:
 	@echo "... lib/logic/pid.o"
 	@echo "... lib/logic/pid.i"
 	@echo "... lib/logic/pid.s"
+	@echo "... lib/zf_common/zf_common_font.o"
+	@echo "... lib/zf_common/zf_common_font.i"
+	@echo "... lib/zf_common/zf_common_font.s"
+	@echo "... lib/zf_common/zf_common_function.o"
+	@echo "... lib/zf_common/zf_common_function.i"
+	@echo "... lib/zf_common/zf_common_function.s"
+	@echo "... lib/zf_common/zf_driver_file.o"
+	@echo "... lib/zf_common/zf_driver_file.i"
+	@echo "... lib/zf_common/zf_driver_file.s"
+	@echo "... lib/zf_device/zf_device_imu660ra.o"
+	@echo "... lib/zf_device/zf_device_imu660ra.i"
+	@echo "... lib/zf_device/zf_device_imu660ra.s"
+	@echo "... lib/zf_device/zf_device_imu_core.o"
+	@echo "... lib/zf_device/zf_device_imu_core.i"
+	@echo "... lib/zf_device/zf_device_imu_core.s"
+	@echo "... lib/zf_device/zf_device_ips200_fb.o"
+	@echo "... lib/zf_device/zf_device_ips200_fb.i"
+	@echo "... lib/zf_device/zf_device_ips200_fb.s"
 	@echo "... src/globle.o"
 	@echo "... src/globle.i"
 	@echo "... src/globle.s"

@@ -4,7 +4,7 @@
 # compile CXX with loongarch64-linux-gnu-g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include -I/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src
+CXX_INCLUDES = -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/include -I/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/logic -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/control -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_common -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/lib/zf_device -I/home/cys/Project_Date/Smart_Car_workspace/dinosaur_smartcar/src
 
 CXX_FLAGS = -std=gnu++11 -Wall -Wextra -Wpedantic -O2
 

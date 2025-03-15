@@ -1,6 +1,7 @@
 #ifndef __CORE_H__
 #define __CORE_H__
 
+#include "zf_common_headfile.h"
 #include "head_system.h"
 
 #include "path.h"
