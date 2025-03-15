@@ -23,7 +23,7 @@
 
 #define WHEEL_MAX_PWM 20000
 #define WHEEL_MIN_PWM 0
-#define SPEED_DEADBAND 5 // 目标速度死区
+#define SPEED_DEADBAND 3 // 目标速度死区
 
 #define SERVO_MAX_PWM 1600000
 #define SERVO_MIN_PWM 1300000

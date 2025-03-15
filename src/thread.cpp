@@ -5,7 +5,7 @@ void opencv_thread()
 {
     while (running)
     {
-        // CameraImgGetThread(Camera, Img_Store_p);
+        CameraImgGetThread(Camera, Img_Store_p);
     }
 }
 
@@ -65,6 +65,7 @@ void servo_pid_pwm_thread()
 {
     while (running)
     {
+        sp_duty = 1500000 + (Data_Path_p->ServoDir * Data_Path_p->ServoAngle * 2000000 / 1000);
         sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
         sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
         sp.set_duty(sp_duty);
@@ -76,8 +77,8 @@ void imu_thread()
 {
     while (running)
     {
-        imu660ra_get_acc();
-        imu660ra_get_gyro();
+        // imu660ra_get_acc();
+        // imu660ra_get_gyro();
 
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
@@ -114,15 +115,17 @@ void debugo_thread()
     while (running)
     {
 
-        // std::cout << "l_now: " << l_now << std::endl;
-        // std::cout << "r_now: " << r_now << std::endl;
-        // std::cout << "VmRSS: " << memory_monitor.getVmRSS() << "MB" << std::endl;
-        std::cout << "imu660ra_acc_x: " << imu660ra_acc_x << std::endl;
-        std::cout << "imu660ra_acc_y: " << imu660ra_acc_y << std::endl;
-        std::cout << "imu660ra_acc_z: " << imu660ra_acc_z << std::endl;
-        std::cout << "imu660ra_gyro_x: " << imu660ra_gyro_x << std::endl;
-        std::cout << "imu660ra_gyro_y: " << imu660ra_gyro_y << std::endl;
-        std::cout << "imu660ra_gyro_z: " << imu660ra_gyro_z << std::endl;
+        std::cout << "l_now: " << l_now << std::endl;
+        std::cout << "r_now: " << r_now << std::endl;
+        std::cout << "sp_duty: " << sp_duty << std::endl;
+        std::cout << "VmRSS: " << memory_monitor.getVmRSS() << "MB" << std::endl;
+
+        // std::cout << "imu660ra_acc_x: " << imu660ra_acc_x << std::endl;
+        // std::cout << "imu660ra_acc_y: " << imu660ra_acc_y << std::endl;
+        // std::cout << "imu660ra_acc_z: " << imu660ra_acc_z << std::endl;
+        // std::cout << "imu660ra_gyro_x: " << imu660ra_gyro_x << std::endl;
+        // std::cout << "imu660ra_gyro_y: " << imu660ra_gyro_y << std::endl;
+        // std::cout << "imu660ra_gyro_z: " << imu660ra_gyro_z << std::endl;
         std::cout << "----------------------------------------" << std::endl;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
@@ -173,6 +176,7 @@ void debugi_thread()
 
         // if (sender_ready)
         // {
+        //     cv::line(Img_Store_p->Img_Track, cv::Point(0, 80), cv::Point(319, 80), cv::Scalar(0, 0, 255), 2);
         //     sender.sendFrame_pro(Img_Store_p->Img_Track);
         //     sender_ready = false;
         // }

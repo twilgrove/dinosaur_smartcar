@@ -5,7 +5,7 @@ int main()
     try // 异常处理
     {
         init();
-        // run();
+        run();
 
         /* 创建线程 */
         std::thread opencv(opencv_thread);             // opencv线程
@@ -52,27 +52,58 @@ void init()
     ips200_show_gray_image(0, 0, gImage_seekfree_logo, 240, 180);
 
     /* 陀螺仪初始化 */
-    imu_get_dev_info();
+    // imu_get_dev_info();
 
     /* 摄像头初始化 */
     if (!CameraInit(Camera, JSON_functionConfigData.Camera_EN, 120))
-        // project_manage(-1);
+        project_manage(-1);
 
-        std::cout << "\33[33m" << PROGRAM_NAME << ":\33[0m init complete " << std::endl;
+    /* 电机初始化 */
+    l_target = 10;
+    r_target = 10;
+
+    std::cout << "\33[33m" << PROGRAM_NAME << ":\33[0m init complete " << std::endl;
 }
 
 void car_main_control_thread()
 {
     while (running)
     {
-        // CameraImgGet(Img_Store_p, running);
-        // my_img_process.ImgCompress(Img_Store_p->Img_Color, JSON_functionConfigData.ImgCompress_EN); // 图像压缩
-        // my_img_process.ImgPrepare(Img_Store_p, Data_Path_p, Function_EN_p);                         // 图像预处理
-        // ImgPathSearch(Img_Store_p, Data_Path_p);                                                    // 路径寻线
-        // ImgSideSearch(Img_Store_p, Data_Path_p);                                                    // 边线八邻域寻线
+        CameraImgGet(Img_Store_p, running);
+        my_img_process.ImgCompress(Img_Store_p->Img_Color, JSON_functionConfigData.ImgCompress_EN); // 图像压缩
+        my_img_process.ImgPrepare(Img_Store_p, Data_Path_p, Function_EN_p);                         // 图像预处理
+        ImgPathSearch(Img_Store_p, Data_Path_p);                                                    // 路径寻线
+        ImgSideSearch(Img_Store_p, Data_Path_p);                                                    // 边线八邻域寻线
 
-        // Img_Store_p->ImgNum++; // 图像帧数
-        // sender_ready == false ? sender_ready = true : sender_ready = sender_ready;
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+        Img_Store_p->ImgNum++; // 图像帧数
+        sender_ready == false ? sender_ready = true : sender_ready = sender_ready;
+
+        // 赛道状态机决策循环
+        Function_EN_p->Loop_Kind_EN = my_judge.TrackKind_Judge(Img_Store_p, Data_Path_p, Function_EN_p); // 切换至赛道循环
+
+        if (Function_EN_p->Loop_Kind_EN == COMMON_TRACK_LOOP)
+        {
+            if (Data_Path_p->Circle_Track_Step == IN_PREPARE)
+            {
+                CircleTrack_Step_IN_Prepare_Stright(Img_Store_p, Data_Path_p); // 准备入环补线
+            }
+            if (Data_Path_p->Circle_Track_Step == OUT_2_STRIGHT)
+            {
+                Circle2CommonTrack(Img_Store_p, Data_Path_p); // 出环转直线补线
+            }
+            ImgPathSearch(Img_Store_p, Data_Path_p);   // 赛道路径线寻线
+            my_judge.ServoDirAngle_Judge(Data_Path_p); // 舵机角度计算
+            // my_judge.MotorSpeed_Judge(Img_Store_p, Data_Path_p); // 电机速度决策
+            // Function_EN_p->Loop_Kind_EN = CAMERA_CATCH_LOOP;     // 切换至串口发送循环
+        }
+        if (Function_EN_p->Loop_Kind_EN == ACROSS_TRACK_LOOP)
+        {
+            AcrossTrack(Img_Store_p, Data_Path_p);     // 十字赛道补线
+            ImgPathSearch(Img_Store_p, Data_Path_p);   // 赛道路径线寻线
+            my_judge.ServoDirAngle_Judge(Data_Path_p); // 舵机角度计算
+            // my_judge.MotorSpeed_Judge(Img_Store_p, Data_Path_p); // 电机速度决策
+            // Function_EN_p->Loop_Kind_EN = CAMERA_CATCH_LOOP;  // 切换至串口发送循环
+        }
+        // std::this_thread::sleep_for(std::chrono::milliseconds(0));
     }
 }
