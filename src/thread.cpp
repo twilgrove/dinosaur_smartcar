@@ -82,118 +82,104 @@ void left_pid_pwm_thread()
 */
 unsigned int servo_num = 0;
 
-
 void servo_pid_pwm_thread()
 {
-    // TrackFilter* filter;
     const std::chrono::milliseconds initialization_time(40); // 初始化时间40ms
     auto program_start = std::chrono::steady_clock::now();    // 记录程序启动时间
     sp_duty = MIDO_sp;
+
+    static float last_servo_turn = 0;  // 上一帧 servo_turn
+    const float alpha = 0.9999f;          // 低通滤波系数
+    const float max_delta = 150000.0f;  // 最大变化限幅值（根据速度调节）
+
     while (running)
     {
         servo_num++;
         auto now = std::chrono::steady_clock::now();
         auto elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - program_start);
 
-        TrackKind filteredTrack;// = filter->currentStableTrack;
-        
         if (elapsed_time < initialization_time) {
             sp_duty = MIDO_sp; // 强制中值
         } 
         else {
-        servo_turn = (Data_Path_p->ServoDir * Data_Path_p->ServoAngle * 2000000 / 1000)*2;
-        #if SPEED_MODE != 10
-        sp_pid.set_kd(0.1);
-        if(filteredTrack  == TrackKind::STRIGHT_TRACK)
-        {   
-            if(fabs(servo_turn) < 10000)
-            {
+            // 原始误差计算（视觉计算出的方向偏差）
+            double raw_servo_turn = (Data_Path_p->ServoDir * Data_Path_p->ServoAngle * 2000000 / 1000) * 2;
+
+            // === 一阶低通滤波 ===
+            // double filtered_servo_turn = alpha * raw_servo_turn + ((double)1 - alpha) * last_servo_turn;
+
+            // === 限幅器限制突变 ===
+            float delta = raw_servo_turn - last_servo_turn;
+            if (fabs(delta) > max_delta) {
+                raw_servo_turn = last_servo_turn + (delta > 0 ? max_delta : -max_delta);
+            }
+
+            // 保存本次值作为下一次使用
+            servo_turn = raw_servo_turn;
+            last_servo_turn = servo_turn;
+
+            #if SPEED_MODE != 10
+            sp_pid.set_kd(0.15);
+            if (fabs(servo_turn) < 10000)
                 sp_pid.set_kp(0.03);
-            }
-            if(fabs(servo_turn) < 40000)
-            {
+            else if (fabs(servo_turn) < 40000)
                 sp_pid.set_kp(0.1);
-            }
-            else if(fabs(servo_turn) < 60000)
-            {
+            else if (fabs(servo_turn) < 60000)
                 sp_pid.set_kp(0.25);
-            }
-            else if(fabs(servo_turn) < 100000)
-            {
+            else if (fabs(servo_turn) < 100000)
                 sp_pid.set_kp(0.3);
-            }
-            else if(fabs(servo_turn) < 140000)
-            {
+            else if (fabs(servo_turn) < 140000)
                 sp_pid.set_kp(0.4);
-            }
-            else if(fabs(servo_turn) < 180000)
-            {
+            else if (fabs(servo_turn) < 180000)
                 sp_pid.set_kp(0.45);
-            }
             else
-            {
                 sp_pid.set_kp(0.55);
-            }
-        }
-        #endif
-        #if SPEED_MODE == 10
+            #endif
+
+            #if SPEED_MODE == 10
             sp_pid.set_kd(0.05);
-            if(filteredTrack  == TrackKind::STRIGHT_TRACK)
-            {   
-                if(fabs(servo_turn) < 10000)
-                {
-                    sp_pid.set_kp(0.03);
-                }
-                if(fabs(servo_turn) < 40000)
-                {
-                    sp_pid.set_kp(0.12);
-                }
-                else if(fabs(servo_turn) < 60000)
-                {
-                    sp_pid.set_kp(0.30);
-                }
-                else if(fabs(servo_turn) < 100000)
-                {
-                    sp_pid.set_kp(0.35);
-                }
-                else if(fabs(servo_turn) < 140000)
-                {
-                    sp_pid.set_kp(0.40);
-                }
-                else if(fabs(servo_turn) < 180000)
-                {
-                    sp_pid.set_kp(0.5);
-                }
-                else
-                {
-                    sp_pid.set_kp(0.6);
-                }
-            }
-        #endif
-        else
-        {
-            sp_pid.set_kp(1.2);
-        }
-            sp_duty = MIDO_sp - sp_pid.get(0,servo_turn);
+            if (fabs(servo_turn) < 10000)
+                sp_pid.set_kp(0.03);
+            else if (fabs(servo_turn) < 40000)
+                sp_pid.set_kp(0.12);
+            else if (fabs(servo_turn) < 60000)
+                sp_pid.set_kp(0.30);
+            else if (fabs(servo_turn) < 100000)
+                sp_pid.set_kp(0.35);
+            else if (fabs(servo_turn) < 140000)
+                sp_pid.set_kp(0.40);
+            else if (fabs(servo_turn) < 180000)
+                sp_pid.set_kp(0.5);
+            else
+                sp_pid.set_kp(0.6);
+            #endif
+
+            sp_duty = MIDO_sp - sp_pid.get(0, servo_turn);
             sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
             sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
         }
-        //200000 -> 40 5000 -> 1
-        angle = ((int32_t)sp_duty - MIDO_sp)/5000;
+
+        // 差速补偿：通过舵角换算 K_Turn_
+        angle = ((int32_t)sp_duty - MIDO_sp) / 5000;
         Rad = DEGTORAD(angle);
-        K_Turn_ = FastTan(Rad) * 160/2/200;
-        K_Turn_ = MAX_OUTPUT_LIMIT(K_Turn_,5);
-        K_Turn_ = MIN_OUTPUT_LIMIT(K_Turn_,-5);
+        K_Turn_ = FastTan(Rad) * 160 / 2 / 200;
+        K_Turn_ = MAX_OUTPUT_LIMIT(K_Turn_, 5);
+        K_Turn_ = MIN_OUTPUT_LIMIT(K_Turn_, -5);
 
-        l_target = base_speed * (1-K_Turn_);
-        r_target = base_speed * (1+K_Turn_);
+        // 左右轮目标速度
+        l_target = base_speed * (1 - K_Turn_);
+        r_target = base_speed * (1 + K_Turn_);
 
+        // PWM 限制并输出
         sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
         sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
         sp.set_duty(sp_duty);
+
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }
+
+
 
 /*速度10 无敌 连续弯道 小幅度摆动 大弯道 小幅度过冲
 if(filteredTrack  == TrackKind::STRIGHT_TRACK)
@@ -326,7 +312,7 @@ void debugo_thread()
           << "Turn:" << std::setw(10) << K_Turn_
           << "l_targrt:" << std::setw(10) << l_target
           << "r_targrt:" << std::setw(10) << r_target
-          << "error:" << std::setw(10) << (Data_Path_p->ServoDir * Data_Path_p->ServoAngle * 2000000 / 1000)*2
+          << "error:" << std::setw(10) << servo_turn
           << "kind:" << std::setw(10) << Data_Path_p->Track_Kind
           << "l_now:" << std::setw(10) << std::fixed << std::setprecision(2) << l_now
           << "r_now:" << std::setw(10) << std::fixed << std::setprecision(2) << r_now

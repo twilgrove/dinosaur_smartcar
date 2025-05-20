@@ -128,8 +128,8 @@ extern GPIO buzzer;
 ///////////////////
 
 extern unsigned int image__num;
-#define SPEED_MODE 15
-static float base_speed = 15;
+#define SPEED_MODE 10
+static float base_speed = 12;
 #define public_para 0.9
 
 ///////////////////
