@@ -1,5 +1,6 @@
 ﻿#include "data_process.h"
 #include "path.h"
+#include "main.h"
 
 using namespace std;
 using namespace cv;
@@ -267,7 +268,7 @@ void Judge::ServoDirAngle_Judge(Data_Path *Data_Path_p)
     // }
     // else if(Data_Path_p->SideCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][2]>=315&&Data_Path_p->SideCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]<=170)  Data_Path_p->ServoAngle=Data_Path_p->SideCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]+130;
     // else
-    (Data_Path_p->ServoAngle) = (Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]) - 80;
+    (Data_Path_p->ServoAngle) = (Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward) - (JSON_trackConfigData.Path_Search_Start)][0]) - 80;
     // 计算舵机方向和角度
     if ((Data_Path_p->ServoAngle) < 0)
     {

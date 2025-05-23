@@ -451,4 +451,65 @@ CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o: \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/mask_array.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/indirect_array.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/cassert \
- /home/john/桌面/J-car/include/head_system.h
+ /home/john/桌面/J-car/include/head_system.h \
+ /home/john/桌面/J-car/include/main.h \
+ /home/john/桌面/J-car/lib/zf_common/zf_common_headfile.h \
+ /home/john/桌面/J-car/lib/zf_common/zf_common_font.h \
+ /home/john/桌面/J-car/lib/zf_common/zf_common_typedef.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/sys/ioctl.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/ioctls.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/ioctls.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/ioctls.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/ioctl.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/ioctl.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/ioctl.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/ioctl-types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/fb.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/int-ll64.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/bitsperlong.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/bitsperlong.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/posix_types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/stddef.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/posix_types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/posix_types.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/linux/i2c.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/sys/mman.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/mman.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/mman-linux.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/mman-shared.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/lib/gcc/loongarch64-linux-gnu/8.3.0/include/stdbool.h \
+ /home/john/桌面/J-car/lib/zf_common/zf_common_function.h \
+ /home/john/桌面/J-car/lib/zf_device/zf_device_ips200_fb.h \
+ /home/john/桌面/J-car/lib/zf_common/zf_common_typedef.h \
+ /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.h \
+ /home/john/桌面/J-car/lib/zf_device/zf_device_imu660ra.h \
+ /home/john/桌面/J-car/lib/logic/path.h \
+ /home/john/桌面/J-car/lib/logic/data_process.h \
+ /home/john/桌面/J-car/lib/logic/image_process.h \
+ /home/john/桌面/J-car/include/data_config.h \
+ /home/john/桌面/J-car/include/nitoushi.h \
+ /home/john/桌面/J-car/lib/control/pwm_ctrl.h \
+ /home/john/桌面/J-car/lib/control/GPIO.h \
+ /home/john/桌面/J-car/lib/control/key.h \
+ /home/john/桌面/J-car/lib/control/GPIO.h \
+ /home/john/桌面/J-car/lib/logic/pid.h \
+ /home/john/桌面/J-car/lib/control/encoder.h \
+ /home/john/桌面/J-car/lib/control/register.h \
+ /home/john/桌面/J-car/lib/control/tty.h \
+ /home/john/桌面/J-car/lib/control/udp.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/arpa/inet.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/netinet/in.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/sys/socket.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/socket.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/socket_type.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/sockaddr.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/socket.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/socket.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm/sockios.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/asm-generic/sockios.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/types/struct_osockaddr.h \
+ /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/in.h \
+ /home/john/桌面/J-car/lib/control/memory.h

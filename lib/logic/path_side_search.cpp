@@ -77,7 +77,10 @@ void ImgPathSearch(Img_Store *Img_Store_p, Data_Path *Data_Path_p)
         (Data_Path_p->TrackCoordinate[NumSearch][1]) = Y;
         (Data_Path_p->TrackCoordinate[NumSearch + 1][0]) = int(JSON_TrackConfigData.Filter_Factor * (((Data_Path_p->SideCoordinate[NumSearch][0]) + (Data_Path_p->SideCoordinate[NumSearch][2])) / 2) + (1 - JSON_TrackConfigData.Filter_Factor) * (Data_Path_p->TrackCoordinate[NumSearch][0])); // 路径点预测(均值滤波)        circle((Img_Store_p -> Img_Track),Point((Data_Path_p -> TrackCoordinate[NumSearch][0]),Y),1,Scalar(0,255,0),1);	// 路径画点
         NumSearch++;
+        //circle((Img_Store_p->Img_Track), Point((Data_Path_p->TrackCoordinate[NumSearch][0]), (Data_Path_p->TrackCoordinate[NumSearch][1])), 1, Scalar(0, 0, 0), 1); // 左边线画点
     }
+    circle((Img_Store_p->Img_Track),  Point((Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]), (Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][1])),5, Scalar(0, 0, 255), 2);
+
     // ————————————————————————————————————————————————————————————————————————————————————//
 }
 

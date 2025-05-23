@@ -56,9 +56,9 @@ void init()
     JSON_functionConfigData = Function_EN_p->JSON_FunctionConfigData_v[0];
     JSON_trackConfigData = Data_Path_p->JSON_TrackConfigData_v[0];
     #if SPEED_MODE == 10
-        JSON_trackConfigData.Forward=50;
+        JSON_trackConfigData.Forward=80;
     #else
-        JSON_trackConfigData.Forward=48;
+        JSON_trackConfigData.Forward=80;
     #endif
 
     std::cout << "start running..." << std::endl;
@@ -101,6 +101,14 @@ void car_main_control_thread()
         //my_img_process.ImgCompress(Img_Store_p->Img_Color, JSON_functionConfigData.ImgCompress_EN); // 图像压缩
         my_img_process.ImgPrepare(Img_Store_p, Data_Path_p, Function_EN_p);                         // 图像预处理
         ImgPathSearch(Img_Store_p, Data_Path_p);                                                    // 路径寻线
+        if(NumSearch < 80)
+            JSON_trackConfigData.Forward = NumSearch - 2;
+        else
+        #if SPEED_MODE == 10
+            JSON_trackConfigData.Forward=80;
+        #else
+            JSON_trackConfigData.Forward=80;
+        #endif
         ImgSideSearch(Img_Store_p, Data_Path_p);  
 
         Data_Path_p->get_dandiao=CheckPattern(Data_Path_p,10,3);

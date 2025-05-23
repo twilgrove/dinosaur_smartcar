@@ -229,7 +229,7 @@ void debugo_thread()
 {
     while (running)
     {
-        
+
         std::cout << std::left  // 左对齐
           << "angle:" << std::setw(10) << angle
           << "Rad:" << std::setw(10) << Rad

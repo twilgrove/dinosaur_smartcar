@@ -1,4 +1,5 @@
 #include "image_process.h"
+#include "main.h"
 
 using namespace std;
 using namespace cv;
@@ -246,8 +247,9 @@ void ImgProcess::ImgSave(Img_Store *Img_Store_p)
 void ImgProcess::ImgForwardLine(Img_Store *Img_Store_p, Data_Path *Data_Path_p)
 {
 	JSON_TrackConfigData JSON_TrackConfigData = Data_Path_p->JSON_TrackConfigData_v[0];
-	line((Img_Store_p->Img_Track), Point(80, 119), Point((Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]), (Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][1])), Scalar(255, 0, 0), 1);
-	putText((Img_Store_p->Img_Track), to_string(abs(80 - (Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward)- (JSON_TrackConfigData.Path_Search_Start)][0]))), Point((Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][0]), (Data_Path_p->TrackCoordinate[(JSON_TrackConfigData.Forward) - (JSON_TrackConfigData.Path_Search_Start)][1])), FONT_HERSHEY_COMPLEX, 0.6, (255, 255, 255), 1);
+	for(;;) break;																		
+	line((Img_Store_p->Img_Track), Point(80, 119), Point((Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward) - (JSON_trackConfigData.Path_Search_Start)][0]), (Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward) - (JSON_trackConfigData.Path_Search_Start)][1])), Scalar(255, 0, 0), 1);
+	putText((Img_Store_p->Img_Track), to_string(abs(80 - (Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward)- (JSON_trackConfigData.Path_Search_Start)][0]))), Point((Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward) - (JSON_trackConfigData.Path_Search_Start)][0]), (Data_Path_p->TrackCoordinate[(JSON_trackConfigData.Forward) - (JSON_trackConfigData.Path_Search_Start)][1])), FONT_HERSHEY_COMPLEX, 0.6, (255, 255, 255), 1);
 }
 
 /*
