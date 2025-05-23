@@ -109,31 +109,37 @@ void servo_pid_pwm_thread()
             // double filtered_servo_turn = alpha * raw_servo_turn + ((double)1 - alpha) * last_servo_turn;
 
             // === 限幅器限制突变 ===
-            float delta = raw_servo_turn - last_servo_turn;
-            if (fabs(delta) > max_delta) {
-                raw_servo_turn = last_servo_turn + (delta > 0 ? max_delta : -max_delta);
-            }
+            // float delta = raw_servo_turn - last_servo_turn;
+            // if (fabs(delta) > max_delta) {
+            //     raw_servo_turn = last_servo_turn + (delta > 0 ? max_delta : -max_delta);
+            // }
 
             // 保存本次值作为下一次使用
             servo_turn = raw_servo_turn;
             last_servo_turn = servo_turn;
 
             #if SPEED_MODE != 10
-            sp_pid.set_kd(0.15);
+            sp_pid.set_kd(0.1);
             if (fabs(servo_turn) < 10000)
-                sp_pid.set_kp(0.03);
+                sp_pid.set_kp(0.05);
             else if (fabs(servo_turn) < 40000)
-                sp_pid.set_kp(0.1);
+                sp_pid.set_kp(0.12);
             else if (fabs(servo_turn) < 60000)
-                sp_pid.set_kp(0.25);
+                sp_pid.set_kp(0.22);
             else if (fabs(servo_turn) < 100000)
-                sp_pid.set_kp(0.3);
+                sp_pid.set_kp(0.32);
+            else if (fabs(servo_turn) < 120000)
+                sp_pid.set_kp(0.35);
             else if (fabs(servo_turn) < 140000)
-                sp_pid.set_kp(0.4);
-            else if (fabs(servo_turn) < 180000)
                 sp_pid.set_kp(0.45);
+            else if (fabs(servo_turn) < 160000)
+                sp_pid.set_kp(0.5);
+            else if (fabs(servo_turn) < 180000)
+                sp_pid.set_kp(0.58);
+            else if (fabs(servo_turn) < 220000)
+                sp_pid.set_kp(0.6);
             else
-                sp_pid.set_kp(0.55);
+                sp_pid.set_kp(0.62);
             #endif
 
             #if SPEED_MODE == 10
@@ -180,88 +186,6 @@ void servo_pid_pwm_thread()
 }
 
 
-
-/*速度10 无敌 连续弯道 小幅度摆动 大弯道 小幅度过冲
-if(filteredTrack  == TrackKind::STRIGHT_TRACK)
-{   
-    if(fabs(servo_turn) < 10000)
-    {
-        sp_pid.set_kp(0.03);
-    }
-    if(fabs(servo_turn) < 40000)
-    {
-        sp_pid.set_kp(0.12);
-    }
-    else if(fabs(servo_turn) < 60000)
-    {
-        sp_pid.set_kp(0.30);
-    }
-    else if(fabs(servo_turn) < 100000)
-    {
-        sp_pid.set_kp(0.35);
-    }
-    else if(fabs(servo_turn) < 140000)
-    {
-        sp_pid.set_kp(0.40);
-    }
-    else if(fabs(servo_turn) < 180000)
-    {
-        sp_pid.set_kp(0.5);
-    }
-    else
-    {
-        sp_pid.set_kp(0.6);
-    }
-}
-else
-{
-    sp_pid.set_kp(1.2);
-}
-*/
-/* 完美适应 速度 5 - 8
-else if(filteredTrack  == TrackKind::STRIGHT_TRACK)
-{
-    if(fabs(servo_turn) < 24000)
-    {
-        sp_pid.set_kp(0.3);
-    }
-    else if(fabs(servo_turn) < 120000)
-    {
-        sp_pid.set_kp(0.4);
-    }
-    else
-    {
-        sp_pid.set_kp(0.7);
-    }
-}
-
-*/
-/*完美适应 速度 10
-else if(filteredTrack  == TrackKind::STRIGHT_TRACK)
-{
-    if(fabs(servo_turn) < 40000)
-    {
-        sp_pid.set_kp(0.17);
-    }
-    else if(fabs(servo_turn) < 80000)
-    {
-        sp_pid.set_kp(0.32);
-    }
-    else if(fabs(servo_turn) < 120000)
-    {
-        sp_pid.set_kp(0.44);
-    }
-    else if(fabs(servo_turn) < 160000)
-    {
-        sp_pid.set_kp(0.49);
-    }
-    else
-    {
-        sp_pid.set_kp(0.55);
-    }
-}
-
-*/
 void imu_thread()
 {
     while (running)

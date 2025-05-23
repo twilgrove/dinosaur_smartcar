@@ -58,7 +58,7 @@ void init()
     #if SPEED_MODE == 10
         JSON_trackConfigData.Forward=50;
     #else
-        JSON_trackConfigData.Forward=55;
+        JSON_trackConfigData.Forward=48;
     #endif
 
     std::cout << "start running..." << std::endl;
