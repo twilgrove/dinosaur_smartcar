@@ -81,7 +81,7 @@ void left_pid_pwm_thread()
         该函数包含读取舵机输出计算,限幅
 */
 unsigned int servo_num = 0;
-
+float public_para = 1;
 void servo_pid_pwm_thread()
 {
     const std::chrono::milliseconds initialization_time(40); // 初始化时间40ms
@@ -117,7 +117,9 @@ void servo_pid_pwm_thread()
             // 保存本次值作为下一次使用
             servo_turn = raw_servo_turn;
             last_servo_turn = servo_turn;
-
+            if(JSON_trackConfigData.Forward < 80)
+                public_para = 1 + (80-JSON_trackConfigData.Forward)/20;
+            else public_para = 1;
             #if SPEED_MODE != 10
             sp_pid.set_kd(0.1);
             if (fabs(servo_turn) < 10000)
@@ -149,15 +151,15 @@ void servo_pid_pwm_thread()
             else if (fabs(servo_turn) < 40000)
                 sp_pid.set_kp(0.12);
             else if (fabs(servo_turn) < 60000)
-                sp_pid.set_kp(0.30);
+                sp_pid.set_kp(0.30f);
             else if (fabs(servo_turn) < 100000)
-                sp_pid.set_kp(0.35);
+                sp_pid.set_kp(0.35f);
             else if (fabs(servo_turn) < 140000)
-                sp_pid.set_kp(0.40);
+                sp_pid.set_kp(0.40f);
             else if (fabs(servo_turn) < 180000)
-                sp_pid.set_kp(0.5);
+                sp_pid.set_kp(0.5f*public_para*1.2);
             else
-                sp_pid.set_kp(0.6);
+                sp_pid.set_kp(0.6f*public_para);
             #endif
 
             sp_duty = MIDO_sp - sp_pid.get(0, servo_turn);

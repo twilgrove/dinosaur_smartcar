@@ -102,7 +102,7 @@ void car_main_control_thread()
         my_img_process.ImgPrepare(Img_Store_p, Data_Path_p, Function_EN_p);                         // 图像预处理
         ImgPathSearch(Img_Store_p, Data_Path_p);                                                    // 路径寻线
         if(NumSearch < 80)
-            JSON_trackConfigData.Forward = NumSearch - 2;
+            JSON_trackConfigData.Forward = NumSearch;
         else
         #if SPEED_MODE == 10
             JSON_trackConfigData.Forward=80;
