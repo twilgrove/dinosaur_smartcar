@@ -1,7 +1,7 @@
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o: \
- /home/john/桌面/J-car/lib/control/GPIO.cpp \
+ /home/an/Desktop/car/my_car/lib/control/GPIO.cpp \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/stdc-predef.h \
- /home/john/桌面/J-car/lib/control/GPIO.h \
+ /home/an/Desktop/car/my_car/lib/control/GPIO.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/string \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/loongarch64-linux-gnu/bits/c++config.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/loongarch64-linux-gnu/bits/os_defines.h \

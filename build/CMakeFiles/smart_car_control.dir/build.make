@@ -53,10 +53,10 @@ RM = /usr/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /home/john/桌面/J-car
+CMAKE_SOURCE_DIR = /home/an/Desktop/car/my_car
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = /home/john/桌面/J-car/build
+CMAKE_BINARY_DIR = /home/an/Desktop/car/my_car/build
 
 # Include any dependencies generated for this target.
 include CMakeFiles/smart_car_control.dir/depend.make
@@ -72,365 +72,335 @@ include CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o: ../lib/control/GPIO.cpp
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o -c /home/john/桌面/J-car/lib/control/GPIO.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o -c /home/an/Desktop/car/my_car/lib/control/GPIO.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/GPIO.cpp > CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/GPIO.cpp > CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/GPIO.cpp -o CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/GPIO.cpp -o CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o: ../lib/control/encoder.cpp
 CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o -c /home/john/桌面/J-car/lib/control/encoder.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o -c /home/an/Desktop/car/my_car/lib/control/encoder.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/encoder.cpp > CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/encoder.cpp > CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/encoder.cpp -o CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/encoder.cpp -o CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o: ../lib/control/key.cpp
 CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o -c /home/john/桌面/J-car/lib/control/key.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o -c /home/an/Desktop/car/my_car/lib/control/key.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/key.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/key.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/key.cpp > CMakeFiles/smart_car_control.dir/lib/control/key.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/key.cpp > CMakeFiles/smart_car_control.dir/lib/control/key.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/key.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/key.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/key.cpp -o CMakeFiles/smart_car_control.dir/lib/control/key.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o: ../lib/control/memory.cpp
-CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o -c /home/john/桌面/J-car/lib/control/memory.cpp
-
-CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/memory.cpp > CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/memory.cpp -o CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/key.cpp -o CMakeFiles/smart_car_control.dir/lib/control/key.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o: ../lib/control/pwm_ctrl.cpp
 CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o -c /home/john/桌面/J-car/lib/control/pwm_ctrl.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o -c /home/an/Desktop/car/my_car/lib/control/pwm_ctrl.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/pwm_ctrl.cpp > CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/pwm_ctrl.cpp > CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/pwm_ctrl.cpp -o CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/pwm_ctrl.cpp -o CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o: ../lib/control/register.cpp
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o -c /home/john/桌面/J-car/lib/control/register.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o -c /home/an/Desktop/car/my_car/lib/control/register.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/register.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/register.cpp > CMakeFiles/smart_car_control.dir/lib/control/register.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/register.cpp > CMakeFiles/smart_car_control.dir/lib/control/register.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/register.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/register.cpp -o CMakeFiles/smart_car_control.dir/lib/control/register.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o: ../lib/control/tty.cpp
-CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o -c /home/john/桌面/J-car/lib/control/tty.cpp
-
-CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/tty.cpp > CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/tty.cpp -o CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/register.cpp -o CMakeFiles/smart_car_control.dir/lib/control/register.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o: ../lib/control/udp.cpp
 CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o -c /home/john/桌面/J-car/lib/control/udp.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building CXX object CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o -c /home/an/Desktop/car/my_car/lib/control/udp.cpp
 
 CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/control/udp.cpp > CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/control/udp.cpp > CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/control/udp.cpp -o CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o: ../lib/logic/data_process.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o -c /home/john/桌面/J-car/lib/logic/data_process.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/data_process.cpp > CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/data_process.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o: ../lib/logic/image_process.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o -c /home/john/桌面/J-car/lib/logic/image_process.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/image_process.cpp > CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/image_process.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o: ../lib/logic/path_across.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o -c /home/john/桌面/J-car/lib/logic/path_across.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/path_across.cpp > CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/path_across.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o: ../lib/logic/path_circle.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o -c /home/john/桌面/J-car/lib/logic/path_circle.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/path_circle.cpp > CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/path_circle.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o: ../lib/logic/path_side_search.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o -c /home/john/桌面/J-car/lib/logic/path_side_search.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/path_side_search.cpp > CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/path_side_search.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.s
-
-CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o: ../lib/logic/pid.cpp
-CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o -c /home/john/桌面/J-car/lib/logic/pid.cpp
-
-CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/logic/pid.cpp > CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.i
-
-CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/logic/pid.cpp -o CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/control/udp.cpp -o CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o: ../lib/zf_common/zf_common_font.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o -c /home/john/桌面/J-car/lib/zf_common/zf_common_font.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_common/zf_common_font.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_common/zf_common_font.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_common/zf_common_font.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_common/zf_common_font.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_common/zf_common_font.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o: ../lib/zf_common/zf_common_function.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o -c /home/john/桌面/J-car/lib/zf_common/zf_common_function.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_common/zf_common_function.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_common/zf_common_function.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_common/zf_common_function.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_common/zf_common_function.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_common/zf_common_function.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o: ../lib/zf_common/zf_driver_file.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o -c /home/john/桌面/J-car/lib/zf_common/zf_driver_file.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_common/zf_driver_file.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_common/zf_driver_file.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_common/zf_driver_file.cpp > CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_common/zf_driver_file.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_common/zf_driver_file.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o: ../lib/zf_device/zf_device_imu660ra.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o -c /home/john/桌面/J-car/lib/zf_device/zf_device_imu660ra.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu660ra.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_device/zf_device_imu660ra.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu660ra.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_device/zf_device_imu660ra.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu660ra.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o: ../lib/zf_device/zf_device_imu_core.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o -c /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu_core.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu_core.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu_core.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.s
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o: ../lib/zf_device/zf_device_ips200_fb.cpp
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o -c /home/john/桌面/J-car/lib/zf_device/zf_device_ips200_fb.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_12) "Building CXX object CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o -MF CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o.d -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o -c /home/an/Desktop/car/my_car/lib/zf_device/zf_device_ips200_fb.cpp
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/lib/zf_device/zf_device_ips200_fb.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/lib/zf_device/zf_device_ips200_fb.cpp > CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.i
 
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/lib/zf_device/zf_device_ips200_fb.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/lib/zf_device/zf_device_ips200_fb.cpp -o CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.s
 
-CMakeFiles/smart_car_control.dir/src/globle.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
-CMakeFiles/smart_car_control.dir/src/globle.cpp.o: ../src/globle.cpp
-CMakeFiles/smart_car_control.dir/src/globle.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/smart_car_control.dir/src/globle.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/globle.cpp.o -MF CMakeFiles/smart_car_control.dir/src/globle.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/globle.cpp.o -c /home/john/桌面/J-car/src/globle.cpp
+CMakeFiles/smart_car_control.dir/src/PID.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/PID.cpp.o: ../src/PID.cpp
+CMakeFiles/smart_car_control.dir/src/PID.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_13) "Building CXX object CMakeFiles/smart_car_control.dir/src/PID.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/PID.cpp.o -MF CMakeFiles/smart_car_control.dir/src/PID.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/PID.cpp.o -c /home/an/Desktop/car/my_car/src/PID.cpp
 
-CMakeFiles/smart_car_control.dir/src/globle.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/globle.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/src/globle.cpp > CMakeFiles/smart_car_control.dir/src/globle.cpp.i
+CMakeFiles/smart_car_control.dir/src/PID.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/PID.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/PID.cpp > CMakeFiles/smart_car_control.dir/src/PID.cpp.i
 
-CMakeFiles/smart_car_control.dir/src/globle.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/globle.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/src/globle.cpp -o CMakeFiles/smart_car_control.dir/src/globle.cpp.s
+CMakeFiles/smart_car_control.dir/src/PID.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/PID.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/PID.cpp -o CMakeFiles/smart_car_control.dir/src/PID.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/camera.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/camera.cpp.o: ../src/camera.cpp
+CMakeFiles/smart_car_control.dir/src/camera.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_14) "Building CXX object CMakeFiles/smart_car_control.dir/src/camera.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/camera.cpp.o -MF CMakeFiles/smart_car_control.dir/src/camera.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/camera.cpp.o -c /home/an/Desktop/car/my_car/src/camera.cpp
+
+CMakeFiles/smart_car_control.dir/src/camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/camera.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/camera.cpp > CMakeFiles/smart_car_control.dir/src/camera.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/camera.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/camera.cpp -o CMakeFiles/smart_car_control.dir/src/camera.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o: ../src/image_deal.cpp
+CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_15) "Building CXX object CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o -MF CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o -c /home/an/Desktop/car/my_car/src/image_deal.cpp
+
+CMakeFiles/smart_car_control.dir/src/image_deal.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/image_deal.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/image_deal.cpp > CMakeFiles/smart_car_control.dir/src/image_deal.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/image_deal.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/image_deal.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/image_deal.cpp -o CMakeFiles/smart_car_control.dir/src/image_deal.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/isr.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/isr.cpp.o: ../src/isr.cpp
+CMakeFiles/smart_car_control.dir/src/isr.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_16) "Building CXX object CMakeFiles/smart_car_control.dir/src/isr.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/isr.cpp.o -MF CMakeFiles/smart_car_control.dir/src/isr.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/isr.cpp.o -c /home/an/Desktop/car/my_car/src/isr.cpp
+
+CMakeFiles/smart_car_control.dir/src/isr.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/isr.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/isr.cpp > CMakeFiles/smart_car_control.dir/src/isr.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/isr.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/isr.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/isr.cpp -o CMakeFiles/smart_car_control.dir/src/isr.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/key_board.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/key_board.cpp.o: ../src/key_board.cpp
+CMakeFiles/smart_car_control.dir/src/key_board.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_17) "Building CXX object CMakeFiles/smart_car_control.dir/src/key_board.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/key_board.cpp.o -MF CMakeFiles/smart_car_control.dir/src/key_board.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/key_board.cpp.o -c /home/an/Desktop/car/my_car/src/key_board.cpp
+
+CMakeFiles/smart_car_control.dir/src/key_board.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/key_board.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/key_board.cpp > CMakeFiles/smart_car_control.dir/src/key_board.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/key_board.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/key_board.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/key_board.cpp -o CMakeFiles/smart_car_control.dir/src/key_board.cpp.s
 
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: ../src/main.cpp
 CMakeFiles/smart_car_control.dir/src/main.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/smart_car_control.dir/src/main.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/main.cpp.o -MF CMakeFiles/smart_car_control.dir/src/main.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/main.cpp.o -c /home/john/桌面/J-car/src/main.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_18) "Building CXX object CMakeFiles/smart_car_control.dir/src/main.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/main.cpp.o -MF CMakeFiles/smart_car_control.dir/src/main.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/main.cpp.o -c /home/an/Desktop/car/my_car/src/main.cpp
 
 CMakeFiles/smart_car_control.dir/src/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/main.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/src/main.cpp > CMakeFiles/smart_car_control.dir/src/main.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/main.cpp > CMakeFiles/smart_car_control.dir/src/main.cpp.i
 
 CMakeFiles/smart_car_control.dir/src/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/main.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/src/main.cpp -o CMakeFiles/smart_car_control.dir/src/main.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/main.cpp -o CMakeFiles/smart_car_control.dir/src/main.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/my_control.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/my_control.cpp.o: ../src/my_control.cpp
+CMakeFiles/smart_car_control.dir/src/my_control.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_19) "Building CXX object CMakeFiles/smart_car_control.dir/src/my_control.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/my_control.cpp.o -MF CMakeFiles/smart_car_control.dir/src/my_control.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/my_control.cpp.o -c /home/an/Desktop/car/my_car/src/my_control.cpp
+
+CMakeFiles/smart_car_control.dir/src/my_control.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/my_control.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/my_control.cpp > CMakeFiles/smart_car_control.dir/src/my_control.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/my_control.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/my_control.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/my_control.cpp -o CMakeFiles/smart_car_control.dir/src/my_control.cpp.s
 
 CMakeFiles/smart_car_control.dir/src/program.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/src/program.cpp.o: ../src/program.cpp
 CMakeFiles/smart_car_control.dir/src/program.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Building CXX object CMakeFiles/smart_car_control.dir/src/program.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/program.cpp.o -MF CMakeFiles/smart_car_control.dir/src/program.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/program.cpp.o -c /home/john/桌面/J-car/src/program.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_20) "Building CXX object CMakeFiles/smart_car_control.dir/src/program.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/program.cpp.o -MF CMakeFiles/smart_car_control.dir/src/program.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/program.cpp.o -c /home/an/Desktop/car/my_car/src/program.cpp
 
 CMakeFiles/smart_car_control.dir/src/program.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/program.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/src/program.cpp > CMakeFiles/smart_car_control.dir/src/program.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/program.cpp > CMakeFiles/smart_car_control.dir/src/program.cpp.i
 
 CMakeFiles/smart_car_control.dir/src/program.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/program.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/src/program.cpp -o CMakeFiles/smart_car_control.dir/src/program.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/program.cpp -o CMakeFiles/smart_car_control.dir/src/program.cpp.s
 
 CMakeFiles/smart_car_control.dir/src/thread.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
 CMakeFiles/smart_car_control.dir/src/thread.cpp.o: ../src/thread.cpp
 CMakeFiles/smart_car_control.dir/src/thread.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_24) "Building CXX object CMakeFiles/smart_car_control.dir/src/thread.cpp.o"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/thread.cpp.o -MF CMakeFiles/smart_car_control.dir/src/thread.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/thread.cpp.o -c /home/john/桌面/J-car/src/thread.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_21) "Building CXX object CMakeFiles/smart_car_control.dir/src/thread.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/thread.cpp.o -MF CMakeFiles/smart_car_control.dir/src/thread.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/thread.cpp.o -c /home/an/Desktop/car/my_car/src/thread.cpp
 
 CMakeFiles/smart_car_control.dir/src/thread.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/thread.cpp.i"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/john/桌面/J-car/src/thread.cpp > CMakeFiles/smart_car_control.dir/src/thread.cpp.i
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/thread.cpp > CMakeFiles/smart_car_control.dir/src/thread.cpp.i
 
 CMakeFiles/smart_car_control.dir/src/thread.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/thread.cpp.s"
-	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/john/桌面/J-car/src/thread.cpp -o CMakeFiles/smart_car_control.dir/src/thread.cpp.s
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/thread.cpp -o CMakeFiles/smart_car_control.dir/src/thread.cpp.s
+
+CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o: CMakeFiles/smart_car_control.dir/flags.make
+CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o: ../src/traffic_circle.cpp
+CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o: CMakeFiles/smart_car_control.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_22) "Building CXX object CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o -MF CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o.d -o CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o -c /home/an/Desktop/car/my_car/src/traffic_circle.cpp
+
+CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.i"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/an/Desktop/car/my_car/src/traffic_circle.cpp > CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.i
+
+CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.s"
+	loongarch64-linux-gnu-g++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/an/Desktop/car/my_car/src/traffic_circle.cpp -o CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.s
 
 # Object files for target smart_car_control
 smart_car_control_OBJECTS = \
 "CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o" \
-"CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o" \
 "CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o" \
-"CMakeFiles/smart_car_control.dir/src/globle.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/PID.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/camera.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/isr.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/key_board.cpp.o" \
 "CMakeFiles/smart_car_control.dir/src/main.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/my_control.cpp.o" \
 "CMakeFiles/smart_car_control.dir/src/program.cpp.o" \
-"CMakeFiles/smart_car_control.dir/src/thread.cpp.o"
+"CMakeFiles/smart_car_control.dir/src/thread.cpp.o" \
+"CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o"
 
 # External object files for target smart_car_control
 smart_car_control_EXTERNAL_OBJECTS =
@@ -438,35 +408,33 @@ smart_car_control_EXTERNAL_OBJECTS =
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/GPIO.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/encoder.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/key.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/memory.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/pwm_ctrl.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/tty.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/control/udp.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/data_process.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/image_process.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_across.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_circle.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/path_side_search.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/lib/logic/pid.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_font.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_common/zf_common_function.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_common/zf_driver_file.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu660ra.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_ips200_fb.cpp.o
-smart_car_control: CMakeFiles/smart_car_control.dir/src/globle.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/PID.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/camera.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/image_deal.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/isr.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/key_board.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/src/main.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/my_control.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/src/program.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/src/thread.cpp.o
+smart_car_control: CMakeFiles/smart_car_control.dir/src/traffic_circle.cpp.o
 smart_car_control: CMakeFiles/smart_car_control.dir/build.make
-smart_car_control: /home/john/桌面/opencv/install/lib/libopencv_core.so
-smart_car_control: /home/john/桌面/opencv/install/lib/libopencv_imgproc.so
-smart_car_control: /home/john/桌面/opencv/install/lib/libopencv_imgcodecs.so
-smart_car_control: /home/john/桌面/opencv/install/lib/libopencv_highgui.so
-smart_car_control: /home/john/桌面/opencv/install/lib/libopencv_videoio.so
+smart_car_control: /home/an/Desktop/opencv/install/lib/libopencv_core.so
+smart_car_control: /home/an/Desktop/opencv/install/lib/libopencv_imgproc.so
+smart_car_control: /home/an/Desktop/opencv/install/lib/libopencv_imgcodecs.so
+smart_car_control: /home/an/Desktop/opencv/install/lib/libopencv_highgui.so
+smart_car_control: /home/an/Desktop/opencv/install/lib/libopencv_videoio.so
 smart_car_control: CMakeFiles/smart_car_control.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/john/桌面/J-car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_25) "Linking CXX executable smart_car_control"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/an/Desktop/car/my_car/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_23) "Linking CXX executable smart_car_control"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/smart_car_control.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -478,6 +446,6 @@ CMakeFiles/smart_car_control.dir/clean:
 .PHONY : CMakeFiles/smart_car_control.dir/clean
 
 CMakeFiles/smart_car_control.dir/depend:
-	cd /home/john/桌面/J-car/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/john/桌面/J-car /home/john/桌面/J-car /home/john/桌面/J-car/build /home/john/桌面/J-car/build /home/john/桌面/J-car/build/CMakeFiles/smart_car_control.dir/DependInfo.cmake --color=$(COLOR)
+	cd /home/an/Desktop/car/my_car/build && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /home/an/Desktop/car/my_car /home/an/Desktop/car/my_car /home/an/Desktop/car/my_car/build /home/an/Desktop/car/my_car/build /home/an/Desktop/car/my_car/build/CMakeFiles/smart_car_control.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/smart_car_control.dir/depend
 

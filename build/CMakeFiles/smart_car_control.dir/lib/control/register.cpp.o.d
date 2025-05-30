@@ -1,7 +1,7 @@
 CMakeFiles/smart_car_control.dir/lib/control/register.cpp.o: \
- /home/john/桌面/J-car/lib/control/register.cpp \
+ /home/an/Desktop/car/my_car/lib/control/register.cpp \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/stdc-predef.h \
- /home/john/桌面/J-car/lib/control/register.h \
+ /home/an/Desktop/car/my_car/lib/control/register.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/stdio.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/libc-header-start.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/features.h \

@@ -10,7 +10,7 @@
                 "${workspaceFolder}/src",
                 "${workspaceFolder}/lib/zf_common",
                 "${workspaceFolder}/lib/zf_device",
-                "/home/john/桌面/opencv/install/include" // opencv库路径
+                "/home/an/Desktop/opencv/install/include"
             ],
             "compilerPath": "/opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/bin/loongarch64-linux-gnu-g++",
             "cStandard": "c99",

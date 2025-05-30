@@ -1,8 +1,8 @@
 CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o: \
- /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.cpp \
+ /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu_core.cpp \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/stdc-predef.h \
- /home/john/桌面/J-car/lib/zf_device/zf_device_imu_core.h \
- /home/john/桌面/J-car/lib/zf_common/zf_common_typedef.h \
+ /home/an/Desktop/car/my_car/lib/zf_device/zf_device_imu_core.h \
+ /home/an/Desktop/car/my_car/lib/zf_common/zf_common_typedef.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/lib/gcc/loongarch64-linux-gnu/8.3.0/include/stdint.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/stdint.h \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/bits/libc-header-start.h \
@@ -231,5 +231,5 @@ CMakeFiles/smart_car_control.dir/lib/zf_device/zf_device_imu_core.cpp.o: \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/ostream.tcc \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/istream \
  /opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/loongarch64-linux-gnu/sysroot/usr/include/c++/8.3.0/bits/istream.tcc \
- /home/john/桌面/J-car/lib/zf_common/zf_driver_file.h \
- /home/john/桌面/J-car/lib/zf_common/zf_common_typedef.h
+ /home/an/Desktop/car/my_car/lib/zf_common/zf_driver_file.h \
+ /home/an/Desktop/car/my_car/lib/zf_common/zf_common_typedef.h

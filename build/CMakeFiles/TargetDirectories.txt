@@ -1,3 +1,3 @@
-/home/john/桌面/J-car/build/CMakeFiles/smart_car_control.dir
-/home/john/桌面/J-car/build/CMakeFiles/edit_cache.dir
-/home/john/桌面/J-car/build/CMakeFiles/rebuild_cache.dir
+/home/an/Desktop/car/my_car/build/CMakeFiles/smart_car_control.dir
+/home/an/Desktop/car/my_car/build/CMakeFiles/edit_cache.dir
+/home/an/Desktop/car/my_car/build/CMakeFiles/rebuild_cache.dir

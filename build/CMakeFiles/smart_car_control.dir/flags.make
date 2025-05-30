@@ -4,7 +4,7 @@
 # compile CXX with loongarch64-linux-gnu-g++
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/john/桌面/J-car/include -I/home/john/桌面/opencv/install/include -I/home/john/桌面/J-car/lib/logic -I/home/john/桌面/J-car/lib/control -I/home/john/桌面/J-car/lib/zf_common -I/home/john/桌面/J-car/lib/zf_device -I/home/john/桌面/J-car/src
+CXX_INCLUDES = -I/home/an/Desktop/car/my_car/include -I/home/an/Desktop/opencv/install/include -I/home/an/Desktop/car/my_car/lib/logic -I/home/an/Desktop/car/my_car/lib/control -I/home/an/Desktop/car/my_car/lib/zf_common -I/home/an/Desktop/car/my_car/lib/zf_device -I/home/an/Desktop/car/my_car/src
 
 CXX_FLAGS = -Wall -Wextra -Wpedantic -O2 -std=gnu++11
 

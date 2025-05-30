@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.10)
 project(smart_car_control VERSION 1.0.0 LANGUAGES C CXX)
 
 # 路径
-set(OPENCV_PATH "/home/john/桌面/opencv") # 设置opencv路径
+set(OPENCV_PATH "/home/an/Desktop/opencv") # 设置opencv路径
 
 # 交叉编译设置
 set(CMAKE_SYSTEM_NAME Linux)
