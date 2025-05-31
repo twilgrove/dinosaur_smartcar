@@ -4,15 +4,17 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/include",
-                "${workspaceFolder}/lib/logic",
-                "${workspaceFolder}/lib/control",
-                "${workspaceFolder}/src",
-                "${workspaceFolder}/lib/zf_common",
-                "${workspaceFolder}/lib/zf_device",
-                "/home/an/Desktop/opencv/install/include"
+                "${workspaceFolder}/**/**/**",
+                "${workspaceFolder}/**/**",
+                "${workspaceFolder}/**",
+                // opencv库路径选择
+                "/home/cys/Project_Date/LS2K0300_workspace/opencv/install/include"
+                // "/home/an/Desktop/opencv/install/include"
             ],
-            "compilerPath": "/opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/bin/loongarch64-linux-gnu-g++",
+            "compilerPath":
+            // 编译器路径选择
+            "/usr/local/loongson-gnu-toolchain-8.3/bin/loongarch64-linux-gnu-g++",
+            // "/opt/loongson-gnu-toolchain-8.3-x86_64-loongarch64-linux-gnu-rc1.3-1/bin/loongarch64-linux-gnu-g++",
             "cStandard": "c99",
             "cppStandard": "c++11",
             "intelliSenseMode": "gcc-x64"

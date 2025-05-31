@@ -2,7 +2,7 @@
 #include "camera.h"
 #include "thread.h"
 
-int running=0;
+int running = 0;
 cv::VideoCapture Camera;
 extern unsigned char image_use[70][188];
 
@@ -10,24 +10,24 @@ extern unsigned char image_use[70][188];
 #define DST_IP "192.168.31.16"
 #define MAX_PACKET_SIZE 1024
 
-
 int main()
 {
     try
     {
         init();
-        std::cout << "CameraInit 结果: " 
-                          << (CameraInit(Camera, 2, 100) ? "成功" : "失败") 
-                          << std::endl;
-        std::thread opencv(opencv_thread);        // opencv线程  包含无畸变处理
-        std::thread car(car_main_control_thread); // 小车控制线程
-        std::thread debugi(debugi_thread);             // 调试输入线程
-
+        std::cout << "CameraInit 结果: "
+                  << (CameraInit(Camera, 2, 100) ? "成功" : "失败")
+                  << std::endl;
+        std::thread opencv(opencv_thread);           // opencv线程  包含无畸变处理
+        std::thread car(car_main_control_thread);    // 小车控制线程
+        std::thread debugi(debugi_thread);           // 调试输入线程
+        std::thread motor_servo(motor_servo_thread); // 电机舵机线程
         std::cout << "线程创建完成,等待join..." << std::endl;
 
         car.join();
         opencv.join();
         debugi.join();
+        motor_servo.join();
         std::cout << "程序正常退出" << std::endl;
     }
     catch (const std::exception &e)
@@ -39,8 +39,8 @@ int main()
 }
 void init()
 {
-    
-    running=1;
+    signal(SIGINT, project_manage); // 设置进程终止处理函数
+    running = 1;
 
     // // 视频录制初始化
     // std::string videoPath = "C:/Users/azw20/Desktop/智能車/独立代码/recorded/track_video.avi";
@@ -52,12 +52,10 @@ void init()
     //     return;
     // }
 
-    if (!g_udp_sender.init(DST_IP, 8080)) {
+    if (!g_udp_sender.init(DST_IP, 8080))
+    {
         std::cerr << "图传UDP初始化失败" << std::endl;
     }
-
-
-
 }
 
 int self_count;
@@ -66,15 +64,15 @@ void car_main_control_thread()
     std::cout << "car_main_control_thread开始进入循环" << std::endl;
     while (running)
     {
-        CameraImgGet(Img_Store_pp,running);
+        CameraImgGet(Img_Store_pp, running);
         // my_img_process.ImgCompress(Img_Store_pp->Img_Color, JSON_functionConfigData.ImgCompress_EN); // 图像压缩
-        ImgPrepare(Img_Store_pp);                         // 图像预处理
+        ImgPrepare(Img_Store_pp); // 图像预处理
 
-        cv::Mat get_image=Img_Store_pp->Img_OTSU.clone();
+        cv::Mat get_image = Img_Store_pp->Img_OTSU.clone();
         cv::Mat get_color;
-        cv::cvtColor(get_image, get_color,cv::COLOR_GRAY2BGR);
+        cv::cvtColor(get_image, get_color, cv::COLOR_GRAY2BGR);
 
-        //std::cout<<get_image.cols<<","<<get_image.rows<<std::endl;
+        // std::cout<<get_image.cols<<","<<get_image.rows<<std::endl;
         k_center = 0;
         qvlv_quanju_right = qvlv_quanju_left = qulv_jinduan_right = qulv_jinduan_left = qulv_yuandaun_right = qulv_yuandaun_left = 0;
         k_left = 0;
@@ -109,37 +107,37 @@ void car_main_control_thread()
         l_start = 68;
         r_start = 68;
 
-
-        self_count=0;
-        for (int y = 0; y < 70; ++y) {
-            for (int x = 0; x < 188; ++x) {
-                image_use[y][x] = Img_Store_pp->Img_OTSU.at<uchar>(y, x);  // 值为 0 或 255
-                //std::cout<<image_use[y][x]<<std::endl;
-                //std::cout<<Img_Store_pp->Img_OTSU.cols<<","<<Img_Store_pp->Img_OTSU.rows<<std::endl;
+        self_count = 0;
+        for (int y = 0; y < 70; ++y)
+        {
+            for (int x = 0; x < 188; ++x)
+            {
+                image_use[y][x] = Img_Store_pp->Img_OTSU.at<uchar>(y, x); // 值为 0 或 255
+                // std::cout<<image_use[y][x]<<std::endl;
+                // std::cout<<Img_Store_pp->Img_OTSU.cols<<","<<Img_Store_pp->Img_OTSU.rows<<std::endl;
             }
         }
-        
+
         for (int ql = 0; ql <= 69; ql++) // 清零函数
         {
-            left_line[ql] = 2;////存储左边界线的列坐标
-            Left_Add[ql] = 0;////标记左边界是否需要基础补线
-            Left_Add2[ql] = 0;////标记左边界是否需要高级补线（动态斜率补线标志）
-            Left_Line_New[ql] = 2;////存储修复后的左边界线（最终使用的左边界）
+            left_line[ql] = 2;     ////存储左边界线的列坐标
+            Left_Add[ql] = 0;      ////标记左边界是否需要基础补线
+            Left_Add2[ql] = 0;     ////标记左边界是否需要高级补线（动态斜率补线标志）
+            Left_Line_New[ql] = 2; ////存储修复后的左边界线（最终使用的左边界）
         }
         for (int ql = 0; ql <= 187; ql++) // 清零函数guaidian
         {
-            white_num_col[ql] = 0;////白列白点数
+            white_num_col[ql] = 0; ////白列白点数
         }
         for (int ql = 0; ql <= 69; ql++)
         {
-            right_line[ql] = 184;////存储右边界线的列坐标
-            Right_Line_New[ql] = 184;////存储修复后的右边界线（最终使用的右边界）
-            center[ql] = 89;//每行中线点
-            Right_Add[ql] = 0;////标记右边界是否需要基础补线
-            Right_Add2[ql] = 0;////标记右边界是否需要高级补线（动态斜率补线标志）
+            right_line[ql] = 184;     ////存储右边界线的列坐标
+            Right_Line_New[ql] = 184; ////存储修复后的右边界线（最终使用的右边界）
+            center[ql] = 89;          // 每行中线点
+            Right_Add[ql] = 0;        ////标记右边界是否需要基础补线
+            Right_Add2[ql] = 0;       ////标记右边界是否需要高级补线（动态斜率补线标志）
         }
         unsigned int temp = 0;
-
 
         if (park_flag == 0)
         {
@@ -182,7 +180,6 @@ void car_main_control_thread()
                 } // k_right
             }
         }
-
 
         int y = 0;
         ////最长白列法寻找边界
@@ -229,8 +226,8 @@ void car_main_control_thread()
                 }
             }
             //   Half_width[y]=abs(right_line[y]-left_line[y])/2;
-            Width[y] = abs(right_line[y] - left_line[y]);////Width赛道宽度
-            //std::cout<<"Y:"<<y<<"   "<<right_line[y] - left_line[y]<<std::endl;
+            Width[y] = abs(right_line[y] - left_line[y]); ////Width赛道宽度
+            // std::cout<<"Y:"<<y<<"   "<<right_line[y] - left_line[y]<<std::endl;
             ////中线处理
             if (left_line[y] <= 3 && right_line[y] < 184)
             {
@@ -248,10 +245,7 @@ void car_main_control_thread()
             }
             else
                 center_th[y] = (left_line[y] + right_line[y]) / 2;
-            
 
-                        
-            
             ////赛道变宽判断
             if (Width[y] >= Width[y + 1] || (Width[y] >= Width_Min))
             {
@@ -267,14 +261,14 @@ void car_main_control_thread()
                 {
                     if (left_line[y] < left_line[y + 1] - 1) // 与前一行的左边界实线比较
                     {
-                        Left_Add2[y] = 1;////更新Left_Add2[]
+                        Left_Add2[y] = 1; ////更新Left_Add2[]
                     }
                 }
                 if (Right_Add2[y + 1])
                 {
                     if (right_line[y] > Right_Line_New2[y + 1] + 1)
                     {
-                        Right_Add2[y] = 1;////更新Right_Add2[]
+                        Right_Add2[y] = 1; ////更新Right_Add2[]
                     }
                 }
                 else // 前一行右边界没有补线
@@ -288,7 +282,7 @@ void car_main_control_thread()
             if (Left_Add2[y]) // 左边需要补线
             {
 
-                if (y < 65)//因为有下面+6限制
+                if (y < 65) // 因为有下面+6限制
                 {
                     if (!Left_Add_Start) // 如果还没有记录开始补线位置
                     {
@@ -296,7 +290,7 @@ void car_main_control_thread()
                     }
                     Add_Slope = 1.0 * (left_line[Left_Add_Start + 6] - left_line[Left_Add_Start + 1]) / 5; // 计算能识别的前几行图像斜率
 
-                    std::cout<<"left_line[Left_Add_Start + 6]: "<<left_line[Left_Add_Start + 6]<<"   left_line[Left_Add_Start + 1]: "<<left_line[Left_Add_Start + 1]<<"   Add_Slope: "<<Add_Slope<<std::endl;
+                    std::cout << "left_line[Left_Add_Start + 6]: " << left_line[Left_Add_Start + 6] << "   left_line[Left_Add_Start + 1]: " << left_line[Left_Add_Start + 1] << "   Add_Slope: " << Add_Slope << std::endl;
                     if (Add_Slope > 0) // 限幅
                     {
                         Add_Slope = 0;
@@ -305,8 +299,8 @@ void car_main_control_thread()
                     Left_Last_Slope = Add_Slope;                                                           // 更新上次左边界斜率
 
                     Left_Line_New2[y] = range_protect(temp, 2, 184); // 不直接修改边界，只保存在补线数组里
-                    std::cout<<"Left_Add_Start: "<<Left_Add_Start<<"  left:  "<<y<<"   "<<temp<<std::endl;
-                    std::cout<<"get_first: "<<(y - (Left_Add_Start + 1)) * Add_Slope<<std::endl;
+                    std::cout << "Left_Add_Start: " << Left_Add_Start << "  left:  " << y << "   " << temp << std::endl;
+                    std::cout << "get_first: " << (y - (Left_Add_Start + 1)) * Add_Slope << std::endl;
                 }
                 /* 第一次补线，只记录，不在图像上显示 */
                 //
@@ -381,8 +375,8 @@ void car_main_control_thread()
 
         sousuojieshuhang = y + 2;
 
-        ////统计左右边界丢线zuodiuxianshu l_start   youdiuxianshu r_start 
-        Cal_losttimes(sousuojieshuhang); 
+        ////统计左右边界丢线zuodiuxianshu l_start   youdiuxianshu r_start
+        Cal_losttimes(sousuojieshuhang);
 
         ////统计需要动态斜率补线的右边界行数 Right_Add_num Left_Add_num
         for (y = 68; y > 20; y--)
@@ -401,9 +395,9 @@ void car_main_control_thread()
                 Left_Add_num2++;
         }
 
-        huihuan_num = 0;//纵向较大白列>66的数目
-        huandao_7 = 0;//>68
-        zhidao_num = 0;//>41
+        huihuan_num = 0; // 纵向较大白列>66的数目
+        huandao_7 = 0;   //>68
+        zhidao_num = 0;  //>41
         ////计算纵向较大白列huihuan_num的数目
         for (int x = right_line[68]; x >= left_line[68]; x--)
         {
@@ -424,16 +418,16 @@ void car_main_control_thread()
             find_rightdown_point(67, 15, 1);
         }
         regression(1, 20, 68);
-        k_left = parameterB;////左边界全局斜率拟合
+        k_left = parameterB; ////左边界全局斜率拟合
 
-        regression(2, 20, 68);////右边界全局斜率拟合
+        regression(2, 20, 68); ////右边界全局斜率拟合
         k_right = parameterB;
 
-        //直接处理的中线
-        for(int iqq=68;iqq>20;iqq--)
+        // 直接处理的中线
+        for (int iqq = 68; iqq > 20; iqq--)
         {
 
-            cv::circle(get_color, cv::Point(center_th[iqq], iqq), 1, cv::Scalar(255,0,0), -1);  // -1 表示实心圆          
+            cv::circle(get_color, cv::Point(center_th[iqq], iqq), 1, cv::Scalar(255, 0, 0), -1); // -1 表示实心圆
         }
 
         if (!left_huan_num && !right_huan_num)
@@ -466,9 +460,9 @@ void car_main_control_thread()
                 }
             }
             if ((trend_of_left > 0 && trend_of_right < 0) || (trend_of_left < 0 && trend_of_right > 0))
-                twolines_trend = 1;/////左右边界趋势相反（十字特征）
+                twolines_trend = 1; /////左右边界趋势相反（十字特征）
             else
-                twolines_trend = 0;////趋势冲突
+                twolines_trend = 0; ////趋势冲突
 
             if ((left_turn_down[0] != 69 && twolines_trend == 1) || (youdiuxianshu >= 15 && left_turn_down[0] != 69))
             {
@@ -485,9 +479,9 @@ void car_main_control_thread()
             else
                 findrightdownguai = 0;
 
-            regression(0, 58, 68);////近端中线拟合
+            regression(0, 58, 68); ////近端中线拟合
             ////通过近端中线拟合结果扩展到全局
-            for (int j =68; j >= 1; j--)
+            for (int j = 68; j >= 1; j--)
             {
                 int jicun = (int)(parameterB * j + parameterA);
                 if (jicun >= 185)
@@ -513,7 +507,7 @@ void car_main_control_thread()
         /*************找到左下或右下拐点后，拟合并预测中线，然后再顺着预测后的中线找**************/
         if (findrightdownguai == 1 || findleftdownguai == 1)
         {
-            
+
             if (findrightdownguai == 1 && findleftdownguai == 0) // 左斜入十字，仅有右下拐点，取右下拐点下的中线行
             {
                 if (!three_cross && !three_cross1 && !youhuihuan_flag && !lefthuihuan_flag) // 防三叉
@@ -608,7 +602,7 @@ void car_main_control_thread()
                             right_buxian(184, 68, right_line[start1], start1);
                         }
                     }
-                    else if (!three_cross && right_turn_down[0] < 60)////?
+                    else if (!three_cross && right_turn_down[0] < 60) ////?
                         sousuojieshuhang = right_turn_down[0] + 1;
                 }
             }
@@ -672,8 +666,7 @@ void car_main_control_thread()
                             unsigned int start2 = left_turn_up[0];
                             if (start2 >= 68)
                                 start2 = 68;
-                            
-                            
+
                             left_buxian(left_line[start1], start1, left_line[start2], start2);
                         }
                         else if (findleftupguai == 1 && findleftdownguai == 0)
@@ -759,7 +752,7 @@ void car_main_control_thread()
                         // 左上拐点
                         if (((j < (unsigned int)left_turn_down[0]) && ((left_line[j] - left_line[j + 3]) >= 10) && ((left_line[j] - left_line[j + 2]) >= 10) && ((left_line[j] - left_line[j + 1]) >= 10)) && Left_Add[j] == 0 && Left_Add[j - 1] == 0 && Left_Add[j - 2] == 0)
                         {
-                            
+
                             left_turn_up[0] = j - 3; // 数组里面没有第0行
                             left_turn_up[1] = left_line[j] - 3;
                             // 获得的上坐标先确定一下是不是比下坐标小，如果小则说明提前断掉，此时的“上拐点”为假.
@@ -948,7 +941,6 @@ void car_main_control_thread()
             }
         }
 
-
         ////右环岛
         guaidian = 0;
         if (!youhuihuan_flag && !left_huan_num && !three_cross && !poer_flag && !star_lineflag && !por_cnt) //
@@ -998,7 +990,6 @@ void car_main_control_thread()
             else if (right_huan_num == 5 && white_num_col_line > 160)
             {
                 right_huan_num = 6;
-                
             }
 
             else if (right_huan_num == 6 && Left_Add_num > 8 && left_turn_down[0] > 25 && left_turn_down[0] != 69) //&&left_turn_down[0]<50
@@ -1025,7 +1016,6 @@ void car_main_control_thread()
                 youhuandao_flag3 = 0;
             }
         }
-
 
         ////youhuandao_deal
         find_rightdown_point(60, 10, 2);
@@ -1197,10 +1187,8 @@ void car_main_control_thread()
             ////直道补线
         }
 
-
-
         ////修复中线
-        int count=sousuojieshuhang;
+        int count = sousuojieshuhang;
         for (unsigned int i = 68; i > count; i--)
         {
             //// 赛道宽度动态调整
@@ -1213,21 +1201,21 @@ void car_main_control_thread()
                     if (Right_Line_New[i] - Half_width[i] <= 18)
                         center[i] = 18;
                     else if (right_huan_num == 8 || left_huan_num == 8 ||
-                            right_huan_num == 9 || left_huan_num == 9 ||
-                            right_huan_num == 1 || left_huan_num == 1 ||
-                            right_huan_num == 2 || left_huan_num == 2 ||
-                            youhuihuan_flag == 1 || lefthuihuan_flag == 1 || (huihuan_num > 18 && !poer_flag))
-                            {   
-                                center[i] = Right_Line_New[i] - Half_width_yuanshi[i]; //||huihuan_num>15||sousuojieshuhang<=3
-                                //std::cout<<"循环1"<<std::endl;
-                            }
+                             right_huan_num == 9 || left_huan_num == 9 ||
+                             right_huan_num == 1 || left_huan_num == 1 ||
+                             right_huan_num == 2 || left_huan_num == 2 ||
+                             youhuihuan_flag == 1 || lefthuihuan_flag == 1 || (huihuan_num > 18 && !poer_flag))
+                    {
+                        center[i] = Right_Line_New[i] - Half_width_yuanshi[i]; //||huihuan_num>15||sousuojieshuhang<=3
+                        // std::cout<<"循环1"<<std::endl;
+                    }
                     else
                     {
                         if (right_huan_num != 0 || left_huan_num != 0)
                             center[i] = Right_Line_New[i] - Half_width_handao[i];
                         else
                             center[i] = Right_Line_New[i] - Half_width[i];
-                        //std::cout<<"循环2"<<std::endl;
+                        // std::cout<<"循环2"<<std::endl;
                     }
                 }
                 ////右边界贴右边缘（≥184）且左边界未贴左边缘（>18）
@@ -1284,74 +1272,68 @@ void car_main_control_thread()
             image_use[i][Right_Line_New[i] - 3] = 0;
             //     image_use[i][center_th[i]] =0;
         }
-        
-        
-        
-        cv::Mat haha;
-        
 
-        for(int iqq=68;iqq>sousuojieshuhang;iqq--)
+        cv::Mat haha;
+
+        for (int iqq = 68; iqq > sousuojieshuhang; iqq--)
         {
-            cv::circle(get_color, cv::Point(left_line[iqq]+2, iqq), 1, cv::Scalar(0,0,150), -1);  // -1 表示实心圆
-            cv::circle(get_color, cv::Point(right_line[iqq]-2, iqq), 1, cv::Scalar(0,0,150), -1);  // -1 表示实心圆
-            cv::circle(get_color, cv::Point(Left_Line_New[iqq]+2, iqq), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
-            cv::circle(get_color, cv::Point(Right_Line_New[iqq]-2, iqq), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
-            
-            //cv::circle(get_color, cv::Point(center_th[iqq]-2, iqq), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
-            cv::circle(get_color, cv::Point(center[iqq]-2, iqq), 1, cv::Scalar(0,255,0), -1);  // -1 表示实心圆
-            
+            cv::circle(get_color, cv::Point(left_line[iqq] + 2, iqq), 1, cv::Scalar(0, 0, 150), -1);      // -1 表示实心圆
+            cv::circle(get_color, cv::Point(right_line[iqq] - 2, iqq), 1, cv::Scalar(0, 0, 150), -1);     // -1 表示实心圆
+            cv::circle(get_color, cv::Point(Left_Line_New[iqq] + 2, iqq), 1, cv::Scalar(0, 0, 255), -1);  // -1 表示实心圆
+            cv::circle(get_color, cv::Point(Right_Line_New[iqq] - 2, iqq), 1, cv::Scalar(0, 0, 255), -1); // -1 表示实心圆
+
+            // cv::circle(get_color, cv::Point(center_th[iqq]-2, iqq), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
+            cv::circle(get_color, cv::Point(center[iqq] - 2, iqq), 1, cv::Scalar(0, 255, 0), -1); // -1 表示实心圆
         }
         for (y = 68; y > 20; y--)
         {
             if (Right_Add2[y] == 1)
-                cv::circle(get_color, cv::Point(Right_Line_New2[y], y), 1, cv::Scalar(255,0,255), -1);  // -1 表示实心圆
+                cv::circle(get_color, cv::Point(Right_Line_New2[y], y), 1, cv::Scalar(255, 0, 255), -1); // -1 表示实心圆
             if (Left_Add2[y] == 1)
-                cv::circle(get_color, cv::Point(Left_Line_New2[y], y), 1, cv::Scalar(255,0,255), -1);  // -1 表示实心圆
+                cv::circle(get_color, cv::Point(Left_Line_New2[y], y), 1, cv::Scalar(255, 0, 255), -1); // -1 表示实心圆
         }
-        cv::circle(get_color, cv::Point(right_line[r_start], r_start), 1, cv::Scalar(255,255,255), -1);  // -1 表示实心圆
-        cv::circle(get_color, cv::Point(left_line[l_start], l_start), 1, cv::Scalar(255,255,255), -1);  // -1 表示实心圆
+        cv::circle(get_color, cv::Point(right_line[r_start], r_start), 1, cv::Scalar(255, 255, 255), -1); // -1 表示实心圆
+        cv::circle(get_color, cv::Point(left_line[l_start], l_start), 1, cv::Scalar(255, 255, 255), -1);  // -1 表示实心圆
 
-        cv::circle(get_color, cv::Point(right_line[r_start], r_start), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
-        cv::circle(get_color, cv::Point(left_line[l_start], l_start), 1, cv::Scalar(0,0,255), -1);  // -1 表示实心圆
+        cv::circle(get_color, cv::Point(right_line[r_start], r_start), 1, cv::Scalar(0, 0, 255), -1); // -1 表示实心圆
+        cv::circle(get_color, cv::Point(left_line[l_start], l_start), 1, cv::Scalar(0, 0, 255), -1);  // -1 表示实心圆
 
         if (findleftdownguai == 1)
         {
-            cv::circle(get_color, cv::Point(left_turn_down[1],left_turn_down[0]), 4, cv::Scalar(255,0,0), 2);  // -1 表示实心圆
+            cv::circle(get_color, cv::Point(left_turn_down[1], left_turn_down[0]), 4, cv::Scalar(255, 0, 0), 2); // -1 表示实心圆
         }
-        if(findrightdownguai == 1)
+        if (findrightdownguai == 1)
         {
-            cv::circle(get_color, cv::Point(right_turn_down[1],right_turn_down[0]), 4, cv::Scalar(255,0,0), 2);  // -1 表示实心圆
+            cv::circle(get_color, cv::Point(right_turn_down[1], right_turn_down[0]), 4, cv::Scalar(255, 0, 0), 2); // -1 表示实心圆
         }
-        if(findrightupguai==1)
+        if (findrightupguai == 1)
         {
-            cv::circle(get_color, cv::Point(right_turn_up[1],right_turn_up[0]), 4, cv::Scalar(255,0,0), 2);
+            cv::circle(get_color, cv::Point(right_turn_up[1], right_turn_up[0]), 4, cv::Scalar(255, 0, 0), 2);
         }
-        if(findleftupguai==1)
+        if (findleftupguai == 1)
         {
-            cv::circle(get_color, cv::Point(left_turn_up[1],left_turn_up[0]), 4, cv::Scalar(255,0,0), 2);
-        }
-        
-        
-        cv::resize(get_color, haha, cv::Size(188*5, 70*5));
-        cv::putText(haha,std::to_string(white_num_col_line), cv::Point(10, 20),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-        
-        cv::putText(haha,std::to_string(findleftdownguai), cv::Point(10, 40),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-        cv::putText(haha,std::to_string(findrightdownguai), cv::Point(30, 40),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-        
-        cv::putText(haha,std::to_string(k_center), cv::Point(10, 60),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-
-        cv::putText(haha,std::to_string(right_huan_num), cv::Point(10, 80),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-        
-        
-        cv::putText(haha,std::to_string(Left_Add_num), cv::Point(10, 100),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-        cv::putText(haha,std::to_string(left_turn_down[0]), cv::Point(30, 100),  cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0,200,0), 2, cv::LINE_AA);
-
-        {
-            std::lock_guard<std::mutex> lock(image_mutex);  // 锁住图像数据，确保线程安全
-            image_to_send = haha.clone(); // 拷贝图像数据
-            //image_to_send = canvas.clone(); // 拷贝图像数据
+            cv::circle(get_color, cv::Point(left_turn_up[1], left_turn_up[0]), 4, cv::Scalar(255, 0, 0), 2);
         }
 
-        //std::this_thread::sleep_for(std::chrono::milliseconds(20));
+        cv::resize(get_color, haha, cv::Size(188 * 5, 70 * 5));
+        cv::putText(haha, std::to_string(white_num_col_line), cv::Point(10, 20), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+
+        cv::putText(haha, std::to_string(findleftdownguai), cv::Point(10, 40), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+        cv::putText(haha, std::to_string(findrightdownguai), cv::Point(30, 40), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+
+        cv::putText(haha, std::to_string(k_center), cv::Point(10, 60), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+
+        cv::putText(haha, std::to_string(right_huan_num), cv::Point(10, 80), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+
+        cv::putText(haha, std::to_string(Left_Add_num), cv::Point(10, 100), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+        cv::putText(haha, std::to_string(left_turn_down[0]), cv::Point(30, 100), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
+
+        {
+            std::lock_guard<std::mutex> lock(image_mutex); // 锁住图像数据，确保线程安全
+            image_to_send = haha.clone();                  // 拷贝图像数据
+            // image_to_send = canvas.clone(); // 拷贝图像数据
+        }
+
+        // std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }

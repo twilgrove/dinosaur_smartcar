@@ -63,6 +63,12 @@
         "unistd.h": "c",
         "csignal": "cpp",
         "forward_list": "cpp",
-        "valarray": "cpp"
+        "valarray": "cpp",
+        "gpio.h": "c",
+        "encoder.h": "c",
+        "zf_common_headfile.h": "c",
+        "zf_device_imu_core.h": "c",
+        "udp.h": "c",
+        "inet.h": "c"
     }
 }
