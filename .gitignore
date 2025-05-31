@@ -1,0 +1,14 @@
+# 忽略构建目录
+build/
+
+# 编译输出
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.elf
+*.bin
+*.hex
+*.map
+*.exe
