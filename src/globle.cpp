@@ -1,4 +1,12 @@
+#include "image_deal.h"
+#include "thread.h"
+#include "isr.h"
+#include "key_board.h"
+#include "PID.h"
+#include "my_control.h"
+#include "traffic_circle.h"
 #include "headfile.h"
+#include "key_board.h"
 /* ----------------------------------------全局变量---------------------------------------- */
 
 /* 串口 */
@@ -32,7 +40,7 @@ pid rp_pid(pid::Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PWM, WHEEL_MIN_PWM);
 uint32_t sp_duty = 1500000;
 float s_target = 0;
 pwm_ctrl sp(8, 6, 20000000, sp_duty, "servo");
-pid sp_pid(pid::Mode::POSITION, 0.1, 0.01, 0.001, 100, SERVO_MAX_PWM, SERVO_MIN_PWM);
+pid sp_pid(pid::Mode::POSITION, 7000, 0, 0, 1000, SERVO_MAX_PWM-MIDO_sp, SERVO_MIN_PWM-MIDO_sp);
 
 /* 按键 */
 Key key1(16, Key::up);
@@ -57,3 +65,7 @@ GPIO buzzer(12, "out", 0);
 
 /* 陀螺仪 */
 IMUFilter imu_filter;
+
+
+cv::Mat get_color;
+cv::Mat get_image;

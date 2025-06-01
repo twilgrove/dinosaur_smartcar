@@ -1,4 +1,11 @@
-﻿#include "headfile.h"
+﻿#include "image_deal.h"
+#include "thread.h"
+#include "isr.h"
+#include "key_board.h"
+#include "PID.h"
+#include "my_control.h"
+#include "traffic_circle.h"
+#include "headfile.h"
 void close()
 {
     running = 0;

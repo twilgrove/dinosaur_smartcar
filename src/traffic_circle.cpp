@@ -1,6 +1,12 @@
-#include "traffic_circle.h"
+#include "image_deal.h"
+#include "thread.h"
 #include "isr.h"
+#include "key_board.h"
+#include "PID.h"
 #include "my_control.h"
+#include "traffic_circle.h"
+#include "headfile.h"
+#include "camera.h"
 int youhuihuan_flag = 0, lefthuihuan_flag = 0;
 int zuohuandao_flag = 0, zuohuandao_flag2 = 0, zuohuandao_flag3 = 0, buxianflag = 0;
 int zuochu_flag = 0, zuochu_flag2 = 0;
@@ -322,6 +328,7 @@ void right_buxian(int x1, int y1, int x2, int y2) // 右补线（环岛）
 void youhuandao_deal() // 环岛处理
 {
     int y = 0;
+    ////youhuandao_deal
     find_rightdown_point(60, 10, 2);
     find_rightmiddle_point(60, 8);
     find_rightup_point(5, 65);
@@ -383,9 +390,9 @@ void youhuandao_deal() // 环岛处理
             Right_Line_New[ql] = 184;
             Left_Line_New[ql] = 67;
         }
-        for (y = 68; y > 5; y--) // x是减59—56  num是加0—4
+        for (int y = 68; y > 5; y--) // x是减59—56  num是加0—4
         {
-            for (int x = 160; x <= 184; x++) // 中间向右找跳变
+            for (unsigned int x = 160; x <= 184; x++) // 中间向右找跳变
             {
                 if (image_use[y][x - 1] == 255 && image_use[y][x] == 255 && image_use[y][x + 1] == 0 && image_use[y][x + 2] == 0) // 两个连续黑点触发
                 {
@@ -397,12 +404,11 @@ void youhuandao_deal() // 环岛处理
                 {
 
                     Right_Line_New[y] = x;
-
                     break;
                 }
             }
 
-            for (int x = 160; x >= 1; x--) // 中间向左找跳变
+            for (unsigned int x = 160; x >= 1; x--) // 中间向左找跳变
             {
                 if (image_use[y][x - 1] == 0 && image_use[y][x] == 0 && image_use[y][x + 1] == 255 && image_use[y][x + 2] == 255) // 两个连续黑点触发
                 {
@@ -424,6 +430,7 @@ void youhuandao_deal() // 环岛处理
         }
         sousuojieshuhang = y + 1;
         left_buxian(right_turn_up[1], right_turn_up[0], 30, 68);
+        ////入环补线
     }
     else if (right_huan_num == 5)
     {
@@ -434,7 +441,7 @@ void youhuandao_deal() // 环岛处理
         }
         for (y = 68; y > 5; y--) // x是减59—56  num是加0—4
         {
-            for (int x = 160; x <= 184; x++) // 中间向右找跳变
+            for (unsigned int x = 160; x <= 184; x++) // 中间向右找跳变
             {
                 if (image_use[y][x - 1] == 255 && image_use[y][x] == 255 && image_use[y][x + 1] == 0 && image_use[y][x + 2] == 0) // 两个连续黑点触发
                 {
@@ -451,7 +458,7 @@ void youhuandao_deal() // 环岛处理
                 }
             }
 
-            for (int x = 160; x >= 1; x--) // 中间向左找跳变
+            for (unsigned int x = 160; x >= 1; x--) // 中间向左找跳变
             {
                 if (image_use[y][x - 1] == 0 && image_use[y][x] == 0 && image_use[y][x + 1] == 255 && image_use[y][x + 2] == 255) // 两个连续黑点触发
                 {
@@ -480,6 +487,7 @@ void youhuandao_deal() // 环岛处理
         {
             find_leftdown_point(65, 25, 1); // 1是十字
             right_buxian2(162, sousuojieshuhang, left_turn_down[1] + 20, left_turn_down[0]);
+            ////出环补线
         }
     }
 
@@ -487,6 +495,7 @@ void youhuandao_deal() // 环岛处理
     {
 
         right_buxian(left_line[15] + 55, 15, 170, 68);
+        ////直道补线
     }
 }
 
@@ -703,12 +712,12 @@ void youhuandao() // 右环岛
                 cnt2 = 0;
             }
         }
-        else if (right_huan_num == 3 && right_turn_up[0] > 35) //>40)//right_turn_up[0]////right_huan_num==3&&r_start<=40
+        else if (right_huan_num == 3 && right_turn_up[0] > 40) //>35)//right_turn_up[0]////right_huan_num==3&&r_start<=40
         {
             guaidian = 0;
             right_huan_num = 5; // 更换搜线方式
         }
-        else if (right_huan_num == 5 && white_num_col_line > 130)
+        else if (right_huan_num == 5 && white_num_col_line > 160)
         {
             right_huan_num = 6;
         }

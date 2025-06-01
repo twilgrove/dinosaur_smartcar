@@ -1,5 +1,6 @@
 
 #include "camera.h"
+#include "headfile.h"
 using namespace cv;
 
 std::mutex CameraCapture_Mutex; // 摄像头采集资源互斥锁

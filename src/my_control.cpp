@@ -1,7 +1,11 @@
-#include "my_control.h"
+#include "image_deal.h"
+#include "thread.h"
 #include "isr.h"
-#include "traffic_circle.h"
+#include "key_board.h"
 #include "PID.h"
+#include "my_control.h"
+#include "traffic_circle.h"
+#include "headfile.h"
 // 定义差速模型宏及变量
 #define LDISTANCE 200 // 车身的前后轮中心距 mm
 #define BORDWIDTH 155 // 两后轮中心距     mm
@@ -21,7 +25,6 @@ unsigned int ruku_zuobiao_lie = 0;
 unsigned int ruku_youbiao_lie = 0;
 unsigned int zhidao_juli = 0;
 unsigned int zhidao_flag = 0;
-unsigned int chujie = 0;
 int chasuxisu = 430; // 电机差速系数340
 int yuzhi_speed = 0;
 float angle = 0;
@@ -73,6 +76,7 @@ int you_speed = 0;
 int zuo_speed = 0;
 int jiasu_part = 0, jiasha_part = 0;
 int chujie_num = 0;
+int chujie=0;
 // const unsigned int left[70]={
 // 97, 97, 96, 96, 95, 95, 95, 95, 94, 94,
 // 94, 93, 93, 93, 92, 92, 92, 91, 91, 91,
@@ -244,7 +248,7 @@ void proess() // 处理流程
         //                    if(time5<=30)
         //                    Point= center [10]+center[12]+center[14] /3;
         //                    else
-        Points = Point_Weight();
+        Get_Point = Point_Weight();
         if (chujie == 0)
             S_D5_Duty = PlacePID_Control(&S_D5_PID, zhongzhi, Points);
         else
@@ -266,30 +270,7 @@ void proess() // 处理流程
                 ruku_handle2();
         }
 
-        ////舵机输出操作 判断入库
-        // if (!tingche_flag)
-        //     pwm_duty(ATOM1_CH1_P33_9, S_D5_Duty);
-        // else
-        // {
-        //     if (c_r == 2)
-        //     {
-        //         if (!tingche_flag2 && tingche_flag && !(right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_max); // 左进库
-        //         else if (tingche_flag2 && tingche_flag && !(right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_max - 15);
-        //         else if (tingche_flag2 && tingche_flag && (right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_center);
-        //     }
-        //     else if (c_r == 1)
-        //     {
-        //         if (!tingche_flag2 && tingche_flag && !(right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_min); // 右进库
-        //         else if (tingche_flag2 && tingche_flag && !(right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_min);
-        //         else if (tingche_flag2 && tingche_flag && (right_num < 30 || left_num < 30))
-        //             pwm_duty(ATOM1_CH1_P33_9, stree_center);
-        //     }
-        // }
+
 
         ////出界保护
         chujiebaohu();

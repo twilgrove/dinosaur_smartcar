@@ -1,10 +1,16 @@
-﻿#include "thread.h"
-
+﻿#include "image_deal.h"
+#include "thread.h"
+#include "isr.h"
+#include "key_board.h"
+#include "PID.h"
+#include "my_control.h"
+#include "traffic_circle.h"
+#include "headfile.h"
 std::mutex img_mutex;
 std::mutex image_mutex; // 定义一个互斥锁
 cv::Mat image_to_send;  // 需要在多个线程之间共享的图像数据
 UdpSender g_udp_sender;
-
+int last_sp_duty=1500000;
 void motor_servo_thread()
 {
     while (running)
@@ -31,12 +37,16 @@ void motor_servo_thread()
             l_target = 0;
             lp_duty = 0;
         }
+        sp_duty=(1700000+1346000)/2+sp_pid.get(87,Get_Point);
+        // sp_duty=sp_duty*0.4+last_sp_duty*0.6;
+        // last_sp_duty=sp_duty;
         rp_duty = MAX_OUTPUT_LIMIT(rp_duty, WHEEL_MAX_PWM);
         rp_duty = MIN_OUTPUT_LIMIT(rp_duty, WHEEL_MIN_PWM);
         lp_duty = MAX_OUTPUT_LIMIT(lp_duty, WHEEL_MAX_PWM);
         lp_duty = MIN_OUTPUT_LIMIT(lp_duty, WHEEL_MIN_PWM);
         sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
         sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
+        
         sp.set_duty(sp_duty);
         lp.set_duty(lp_duty);
         rp.set_duty(rp_duty);
@@ -112,6 +122,6 @@ void debugi_thread()
         }
 
         // tty.printf("encoder: %f,%f\n", l_now, l_target);
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+        std::this_thread::sleep_for(std::chrono::milliseconds(60));
     }
 }

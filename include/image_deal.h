@@ -9,9 +9,7 @@
 #define CODE_IMAGE_DEAL_H_
 
 #include <cmath>
-#include "my_control.h"
-#include "traffic_circle.h"
-#include "isr.h"
+#include "headfile.h"
 
 void yuzhiget(void);
 extern int times2;
@@ -53,7 +51,7 @@ extern int guaidian;
 extern int white_num_col[188];
 extern int zuodiuxianshu;  // 左丢线数
 extern int zongdiuxianshu; // 总丢线数
-extern int Point_Mid, Points, Foresight;
+extern int Point_Mid, Get_Point, Foresight,Points;
 extern int left_huan_num, right_huan_num; // 环岛变量
 extern int park_flag;                     // 停车标志
 extern int left_line[70], right_line[70]; // 左边界右边界
@@ -90,9 +88,8 @@ void regression(int type, int startline, int endline);
 void find_leftdown_point(int start_point, int end_point, int RoadName);
 void find_rightdown_point(int start_point, int end_point, int RoadName);
 char oppositeSigns(int x, int y);
-void advanced_regression(int type, int startline1, int endline1, int startline2, int endline2);
+
 void check_starting_line();
-void SignalProcess_grayfine_fill(void);
 extern int xielv;
 extern int huihuan_left;
 extern int huihuan_right;

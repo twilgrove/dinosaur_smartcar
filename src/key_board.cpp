@@ -37,28 +37,4 @@ unsigned int status;
 
 
 
-//拨码开关状态变量
-unsigned int sw1_status;
-unsigned int sw2_status;
-
-//开关状态变量
-unsigned int key1_status = 1;
-unsigned int key2_status = 1;
-unsigned int key3_status = 1;
-unsigned int key4_status = 1;
-unsigned int key5_status = 1;
-
-//上一次开关状态变量
-unsigned int key1_last_status = 1;
-unsigned int key2_last_status = 1;
-unsigned int key3_last_status = 1;
-unsigned int key4_last_status = 1;
-unsigned int key5_last_status = 1;
-
-//开关标志位
-unsigned int key1_flag;
-unsigned int key2_flag;
-unsigned int key3_flag;
-unsigned int key4_flag;
-unsigned int key5_flag;
 extern int th_y;

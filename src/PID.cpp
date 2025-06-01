@@ -5,8 +5,14 @@
  *      Author: admin
  */
 
+#include "image_deal.h"
+#include "thread.h"
+#include "isr.h"
+#include "key_board.h"
 #include "PID.h"
 #include "my_control.h"
+#include "traffic_circle.h"
+#include "headfile.h"
 float Kp1; // ¶¯Ì¬P
 int Increase_last1 = 0, Increase_last2 = 0, Increase1 = 0, Increase2 = 0;
 float det_Kp;

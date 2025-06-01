@@ -11,8 +11,6 @@
 #include <atomic>
 
 #include "opencv2/opencv.hpp"
-#include "image_deal.h"
-#include "key_board.h"
 #include "udp.h"
 #include "zf_common_headfile.h"
 #include "pwm_ctrl.h"
@@ -22,6 +20,8 @@
 #include "encoder.h"
 #include "tty.h"
 #include "IMUFilter.h"
+
+
 /* ----------------------------------------宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
@@ -29,8 +29,9 @@
 #define WHEEL_MIN_PWM 0
 #define SPEED_DEADBAND 3 // 目标速度死区
 
-#define SERVO_MAX_PWM 1600000
-#define SERVO_MIN_PWM 1300000
+#define MIDO_sp 1522000
+#define SERVO_MAX_PWM 1700000-50000
+#define SERVO_MIN_PWM 1346000+50000
 
 #define MAX_OUTPUT_LIMIT(x, max) ((x) > (max) ? (max) : (x)) // 输出限幅
 #define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
@@ -117,6 +118,11 @@ extern cv::VideoCapture Camera;
 extern UdpSender g_udp_sender; // 全局声明
 extern std::mutex image_mutex; // 定义一个互斥锁
 extern cv::Mat image_to_send;  // 需要在多个线程之间共享的图像数据
+
+
+extern cv::Mat get_image;
+extern cv::Mat get_color;
+
 
 void init();
 void car_main_control_thread();

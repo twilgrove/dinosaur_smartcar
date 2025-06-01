@@ -83,7 +83,7 @@ extern unsigned int zhidao_flag;
 extern unsigned int tingche_way;
 extern int chujie_num;
 extern int yuzhi_speed;
-
+extern int chujie;
 
 
 
