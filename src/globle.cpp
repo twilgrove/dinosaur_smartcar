@@ -37,10 +37,10 @@ pwm_ctrl rp(1, 0, 20000, rp_duty, "right_motor");
 pid rp_pid(pid::Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PWM, WHEEL_MIN_PWM);
 
 /* 舵机：频率50hz，周期20,000,000ns，占空比1300,000-1,600,000ns*/
-uint32_t sp_duty = 1500000;
+uint32_t sp_duty = 1522000;
 float s_target = 0;
 pwm_ctrl sp(8, 6, 20000000, sp_duty, "servo");
-pid sp_pid(pid::Mode::POSITION, 7000, 0, 0, 1000, SERVO_MAX_PWM-MIDO_sp, SERVO_MIN_PWM-MIDO_sp);
+pid sp_pid(pid::Mode::POSITION, 1, 0, 0, 1000, SERVO_MAX_PWM-MIDO_sp, SERVO_MIN_PWM-MIDO_sp);
 
 /* 按键 */
 Key key1(16, Key::up);

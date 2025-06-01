@@ -30,8 +30,8 @@
 #define SPEED_DEADBAND 3 // 目标速度死区
 
 #define MIDO_sp 1522000
-#define SERVO_MAX_PWM 1700000-50000
-#define SERVO_MIN_PWM 1346000+50000
+#define SERVO_MAX_PWM 1700000
+#define SERVO_MIN_PWM 1346000
 
 #define MAX_OUTPUT_LIMIT(x, max) ((x) > (max) ? (max) : (x)) // 输出限幅
 #define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
@@ -127,5 +127,15 @@ extern cv::Mat get_color;
 void init();
 void car_main_control_thread();
 void project_manage(int signum);
+
+inline float DEGTORAD(float angle) {
+    return angle * 0.017453292519943295f;  // π/180
+}
+
+inline float FastTan(float rad) {
+    float x = rad;
+    float x2 = x * x;
+    return x + (x2 * x) / 3.0f + (2.0f * x2 * x2 * x) / 15.0f;
+}
 
 #endif

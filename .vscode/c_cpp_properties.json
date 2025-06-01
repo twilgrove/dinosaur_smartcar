@@ -4,11 +4,14 @@
         {
             "name": "Linux",
             "includePath": [
-                "${workspaceFolder}/**/**/**",
-                "${workspaceFolder}/**/**",
-                "${workspaceFolder}/**",
-
-                "/home/an/Desktop/opencv/install/include"
+                "${workspaceFolder}/include",
+                "${workspaceFolder}/lib/logic",
+                "${workspaceFolder}/lib/control",
+                "${workspaceFolder}/src",
+                "${workspaceFolder}/lib/zf_common",
+                "${workspaceFolder}/lib/zf_device",
+                "/home/john/桌面/opencv/install/include"
+                // "/home/an/Desktop/opencv/install/include"
             ],
             "compilerPath":
 

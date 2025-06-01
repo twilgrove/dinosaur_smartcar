@@ -131,7 +131,8 @@ int park_flag = 0; // 停车标志
 int y=0;
 unsigned int Foresight_Left = 0;////左侧最小赛道宽度
 unsigned int Foresight_Right = 186;////右侧最小赛道宽度
-int Point_Mid = 0, Get_Point = 0, Foresight = 0;
+int Point_Mid = 0, Foresight = 0;
+double Get_Point;
 unsigned char image_use[70][188];
 int whitenum = 0;
 //
@@ -756,7 +757,7 @@ void Center_line_deal() // 中线处理
                 }
                 Add_Slope = 1.0 * (left_line[Left_Add_Start + 6] - left_line[Left_Add_Start + 1]) / 5; // 计算能识别的前几行图像斜率
 
-                std::cout << "left_line[Left_Add_Start + 6]: " << left_line[Left_Add_Start + 6] << "   left_line[Left_Add_Start + 1]: " << left_line[Left_Add_Start + 1] << "   Add_Slope: " << Add_Slope << std::endl;
+                //std::cout << "left_line[Left_Add_Start + 6]: " << left_line[Left_Add_Start + 6] << "   left_line[Left_Add_Start + 1]: " << left_line[Left_Add_Start + 1] << "   Add_Slope: " << Add_Slope << std::endl;
                 if (Add_Slope > 0) // 限幅
                 {
                     Add_Slope = 0;
@@ -765,8 +766,8 @@ void Center_line_deal() // 中线处理
                 Left_Last_Slope = Add_Slope;                                                           // 更新上次左边界斜率
 
                 Left_Line_New2[y] = range_protect(temp, 2, 184); // 不直接修改边界，只保存在补线数组里
-                std::cout << "Left_Add_Start: " << Left_Add_Start << "  left:  " << y << "   " << temp << std::endl;
-                std::cout << "get_first: " << (y - (Left_Add_Start + 1)) * Add_Slope << std::endl;
+                //std::cout << "Left_Add_Start: " << Left_Add_Start << "  left:  " << y << "   " << temp << std::endl;
+                //std::cout << "get_first: " << (y - (Left_Add_Start + 1)) * Add_Slope << std::endl;
             }
             /* 第一次补线，只记录，不在图像上显示 */
             //

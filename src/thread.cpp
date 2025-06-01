@@ -10,11 +10,59 @@ std::mutex img_mutex;
 std::mutex image_mutex; // 定义一个互斥锁
 cv::Mat image_to_send;  // 需要在多个线程之间共享的图像数据
 UdpSender g_udp_sender;
-int last_sp_duty=1500000;
+int last_sp_duty=1522000;
 void motor_servo_thread()
-{
+{   
+    sp.set_duty(MIDO_sp);
+    const std::chrono::milliseconds initialization_time(1000); // 初始化时间400ms
+    auto program_start = std::chrono::steady_clock::now();    // 记录程序启动时间
+    sp_duty = MIDO_sp;
+    sp_pid.set_kp(1.05);
     while (running)
     {
+        auto now = std::chrono::steady_clock::now();
+        auto elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - program_start);
+        if (elapsed_time < initialization_time) {
+            sp_duty = MIDO_sp; // 强制中值
+        } 
+        else{
+            double servo_turn = Get_Point - 87;
+            // sp_pid.set_kd(0.01);
+            if (fabs(servo_turn) < 2.5)
+                sp_pid.set_kp(0.05);   
+            else if (fabs(servo_turn) < 10)
+                sp_pid.set_kp(0.2);
+            else if (fabs(servo_turn) < 15)
+                sp_pid.set_kp(0.8);
+            // else if (fabs(servo_turn) < 25)
+            //     sp_pid.set_kp(1);
+            // else if (fabs(servo_turn) < 30)
+            //     sp_pid.set_kp(1.08);
+            // else if (fabs(servo_turn) < 35)
+            //     sp_pid.set_kp(1.1);
+            // else if (fabs(servo_turn) < 40)
+            //     sp_pid.set_kp(1.13);
+            // else if (fabs(servo_turn) < 45)
+            //     sp_pid.set_kp(1.15);
+            else if (fabs(servo_turn) < 50)
+                sp_pid.set_kp(1.05);
+            else
+            sp_pid.set_kp(1.2);
+            sp_duty=MIDO_sp+sp_pid.get(0,servo_turn*4000);
+        }
+        // sp_duty=sp_duty*0.4+last_sp_duty*0.6;
+        // last_sp_duty=sp_duty;
+
+        double angle = ((int32_t)sp_duty - MIDO_sp) / 5000;
+        double Rad = DEGTORAD(angle);
+        double K_Turn_ = FastTan(Rad) * 160 / 2 / 200;
+        K_Turn_ = MAX_OUTPUT_LIMIT(K_Turn_, 5);
+        K_Turn_ = MIN_OUTPUT_LIMIT(K_Turn_, -5);
+
+        // 左右轮目标速度
+        l_target = 8 * (1 - K_Turn_);
+        r_target = 8 * (1 + K_Turn_);
+
         r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
         l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
         if (apply_deadzone(r_target, SPEED_DEADBAND))
@@ -37,15 +85,13 @@ void motor_servo_thread()
             l_target = 0;
             lp_duty = 0;
         }
-        sp_duty=(1700000+1346000)/2+sp_pid.get(87,Get_Point);
-        // sp_duty=sp_duty*0.4+last_sp_duty*0.6;
-        // last_sp_duty=sp_duty;
+
         rp_duty = MAX_OUTPUT_LIMIT(rp_duty, WHEEL_MAX_PWM);
         rp_duty = MIN_OUTPUT_LIMIT(rp_duty, WHEEL_MIN_PWM);
         lp_duty = MAX_OUTPUT_LIMIT(lp_duty, WHEEL_MAX_PWM);
         lp_duty = MIN_OUTPUT_LIMIT(lp_duty, WHEEL_MIN_PWM);
-        sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
-        sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
+        // sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PWM);
+        // sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PWM);
         
         sp.set_duty(sp_duty);
         lp.set_duty(lp_duty);
@@ -114,12 +160,12 @@ void debugi_thread()
         // sender_video.unlock();
 
         // 互斥锁的作用域开始
-        std::lock_guard<std::mutex> lock(image_mutex); // 锁住图像数据
+        // std::lock_guard<std::mutex> lock(image_mutex); // 锁住图像数据
 
-        if (!image_to_send.empty())
-        {
-            g_udp_sender.sendImage(image_to_send); // 发送图像
-        }
+        // if (!image_to_send.empty())
+        // {
+        //     g_udp_sender.sendImage(image_to_send); // 发送图像
+        // }
 
         // tty.printf("encoder: %f,%f\n", l_now, l_target);
         std::this_thread::sleep_for(std::chrono::milliseconds(60));

@@ -51,7 +51,8 @@ extern int guaidian;
 extern int white_num_col[188];
 extern int zuodiuxianshu;  // 左丢线数
 extern int zongdiuxianshu; // 总丢线数
-extern int Point_Mid, Get_Point, Foresight,Points;
+extern int Point_Mid, Foresight,Points;
+extern double Get_Point;
 extern int left_huan_num, right_huan_num; // 环岛变量
 extern int park_flag;                     // 停车标志
 extern int left_line[70], right_line[70]; // 左边界右边界

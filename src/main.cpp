@@ -157,12 +157,12 @@ void car_main_control_thread()
         //sp_duty=(int)(angles*0.6)+(int)(last_sp_duty*0.4);
         //last_sp_duty=sp_duty;
         //cv::putText(haha, std::to_string(sp_duty), cv::Point(30, 150), cv::FONT_HERSHEY_SIMPLEX, 0.6, cv::Scalar(0, 200, 0), 2, cv::LINE_AA);
-        {
-            std::lock_guard<std::mutex> lock(image_mutex); // 锁住图像数据，确保线程安全
-            image_to_send = haha.clone();                  // 拷贝图像数据
-            //image_to_send = canvas.clone(); // 拷贝图像数据
-        }
+        // {
+        //     std::lock_guard<std::mutex> lock(image_mutex); // 锁住图像数据，确保线程安全
+        //     image_to_send = haha.clone();                  // 拷贝图像数据
+        //     //image_to_send = canvas.clone(); // 拷贝图像数据
+        // }
 
-        //std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
     }
 }

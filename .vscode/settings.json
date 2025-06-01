@@ -70,5 +70,6 @@
         "zf_device_imu_core.h": "c",
         "udp.h": "c",
         "inet.h": "c"
-    }
+    },
+    "files.autoGuessEncoding": true
 }
