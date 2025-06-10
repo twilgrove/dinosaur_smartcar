@@ -68,17 +68,17 @@ const unsigned int Weight[70] =
 }; // 69
 
 const unsigned int Weight_jtai[26] =
-    {
-        2, 3, 4, 6, 8, 11,                      // 图像最远端10——20行权重
-        15, 17, 18, 21, 20, 19, 18, 17, 16, 15, // 图像最远端20——30行权重
-        13, 12, 11, 10, 9, 8, 7, 6, 5, 4,       // 图像最远端30——40行权重
+{
+        2, 3, 4, 6, 8, 9,                      // 图像最远端10——20行权重
+        10, 11, 11, 12, 13, 14, 15, 20, 22, 25, // 图像最远端20——30行权重
+        30, 33, 37, 40, 30, 20, 10, 8, 5, 4,       // 图像最远端30——40行权重
                                           // 图像最远端50——60行权重
 }; // 69
 
 const unsigned int Weight_huandao[70] =
     {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1,           // 图像最远端60——70行权重
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,           // 图像最远端   0——10行权重
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1,           // 图像最远端0——10行权重
         1, 1, 1, 1, 2, 3, 4, 6, 8, 11,          // 图像最远端10——20行权重
         15, 17, 18, 21, 20, 19, 18, 17, 16, 15, // 图像最远端20——30行权重
         13, 12, 11, 10, 9, 8, 7, 6, 5, 4,       // 图像最远端30——40行权重
@@ -102,7 +102,7 @@ int huihuan_num = 0, zhidao_num = 0, huandao_7 = 0;
 unsigned int weight_jubu[70] =
     {
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端60——70行权重
-        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端   0——10行权重
+        1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端0——10行权重
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端10——20行权重
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端20——30行权重
         1, 1, 1, 1, 1, 1, 1, 1, 1, 1, // 图像最远端30——40行权重
@@ -134,6 +134,7 @@ unsigned int Foresight_Right = 186;////右侧最小赛道宽度
 int Point_Mid = 0, Foresight = 0;
 double Get_Point;
 unsigned char image_use[70][188];
+
 int whitenum = 0;
 //
 
@@ -401,7 +402,7 @@ void Cal_losttimes(int times)
         }
     }
 }
-
+int car_flag=0;
 void Center_line_deal() // 中线处理
 {
     k_center = 0;
@@ -749,7 +750,7 @@ void Center_line_deal() // 中线处理
         if (Left_Add2[y]) // 左边需要补线
         {
 
-            if (y < 65) // 因为有下面+6限制
+            if (y < 62) // 因为有下面+6限制
             {
                 if (!Left_Add_Start) // 如果还没有记录开始补线位置
                 {
@@ -762,7 +763,7 @@ void Center_line_deal() // 中线处理
                 {
                     Add_Slope = 0;
                 }
-                temp = (char)((y - (Left_Add_Start + 1)) * Add_Slope + left_line[Left_Add_Start + 1]); // 通过斜率推算补线的位置
+                temp = (int)((y - (Left_Add_Start + 1)) * Add_Slope + left_line[Left_Add_Start + 1]); // 通过斜率推算补线的位置
                 Left_Last_Slope = Add_Slope;                                                           // 更新上次左边界斜率
 
                 Left_Line_New2[y] = range_protect(temp, 2, 184); // 不直接修改边界，只保存在补线数组里
@@ -775,20 +776,20 @@ void Center_line_deal() // 中线处理
         ////右补线
         if (Right_Add2[y]) // 右边需要补线
         {
-            if (y < 65)
+            if (y < 62)
             {
                 if (!Right_Add_Start) // 如果还没有记录开始补线位置
                 {
                     Right_Add_Start = y; // 记录左边界补线开始位置
                 }
 
-                Add_Slope = 1.0 * (right_line[Right_Add_Start + 6] - right_line[Right_Add_Start + 1]) / 4; // 计算能识别的前几行图像斜率
+                Add_Slope = 1.0 * (right_line[Right_Add_Start + 6] - right_line[Right_Add_Start + 1]) / 5; // 计算能识别的前几行图像斜率
 
                 if (Add_Slope < 0) // 限幅
                 {
                     Add_Slope = 0;
                 }
-                temp_r = (char)((y - (Right_Add_Start + 1)) * Add_Slope + right_line[Right_Add_Start + 1]); // 通过斜率推算补线的位置
+                temp_r = (int)((y - (Right_Add_Start + 1)) * Add_Slope + right_line[Right_Add_Start + 1]); // 通过斜率推算补线的位置
                 Right_Last_Slope = Add_Slope;                                                               // 更细上次右边界斜率
 
                 Right_Line_New2[y] = range_protect(temp_r, 2, 184); // 不直接修改边界，只保存在补线数组里
@@ -844,6 +845,45 @@ void Center_line_deal() // 中线处理
 
     ////统计左右边界丢线zuodiuxianshu l_start   youdiuxianshu r_start
     Cal_losttimes(sousuojieshuhang);
+
+    if(car_flag==0)
+    {
+        check_starting_line();
+        if(star_lineflag==1) 
+        {
+            car_flag=1;
+        }
+    }else if(car_flag==1)
+    {
+        check_starting_line();
+        if(star_lineflag==0) car_flag=2;
+    }else if(car_flag==2)
+    {
+        check_starting_line();
+        if(star_lineflag==0)
+        {
+            car_flag=3;
+        }
+    }else if(car_flag==3)
+    {
+        check_starting_line();
+        if(star_lineflag==1)
+        {
+            car_flag=4;
+        }
+    }else if(car_flag==4)
+    {
+        check_starting_line();
+        if(star_lineflag==0)
+        {
+            car_flag=5;
+        }
+    }else if(car_flag==5)
+    {
+        
+        l_target=0;
+        r_target=0;
+    }
 
     ////统计需要动态斜率补线的右边界行数 Right_Add_num Left_Add_num
     for (y = 68; y > 20; y--)
@@ -1555,7 +1595,8 @@ float Point_Weight(void)
             Sum += center[i] * weight_jubu[i];
             Weight_Count += weight_jubu[i];
         }
-        Points = Sum / Weight_Count;
+        if(Weight_Count)
+            Points = Sum / Weight_Count;
         if (Points > 184)
             Points = 184;
         if (Points < 18)
@@ -1572,7 +1613,8 @@ float Point_Weight(void)
                 Sum += center[i] * weight_jubu[i];
                 Weight_Count += weight_jubu[i];
             }
-            Points = Sum / Weight_Count;////Points为动态计算后的偏移 范围18~184
+            if(Weight_Count)
+                Points = Sum / Weight_Count;////Points为动态计算后的偏移 范围18~184
             if (Points > 184)
                 Points = 184;
             if (Points < 18)
@@ -1586,7 +1628,8 @@ float Point_Weight(void)
                 Sum += center[i] * weight_jubu[i];
                 Weight_Count += weight_jubu[i];
             }
-            Points = Sum / Weight_Count;
+            if(Weight_Count)
+                Points = Sum / Weight_Count;
             if (Points > 184)
                 Points = 184;
             if (Points < 18)
@@ -1597,12 +1640,12 @@ float Point_Weight(void)
     Point_last2 = Point_last1;
     Point_last1 = Points;
 
-    Points = Point_last1 * 0.7 + Point_last2 * 0.2 + Point_last3 * 0.1;////类平滑滤波
-
+    Points = Point_last1 * 0.7 + Point_last2 * 0.1 + Point_last3 * 0.05;////类平滑滤波
+    
     /***** 使用最远行数据和目标点作为前瞻 *****/
-    if (sousuojieshuhang < 25)
+    if (sousuojieshuhang < 30)
     {
-        Point_Mid = center[25];
+        Point_Mid = center[30];
     }
     else
     {

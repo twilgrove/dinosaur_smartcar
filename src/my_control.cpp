@@ -1024,11 +1024,12 @@ void ruku_handle2()
 void chujiebaohu()
 {
     chujie_num = 0;
-    for (int x = 20; x <= 184; x++)
+    for (int x = 40; x <= 144; x++)
     {
-        if (image_use[68][x] == 0) // 检测图像最下端68行白点数，如果小于一定值  判断为出界
+        if (image_use[68][x] == 0) // ???????????68?а?????????С??????  ?ж??????
         {
             chujie_num++;
         }
     }
 }
+

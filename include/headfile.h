@@ -8,7 +8,10 @@
 #include <iostream>
 #include <thread>
 #include <mutex>
+#include <utility>
 #include <atomic>
+#include <vector>
+#include <cmath>
 
 #include "opencv2/opencv.hpp"
 #include "udp.h"
@@ -20,6 +23,7 @@
 #include "encoder.h"
 #include "tty.h"
 #include "IMUFilter.h"
+
 
 
 /* ----------------------------------------宏定义---------------------------------------- */
@@ -109,6 +113,7 @@ extern int white_num_col_min;
 extern int qvlv_quanju_right, qvlv_quanju_left, qulv_jinduan_right, qulv_jinduan_left, qulv_yuandaun_right, qulv_yuandaun_left;
 
 extern unsigned char image_use[70][188];
+
 extern unsigned int s;
 extern unsigned int car_gogogo;
 
@@ -124,9 +129,21 @@ extern cv::Mat get_image;
 extern cv::Mat get_color;
 
 
+extern int Point_last1;
+/*实时检测*/
+extern unsigned int opencv_v,control_v,sp_v;
+extern uint8_t wan_flag;
+extern uint16_t wan_num;
+extern uint16_t line_num;
+
+
+
+extern int car_flag;
+
 void init();
 void car_main_control_thread();
 void project_manage(int signum);
+void tiaoshi_thread();
 
 inline float DEGTORAD(float angle) {
     return angle * 0.017453292519943295f;  // π/180
@@ -137,5 +154,13 @@ inline float FastTan(float rad) {
     float x2 = x * x;
     return x + (x2 * x) / 3.0f + (2.0f * x2 * x2 * x) / 15.0f;
 }
+
+double calc_rss_quadratic(const std::vector<double>& y);
+std::pair<double, double> calc_rss_linear(const std::vector<double>& y);
+std::vector<double> first_order_filter(const std::vector<double>& input_i, double alpha);
+void transpose_matrix(const unsigned char* src, unsigned char* dst, int rows, int cols);
+
+void reset(bool flag);
+void gpio_thread();
 
 #endif

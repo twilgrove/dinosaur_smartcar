@@ -71,32 +71,37 @@ void CameraImgGet(Img_Store* Img_Store_m,int runnings)
 }
 
 
+
 void opencv_thread()
 {
     while (running)
     {
+		opencv_v ++;
         cv::Mat Img;//原图  无畸变图
         Camera >> Img; // 将视频流转为图像流
 		// 缩放比例
-    	double scale = 188.0 / Img.cols;
-    	int new_height = static_cast<int>(Img.rows * scale);
-		cv::Mat get_resized;
-		cv::resize(Img, get_resized, cv::Size(188, new_height));
-		if (new_height < 70) {
-			std::cerr << "缩放后高度不足 70 像素，无法裁剪\n";
+		if(!Img.empty()){
+			double scale = 188.0 / Img.cols;
+			int new_height = static_cast<int>(Img.rows * scale);
+			cv::Mat get_resized;
+			cv::resize(Img, get_resized, cv::Size(188, new_height));
+			if (new_height < 70) {
+				std::cerr << "缩放后高度不足 70 像素，无法裁剪\n";
+			}
+			cv::Rect roi(0, 20, 188, new_height - 20 - 51); // x, y, width, height
+			cv::Mat Final_Img;
+			cv::flip(get_resized(roi), Final_Img, -1);
+			
+			CameraCapture_Mutex.lock();
+			if (!Img_Store_pp->Img_Capture.empty())
+			{
+				(Img_Store_pp->Img_Capture).pop();
+			}
+			(Img_Store_pp->Img_Capture).push(Final_Img);
+			CameraCapture_Mutex.unlock();
 		}
-		cv::Rect roi(0, 20, 188, new_height - 20 - 51); // x, y, width, height
-		cv::Mat Final_Img;
-		cv::flip(get_resized(roi), Final_Img, -1);
-		
-        CameraCapture_Mutex.lock();
-        if (!Img_Store_pp->Img_Capture.empty())
-        {
-            (Img_Store_pp->Img_Capture).pop();
-        }
-        (Img_Store_pp->Img_Capture).push(Final_Img);
-        CameraCapture_Mutex.unlock();
         //std::cout<<"存入图像..."<<std::endl;
+
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
@@ -127,10 +132,10 @@ void ImgPrepare(Img_Store *Img_Store_p)
 	// threshold((Img_Store_p->Img_OTSU), (Img_Store_p->Img_OTSU), 0, 255, THRESH_BINARY | THRESH_OTSU); // 灰度图像二值化
 
 	// ImgProcess::ImgSharpen((Img_Store_p -> Img_OTSU),5);
-	for (int i = 0; i <= 1; i++)
-	{
-		dilate((Img_Store_p->Img_OTSU), (Img_Store_p->Img_OTSU), (Img_Store_p->Dilate_Kernel));
-	}
+	// for (int i = 0; i <= 1; i++)
+	// {
+	// 	dilate((Img_Store_p->Img_OTSU), (Img_Store_p->Img_OTSU), (Img_Store_p->Dilate_Kernel));
+	// }
 	for (int i = 0; i <= 1; i++)
 	{
 		erode((Img_Store_p->Img_OTSU), (Img_Store_p->Img_OTSU), (Img_Store_p->Erode_Kernel));

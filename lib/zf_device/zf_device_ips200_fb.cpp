@@ -198,7 +198,7 @@ void ips200_show_float(uint16 x, uint16 y, const double dat, uint8 num, uint8 po
     ips200_show_string(x, y, data_buffer);
 }
 
-void ips200_show_gray_image(uint16 x, uint16 y, const uint8 *image,
+void ips200_show_gray_image(uint16 x, uint16 y,const uint8 *image,
                             uint16 width, uint16 height)
 {
     uint32 x_start = 0, y_start = 0;
@@ -219,6 +219,24 @@ void ips200_show_gray_image(uint16 x, uint16 y, const uint8 *image,
         }
     }
 }
+// {
+//     uint16 color;
+
+//     for (uint16 row = 0; row < height; row++)
+//     {
+//         for (uint16 col = 0; col < width; col++)
+//         {
+//             uint8_t grayValue = image[row * width + col];
+
+//             uint16_t r = (grayValue >> 3) & 0x1F;
+//             uint16_t g = (grayValue >> 2) & 0x3F;
+//             uint16_t b = (grayValue >> 3) & 0x1F;
+//             color = (r << 11) | (g << 5) | b;
+
+//             ips200_draw_point(x + col, y + row, color);
+//         }
+//     }
+// }
 
 void ips200_init(const char *path)
 {

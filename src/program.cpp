@@ -31,3 +31,35 @@ void project_manage(int signum)
     //close();
 }
 
+void reset(bool flag)
+{
+    if (flag)
+    {
+        std::cout << "\33[33m" << PROGRAM_NAME << ":\33[0m program reset..." << std::endl;
+
+        // 获取程序的执行路径
+        const char *program = "/proc/self/exe";
+        char buffer[1024];
+
+        ssize_t len = readlink(program, buffer, sizeof(buffer) - 1);
+        if (len == -1)
+        {
+            std::cerr << "Error getting the program path: " << strerror(errno) << std::endl;
+            return;
+        }
+        buffer[len] = '\0'; // Null-terminate the string
+
+        // 使用 exec() 函数重新启动程序
+        std::cout << "Restarting the program..." << std::endl;
+
+        char *const args[] = {nullptr}; // 删除未使用的 env
+
+        if (execv(buffer, args) == -1)
+        {
+            std::cerr << "Error restarting the program: " << strerror(errno) << std::endl;
+            return;
+        }
+
+        return;
+    }
+}
