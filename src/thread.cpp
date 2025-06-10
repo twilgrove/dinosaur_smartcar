@@ -14,121 +14,18 @@ int last_sp_duty=1522000;
 
 void motor_servo_thread()
 {   
-    sp.set_duty(MIDO_sp);
-    const std::chrono::milliseconds initialization_time(1000); // 初始化时间400ms
-    auto program_start = std::chrono::steady_clock::now();    // 记录程序启动时间
-    sp_duty = MIDO_sp;
-    sp_pid.set_kp(1.05);
-    double servo_turn;
+    Tread_Init();
     while (running)
     {
-        sp_v++;
-        auto now = std::chrono::steady_clock::now();
-        auto elapsed_time = std::chrono::duration_cast<std::chrono::milliseconds>(now - program_start);
-        //计算赛道误差
-        std::vector<double> data(55);
-        for (int i = 10; i < 65; ++i) {
-            data[i - 10] = static_cast<double>(center[i]);
-        }
-        std::vector<double> filtered_data = first_order_filter(data, 0.2);//一阶低通滤波
-        auto [rss_linear, slope] = calc_rss_linear(filtered_data); // 一阶
-        double rss_quad = calc_rss_quadratic(filtered_data); //二阶
-        std::cout << "Linear RSS: " << rss_linear << std::endl;
-        std::cout << "slope: " << slope << std::endl; 
-        std::cout << "Quadratic RSS: " << rss_quad << std::endl;
-        std::cout << "wan_flag: " << (int)wan_flag << std::endl;
-        //判断赛道类型
-        bool track_kind;
-        
-        if(((fabs(slope) < 0.3 && rss_linear < 1000)&&wan_flag==0&&white_num_col_max > 62)||
-            (wan_flag && fabs(slope) < 0.15 && rss_linear < 50 && white_num_col_max > 62)
-        )
-        {
-            if(wan_flag)
-                line_num++;
-            if(line_num >= 8)
-            {
-                line_num = 0;
-                wan_flag = 0;
-            }
-            track_kind = false;
-            std::cout << "line" << std::endl;
-        }
-        // if ((fabs(slope) > 0.4 && rss_linear > 1000) //直到大偏转
-        //     || (rss_quad < 0.02*rss_linear) //曲线
-        //     || (rss_linear > 5000 &&  rss_quad < 3000)) // 尾部出现勾起 巨大误差 
-        else{
-            if(wan_flag == 0)
-                wan_num++;
-            if(wan_num >= 5){
-                wan_flag = 1;
-                wan_num = 0;
-                }
-            track_kind = true;
-            std::cout << "quxian" << std::endl;
-        }
-            
-        float para = ((70 - white_num_col_max)*1.2+fabs(white_num_col_line - 80)*0.8)/150;
-
-        if (elapsed_time < initialization_time) {
-            sp_duty = MIDO_sp; // 强制中值
-        } 
-        else{
-            servo_turn = Point_Weight() - 80;
-            if(track_kind == false)
-            {
-                if (fabs(servo_turn) < 5)
-                    sp_pid.set_kp(0.2);  
-                else
-                    sp_pid.set_kp(0.4*(1+para));   
-            }
-            else
-            {  
-                // sp_pid.set_kd(0.01);
-                if (fabs(servo_turn) < 1.5)
-                    sp_pid.set_kp(0.2);   
-                // else if (fabs(servo_turn) < 20)
-                //     sp_pid.set_kp(0.3);
-                // else if (fabs(servo_turn) < 30)
-                //     sp_pid.set_kp(0.8);
-                else
-                    sp_pid.set_kp(0.52*(1+para) );
-                
-            }
-            sp_duty=MIDO_sp+sp_pid.get(0,servo_turn*4000);
-        }
+        Choose_Kind();
+        Get_Sp_Duty();
         sp_duty=sp_duty*0.7+last_sp_duty*0.3;
         last_sp_duty=sp_duty;
-        
-        double angle = ((int32_t)sp_duty - MIDO_sp) / 5000;
-        double Rad = DEGTORAD(angle);
-        double K_Turn_ = FastTan(Rad) * 160 / 2 / 200;
+        K_Turn_ = Get_Turn(sp_duty);
         K_Turn_ = MAX_OUTPUT_LIMIT(K_Turn_, 5);
         K_Turn_ = MIN_OUTPUT_LIMIT(K_Turn_, -5);
-        if(chujie || car_flag == 5)
-        {
-            l_target = 0;
-            r_target = 0;
-        }
-        else if (elapsed_time < initialization_time){
-            l_target = 4 ;
-            r_target = 4 ;
-        }// 左右轮目标速度
-        else{
-            if(track_kind) //弯道
-            {
-                buzzer.setValue(0);
-                l_target = 11 * (1 - K_Turn_);
-                r_target = 11 * (1 + K_Turn_);
-            }
-            else{
-                //buzzer.setValue(1);
-                l_target = 16;
-                r_target = 16;
-            }
-            
-        }
-       
+        Get_Speed(chujie);
+               
         r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
         l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
         if (apply_deadzone(r_target, SPEED_DEADBAND))

@@ -23,7 +23,7 @@
 #include "encoder.h"
 #include "tty.h"
 #include "IMUFilter.h"
-
+#include "john.h"
 
 
 /* ----------------------------------------∫Í∂®“Â---------------------------------------- */
@@ -144,23 +144,7 @@ void init();
 void car_main_control_thread();
 void project_manage(int signum);
 void tiaoshi_thread();
-
-inline float DEGTORAD(float angle) {
-    return angle * 0.017453292519943295f;  // ¶–/180
-}
-
-inline float FastTan(float rad) {
-    float x = rad;
-    float x2 = x * x;
-    return x + (x2 * x) / 3.0f + (2.0f * x2 * x2 * x) / 15.0f;
-}
-
-double calc_rss_quadratic(const std::vector<double>& y);
-std::pair<double, double> calc_rss_linear(const std::vector<double>& y);
-std::vector<double> first_order_filter(const std::vector<double>& input_i, double alpha);
-void transpose_matrix(const unsigned char* src, unsigned char* dst, int rows, int cols);
-
-void reset(bool flag);
 void gpio_thread();
+void reset(bool flag);
 
 #endif

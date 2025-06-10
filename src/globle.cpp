@@ -69,7 +69,7 @@ IMUFilter imu_filter;
 
 cv::Mat get_color;
 cv::Mat get_image;
-
+/*实时检测*/
 unsigned int opencv_v,control_v,sp_v;
 uint8_t wan_flag = 0;
 uint16_t wan_num = 0;

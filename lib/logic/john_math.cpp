@@ -1,4 +1,4 @@
-#include "headfile.h"
+#include "john.h"
 using namespace std;
 //一阶
 pair<double, double> calc_rss_linear(const vector<double>& y) {
