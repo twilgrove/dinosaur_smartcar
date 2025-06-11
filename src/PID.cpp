@@ -17,8 +17,8 @@ float Kp1; // 动态P
 int Increase_last1 = 0, Increase_last2 = 0, Increase1 = 0, Increase2 = 0;
 float det_Kp;
 float det_Ki;
-float det_Kd;                                                                                                                                                                                             // 12, 1, 28,180  MAX16  顺
-PID S_D5_PID, MOTOR_PID, MOTOR2_PID;                                                                                                                                                                      // 定义舵机和电机的PID参数结构体//   11, 1, 50,135 回环
+float det_Kd;                                                                                                                                                                                                     // 12, 1, 28,180  MAX16  顺
+PID S_D5_PID, MOTOR_PID, MOTOR2_PID;                                                                                                                                                                              // 定义舵机和电机的PID参数结构体//   11, 1, 50,135 回环
 long long int S_D5[10][4] = {{14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}, {14, 0, 55, 130}}; // 舵机PID
 
 //{ 20, 1, 0, 19}, {24, 2, 15, 28}, {22, 3, 24, 14}, {23, 4, 29, 15}, {25, 5, 21, 14}, {26, 6, 18, 14},},{28, 7, 32, 14} {27,8,35,12};
@@ -51,7 +51,7 @@ long long int PlacePID_Control(PID *sprt, long long int NowPiont, long long int 
 {
     // 定义为寄存器变量，只能用于整型和字符型变量，提高运算速度
     register long long int iError, // 当前误差
-        Actual, Actual2;   // 最后得出的实际输出值
+        Actual, Actual2;           // 最后得出的实际输出值
 
     iError = NowPiont - SetPoint; // 计算当前误差
 
@@ -90,7 +90,7 @@ long long int PlacePID_Control(PID *sprt, long long int NowPiont, long long int 
 //
 //     Increase = - MOTOR[KP] * (ActualSpeed - sptr->LastSpeed)    //加速度
 //                + MOTOR[KI] * iError
-//                 + MOTOR[KD] * (iError - 2 * sptr->LastError + sptr->PrevError);\
+//                 + MOTOR[KD] * (iError - 2 * sptr->LastError + sptr->PrevError);
 //    sptr->PrevError = sptr->LastError;  //更新前次误差
 //     sptr->LastError = iError;           //更新上次误差
 //     sptr->LastSpeed = ActualSpeed;      //更新上次速度
@@ -189,7 +189,7 @@ long long int PID_Cascade(PID *sptr, long long int ActualSpeed, long long int Se
 {
     // 当前误差，定义为寄存器变量，只能用于整型和字符型变量，提高运算速度
     register long long int iError, iError2, // 当前误差
-        out;                        // 最后得出的实际增量
+        out;                                // 最后得出的实际增量
 
     iError = SetSpeed - ActualSpeed; // 计算当前误差  位置
     iError2 = yuzhi_speed - ActualSpeed;
@@ -310,7 +310,7 @@ long long int PID_Cascade2(PID *sptr, long long int ActualSpeed, long long int S
 {
     // 当前误差，定义为寄存器变量，只能用于整型和字符型变量，提高运算速度
     register long long int iError, iError2, // 当前误差
-        out;                        // 最后得出的实际增量
+        out;                                // 最后得出的实际增量
 
     iError = SetSpeed - ActualSpeed; // 计算当前误差  位置
     iError2 = yuzhi_speed - ActualSpeed;

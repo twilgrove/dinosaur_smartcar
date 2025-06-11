@@ -51,7 +51,7 @@ extern int guaidian;
 extern int white_num_col[188];
 extern int zuodiuxianshu;  // 左丢线数
 extern int zongdiuxianshu; // 总丢线数
-extern int Point_Mid, Foresight,Points;
+extern int Point_Mid, Foresight, Points;
 extern double Get_Point;
 extern int left_huan_num, right_huan_num; // 环岛变量
 extern int park_flag;                     // 停车标志
@@ -107,5 +107,6 @@ extern unsigned int const Half_width_handao2[70];
 extern unsigned int const Half_width2[70];
 extern unsigned int Half_width[70];
 extern int qvlv_quanju, qulv_jinduan, qulv_yuandaun;
+extern unsigned char image_use[70][188];
 
 #endif /* CODE_IMAGE_DEAL_H_ */

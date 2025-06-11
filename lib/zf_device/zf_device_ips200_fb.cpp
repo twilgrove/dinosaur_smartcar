@@ -198,7 +198,7 @@ void ips200_show_float(uint16 x, uint16 y, const double dat, uint8 num, uint8 po
     ips200_show_string(x, y, data_buffer);
 }
 
-void ips200_show_gray_image(uint16 x, uint16 y,const uint8 *image,
+void ips200_show_gray_image(uint16 x, uint16 y, const uint8 *image,
                             uint16 width, uint16 height)
 {
     uint32 x_start = 0, y_start = 0;
@@ -210,9 +210,10 @@ void ips200_show_gray_image(uint16 x, uint16 y,const uint8 *image,
         {
             uint8_t grayValue = image[(x_start - x) + (y_start - y) * width];
 
-            uint16_t r = (grayValue >> 3) & 0b11111;
-            uint16_t g = (grayValue >> 2) & 0b111111;
-            uint16_t b = (grayValue >> 3) & 0b11111;
+            uint16_t r = (grayValue >> 3) & 0x1F; // 0b11111 == 0x1F == 31
+            uint16_t g = (grayValue >> 2) & 0x3F; // 0b111111 == 0x3F == 63
+            uint16_t b = (grayValue >> 3) & 0x1F; // 0b11111 == 0x1F == 31
+
             color = (r << 11) | (g << 5) | (b << 0);
 
             ips200_draw_point(x_start, y_start, color);

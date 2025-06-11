@@ -72,3 +72,23 @@ target_compile_options(${PROJECT_NAME} PRIVATE
     -Wpedantic
     -O2
 )
+
+# ========== 关闭指定文件夹的编译警告 ==========
+
+set(LOGIC_SOURCES
+    "src/camera.cpp"
+    "src/image_deal.cpp"
+    "src/isr.cpp"
+    "src/key_board.cpp"
+    "src/my_control.cpp"
+    "src/traffic_circle.cpp"
+    "lib/logic/john_logic.cpp"
+    "lib/logic/john_math.cpp"
+)
+
+
+foreach(source_file IN LISTS LOGIC_SOURCES)
+    set_source_files_properties(${source_file} PROPERTIES COMPILE_FLAGS "-w")
+endforeach()
+
+
