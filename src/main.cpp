@@ -22,9 +22,9 @@ int main()
     try
     {
        
-        init();
-        while(!key2.readValue())
-        std::cout << "wait key" << std::endl;
+        init();std::cout << "wait key" << std::endl;
+        while(!key2.readValue()){}
+            
         std::cout << "CameraInit 结果: "
                   << (CameraInit(Camera, 2, 100) ? "成功" : "失败")
                   << std::endl;
@@ -57,9 +57,11 @@ void init()
     running = 1;
     l_target=6;
     r_target=6;
-    sp_duty=1522000;
+    sp_duty=MIDO_sp;
     ips200_init("/dev/fb0");
     ips200_clear(); 
+
+
     // // 视频录制初始化
     // std::string videoPath = "C:/Users/azw20/Desktop/智能車/独立代码/recorded/track_video.avi";
     // cv::Size frameSize(320, 240);

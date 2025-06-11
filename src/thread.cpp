@@ -14,18 +14,21 @@ int last_sp_duty=1522000;
 
 void motor_servo_thread()
 {   
+    /*john code*/
     Tread_Init();
+    /*john code*/
     while (running)
     {
-        Choose_Kind();
-        Get_Sp_Duty();
+        /*john code*/
+        Choose_Kind(&Control_john);     //获取赛道类型
+        Get_Sp_Duty(&Control_john);     //获取舵机占空比
+        /*john code*/
         sp_duty=sp_duty*0.7+last_sp_duty*0.3;
         last_sp_duty=sp_duty;
-        K_Turn_ = Get_Turn(sp_duty);
-        K_Turn_ = MAX_OUTPUT_LIMIT(K_Turn_, 5);
-        K_Turn_ = MIN_OUTPUT_LIMIT(K_Turn_, -5);
-        Get_Speed(chujie);
-               
+        /*john code*/
+        Get_Turn(sp_duty);              //获取后轮系数
+        Get_Speed(chujie,&Control_john);//速度决策
+        /*john code*/
         r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
         l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
         if (apply_deadzone(r_target, SPEED_DEADBAND))
@@ -145,8 +148,8 @@ void tiaoshi_thread()
 {
     while(running)
     {
-        
-        std::cout << std::left  // 左对齐
+        /*john code*/
+        std::cout << std::left
           << "opencv:" << std::setw(10) << opencv_v 
           << "control:" << std::setw(10) << control_v 
           << "sp:" << std::setw(10) << sp_v 
@@ -154,6 +157,7 @@ void tiaoshi_thread()
         opencv_v = 0;
         control_v = 0;
         sp_v = 0;
+        /*john code*/
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
@@ -184,7 +188,6 @@ void gpio_thread()
 
         switch1_value = switch1.readValue();
         switch2_value = switch2.readValue();
-        tty.printf("qqq:%d,%d,%d,%.4f,%d\n",Points-70,0,Point_last1-70,(double)sp_duty/10000,MIDO_sp/10000);
         std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }

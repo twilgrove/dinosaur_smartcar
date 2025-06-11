@@ -130,12 +130,12 @@ extern cv::Mat get_color;
 
 
 extern int Point_last1;
-/*实时检测*/
+/*john 实时检测*/
 extern unsigned int opencv_v,control_v,sp_v;
 extern uint8_t wan_flag;
 extern uint16_t wan_num;
 extern uint16_t line_num;
-
+/*john 实时检测*/
 
 
 extern int car_flag;

@@ -1,11 +1,7 @@
 #include "john.h"
 
-// auto program_start = std::chrono::steady_clock::now();
 
-double servo_turn;
-TrackKind track_kind;
-float para;
-double K_Turn_ ;
+JOHNTURN Control_john;
 
 void Tread_Init()
 {
@@ -16,7 +12,7 @@ void Tread_Init()
 }
 
 
-TrackKind Choose_Kind()
+TrackKind Choose_Kind(JOHNTURN *Control)
 {
     std::vector<double> data(55);
     for (int i = 10; i < 65; ++i) {
@@ -37,7 +33,7 @@ TrackKind Choose_Kind()
             line_num = 0;
             wan_flag = 0;
         }
-        track_kind = LINE;
+        Control->Track_kind = LINE;
         std::cout << "line" << std::endl;
     }
     else{
@@ -47,7 +43,7 @@ TrackKind Choose_Kind()
             wan_flag = 1;
             wan_num = 0;
             }
-        track_kind = WAN;
+        Control->Track_kind = WAN;
         std::cout << "quxian" << std::endl;
     }
 }
@@ -56,42 +52,45 @@ double Get_Turn(uint32_t sp_duty)
 {
     double angle = ((int32_t)sp_duty - MIDO_sp) / 5000;
     double Rad = DEGTORAD(angle);
-    double K_Turn_ = FastTan(Rad) * 160 / 2 / 200;
+    double K_Turn = FastTan(Rad) * 160 / 2 / 200;
 
-    return K_Turn_;
+    K_Turn = MAX_OUTPUT_LIMIT(K_Turn, 5);
+    K_Turn = MIN_OUTPUT_LIMIT(K_Turn, -5);
+    Control_john.K_Turn_ = K_Turn;
+    return K_Turn;
 
 }
 
-void Get_Error()
+void Get_Error(JOHNTURN *Control)
 {
-    servo_turn = Point_Weight() - 80;
+    Control->servo_turn = Point_Weight() - 80;
 }
 
-void Get_Kp()
+void Get_Kp(JOHNTURN *Control)
 {
-    if(track_kind == LINE)
+    if(Control->Track_kind == LINE)
     {
-        if (fabs(servo_turn) < 5)
+        if (fabs(Control->servo_turn) < 5)
             sp_pid.set_kp(0.2);  
         else
-            sp_pid.set_kp(0.4*(1+para));   
+            sp_pid.set_kp(0.4*(1+Control->para));   
     }
     else
     {  
         // sp_pid.set_kd(0.01);
-        if (fabs(servo_turn) < 1.5)
+        if (fabs(Control->servo_turn) < 1.5)
             sp_pid.set_kp(0.2);   
         // else if (fabs(servo_turn) < 20)
         //     sp_pid.set_kp(0.3);
         // else if (fabs(servo_turn) < 30)
         //     sp_pid.set_kp(0.8);
         else
-            sp_pid.set_kp(0.52*(1+para) );
+            sp_pid.set_kp(0.52*(1+Control->para) );
         
     }
 }
 
-void Get_Speed(int chujie)
+void Get_Speed(int chujie,JOHNTURN *Control)
 {
     if(chujie || car_flag == 5)
     {
@@ -99,11 +98,11 @@ void Get_Speed(int chujie)
         r_target = 0;
     }
     else{
-        if(track_kind == WAN) //弯道
+        if(Control->Track_kind == WAN) //弯道
         {
             // buzzer.setValue(0);
-            l_target = 11 * (1 - K_Turn_);
-            r_target = 11 * (1 + K_Turn_);
+            l_target = 11 * (1 - Control->K_Turn_);
+            r_target = 11 * (1 + Control->K_Turn_);
         }
         else{
             //buzzer.setValue(1);
@@ -113,11 +112,11 @@ void Get_Speed(int chujie)
     }
 }
 
-void Get_Sp_Duty()
+void Get_Sp_Duty(JOHNTURN *Control)
 {
-    para = ((70 - white_num_col_max)*1.2+fabs(white_num_col_line - 80)*0.8)/150;
+    Control->para = ((70 - white_num_col_max)*1.2+fabs(white_num_col_line - 80)*0.8)/150;
     //计算赛道误差
-    Get_Error();
-    Get_Kp();
-    sp_duty=MIDO_sp+sp_pid.get(0,servo_turn*4000);
+    Get_Error(Control);
+    Get_Kp(Control);
+    sp_duty=MIDO_sp+sp_pid.get(0,Control->servo_turn*4000);
 }
