@@ -14,21 +14,21 @@ int last_sp_duty=1522000;
 
 void motor_servo_thread()
 {   
-    /*john code*/
+    /*john code began*/
     Tread_Init();
-    /*john code*/
+    /*john code end*/
     while (running)
     {
-        /*john code*/
+        /*john code began*/
         Choose_Kind(&Control_john);     //获取赛道类型
         Get_Sp_Duty(&Control_john);     //获取舵机占空比
-        /*john code*/
+        /*john code end*/
         sp_duty=sp_duty*0.7+last_sp_duty*0.3;
         last_sp_duty=sp_duty;
-        /*john code*/
+        /*john code began*/
         Get_Turn(sp_duty);              //获取后轮系数
         Get_Speed(chujie,&Control_john);//速度决策
-        /*john code*/
+        /*john code end*/
         r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
         l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
         if (apply_deadzone(r_target, SPEED_DEADBAND))
@@ -148,16 +148,14 @@ void tiaoshi_thread()
 {
     while(running)
     {
-        /*john code*/
+        /*john code began*/
         std::cout << std::left
           << "opencv:" << std::setw(10) << opencv_v 
           << "control:" << std::setw(10) << control_v 
-          << "sp:" << std::setw(10) << sp_v 
           << "sp_duty:" << std::setw(10) << (int32_t)sp_duty - MIDO_sp << std::endl;
         opencv_v = 0;
         control_v = 0;
-        sp_v = 0;
-        /*john code*/
+        /*john code end*/
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }
