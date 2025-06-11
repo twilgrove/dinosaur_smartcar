@@ -5,14 +5,12 @@
 ```
 .
 ├── [.vscode] 存放VSCode的配置文件(需要修改opencv路径和编译链路径)
-├── [config] 存放配置文件
-├── [demo] 包含一些demo文件
 ├── [include] 头文件
 ├── [lib] 库文件
 │   ├── [control] 控制库
 │   ├── [logic] 逻辑算法库
 │   ├── [zf_common] 逐飞功能库
-│   ├──[zf_device] 逐飞设备库
+│   ├── [zf_device] 逐飞设备库
 ├── [src] 源文件
 ├── [.gitignore] 忽略文件
 ├── [久久派引脚功能复用表.md] 久久派引脚功能复用表
@@ -20,38 +18,34 @@
 ├── [go] 自动编译脚本
 ├── [LICENSE] 开源协议
 ├── [README.md] 工程描述文件
+├── [rec] 图传程序
+├── [recv_cam.cpp] 图传程序源码
 ├── [smart_car_control] 智能车控制程序
 └── [vmlinuz] 内核镜像
 ```
 ## 视频接收器使用
 ```bash
-./receiver
+./rec
 ```
 
 ## 脚本使用
-### 编译
+### 编译智能车控制程序
 ```bash
 ./go
 ```
 
-### 构建makefile(创建或删除了文件时使用)
+### 构建智能车控制程序的makefile(创建或删除了文件时使用)
 ```bash
 ./go -b
 ```
 
-### 清理中间文件
+### 清理智能车控制程序中间文件
 ```bash
 ./go -c
 ```
-
-### 编译标点程序
+### 编译图传程序(Linux)
 ```bash
-./go -p
-```
-
-### 编译逆透视矩阵计算程序
-```bash
-./go -w
+./go -r
 ```
 
 ## 链接
