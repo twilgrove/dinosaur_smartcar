@@ -1,13 +1,5 @@
-
-#include "image_deal.h"
-#include "my_control.h"
-#include "traffic_circle.h"
-#include "isr.h"
-#include "stdio.h"
 #include "headfile.h"
-#include "key_board.h"
-#include <cmath>
-#include "camera.h"
+
 #define CAMERA_H 70
 #define CAMERA_W 188
 float BlackThres = 160.0; // 黑白阈值
@@ -17,7 +9,7 @@ int twolines_trend = 2;
 int uart_buf[10];
 extern long int time_flag; /////////////
 long int time_flag1;
-int Point_last1 = 95, Point_last2 = 95, Point_last3 = 95,Points=0;
+int Point_last1 = 95, Point_last2 = 95, Point_last3 = 95, Points = 0;
 int qvlv_quanju_right = 0, qvlv_quanju_left = 0, qulv_jinduan_right = 0, qulv_jinduan_left = 0, qulv_yuandaun_right = 0, qulv_yuandaun_left = 0;
 int qvlv_quanju = 0, qulv_jinduan = 0, qulv_yuandaun = 0;
 int three_cross_cnt = 0;
@@ -53,7 +45,6 @@ int findleftupguai = 0;
 unsigned int xk = 0, xj = 0;
 int guaidian;
 
-
 unsigned int quanzhi_num = 0;
 /***偏差权重***/
 const unsigned int Weight[70] =
@@ -68,11 +59,11 @@ const unsigned int Weight[70] =
 }; // 69
 
 const unsigned int Weight_jtai[26] =
-{
-        2, 3, 4, 6, 8, 9,                      // 图像最远端10——20行权重
+    {
+        2, 3, 4, 6, 8, 9,                       // 图像最远端10——20行权重
         10, 11, 11, 12, 13, 14, 15, 20, 22, 25, // 图像最远端20——30行权重
-        30, 33, 37, 40, 30, 20, 10, 8, 5, 4,       // 图像最远端30——40行权重
-                                          // 图像最远端50——60行权重
+        30, 33, 37, 40, 30, 20, 10, 8, 5, 4,    // 图像最远端30——40行权重
+                                                // 图像最远端50——60行权重
 }; // 69
 
 const unsigned int Weight_huandao[70] =
@@ -87,17 +78,15 @@ const unsigned int Weight_huandao[70] =
 
 }; // 69
 const unsigned int Weight_huihuan[70] = {
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,         
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,         
-    1, 1, 1, 1, 2, 3, 4, 6, 8, 11,        
-    15, 17, 18, 21, 20, 19, 18, 17, 16, 15, 
-    13, 12, 11, 10, 9, 8, 7, 6, 5, 4,     
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,         
-    1, 1, 1, 1, 1, 1, 1, 1, 1, 1          
-};
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 2, 3, 4, 6, 8, 11,
+    15, 17, 18, 21, 20, 19, 18, 17, 16, 15,
+    13, 12, 11, 10, 9, 8, 7, 6, 5, 4,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1,
+    1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
 
 int huihuan_num = 0, zhidao_num = 0, huandao_7 = 0;
-
 
 unsigned int weight_jubu[70] =
     {
@@ -128,9 +117,9 @@ unsigned int stop_you = 0, stop_zuo = 0;
 long long int Sum = 0, Weight_Count = 0;
 int stop_num1 = 0, stop_num2 = 0;
 int park_flag = 0; // 停车标志
-int y=0;
-unsigned int Foresight_Left = 0;////左侧最小赛道宽度
-unsigned int Foresight_Right = 186;////右侧最小赛道宽度
+int y = 0;
+unsigned int Foresight_Left = 0;    ////左侧最小赛道宽度
+unsigned int Foresight_Right = 186; ////右侧最小赛道宽度
 int Point_Mid = 0, Foresight = 0;
 double Get_Point;
 unsigned char image_use[70][188];
@@ -140,64 +129,376 @@ int whitenum = 0;
 
 ////直接使用的
 unsigned int Half_width[70] =
-{
-    00, 00, 00, 00, 00, 17, 18, 19, 20, 22,
-    22, 23, 25, 26, 27, 28, 29, 30, 31, 33,
-    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 
-    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 
-    54, 56, 57, 58, 59, 60, 61, 62, 63, 64,
-    65, 66, 67, 69, 70, 71, 72, 74, 75, 76, 
-    77, 78, 79, 80, 81, 82, 83, 84, 82, 82,
+    {
+        00,
+        00,
+        00,
+        00,
+        00,
+        17,
+        18,
+        19,
+        20,
+        22,
+        22,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        72,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        82,
+        82,
 };
 
 ////用于动态调整的
 unsigned int const Half_width2[70] =
-{
-    00, 00, 00, 00, 00, 17, 18, 19, 20, 22,
-    22, 23, 25, 26, 27, 28, 29, 30, 31, 33,
-    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 
-    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 
-    54, 56, 57, 58, 59, 60, 61, 62, 63, 64,
-    65, 66, 67, 69, 70, 71, 72, 74, 75, 76, 
-    77, 78, 79, 80, 81, 82, 83, 84, 82, 82,
+    {
+        00,
+        00,
+        00,
+        00,
+        00,
+        17,
+        18,
+        19,
+        20,
+        22,
+        22,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        72,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        82,
+        82,
 };
-
 
 ////直接使用的
 unsigned int Half_width_handao[70] = // time_flag
-{
-    00, 00, 00, 00, 00, 17, 18, 19, 20, 22,
-    22, 23, 25, 26, 27, 28, 29, 30, 31, 33,
-    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 
-    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 
-    54, 56, 57, 58, 59, 60, 61, 62, 63, 64,
-    65, 66, 67, 69, 70, 71, 72, 74, 75, 76, 
-    77, 78, 79, 80, 81, 82, 83, 84, 82, 82,
+    {
+        00,
+        00,
+        00,
+        00,
+        00,
+        17,
+        18,
+        19,
+        20,
+        22,
+        22,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        72,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        82,
+        82,
 };
 
 ////用于动态调整的
 unsigned int const Half_width_handao2[70] = // time_flag
-{
-    00, 00, 00, 00, 00, 17, 18, 19, 20, 22,
-    22, 23, 25, 26, 27, 28, 29, 30, 31, 33,
-    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 
-    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 
-    54, 56, 57, 58, 59, 60, 61, 62, 63, 64,
-    65, 66, 67, 69, 70, 71, 72, 74, 75, 76, 
-    77, 78, 79, 80, 81, 82, 83, 84, 82, 82,
+    {
+        00,
+        00,
+        00,
+        00,
+        00,
+        17,
+        18,
+        19,
+        20,
+        22,
+        22,
+        23,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        33,
+        34,
+        35,
+        36,
+        37,
+        38,
+        39,
+        40,
+        41,
+        42,
+        43,
+        44,
+        45,
+        46,
+        47,
+        48,
+        49,
+        50,
+        51,
+        52,
+        53,
+        54,
+        56,
+        57,
+        58,
+        59,
+        60,
+        61,
+        62,
+        63,
+        64,
+        65,
+        66,
+        67,
+        69,
+        70,
+        71,
+        72,
+        74,
+        75,
+        76,
+        77,
+        78,
+        79,
+        80,
+        81,
+        82,
+        83,
+        84,
+        82,
+        82,
 };
 
-
-
 ////直接处理过程中使用的赛道半宽
-unsigned int Half_width_yuanshi[70] ={
-    00, 00, 00, 00, 00, 17, 18, 19, 20, 22,
-    22, 23, 25, 26, 27, 28, 29, 30, 31, 33,
-    34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 
-    44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 
-    54, 56, 57, 58, 59, 60, 61, 62, 63, 64,
-    65, 66, 67, 69, 70, 71, 72, 74, 75, 76, 
-    77, 78, 79, 80, 81, 82, 83, 84, 82, 82,
+unsigned int Half_width_yuanshi[70] = {
+    00,
+    00,
+    00,
+    00,
+    00,
+    17,
+    18,
+    19,
+    20,
+    22,
+    22,
+    23,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    33,
+    34,
+    35,
+    36,
+    37,
+    38,
+    39,
+    40,
+    41,
+    42,
+    43,
+    44,
+    45,
+    46,
+    47,
+    48,
+    49,
+    50,
+    51,
+    52,
+    53,
+    54,
+    56,
+    57,
+    58,
+    59,
+    60,
+    61,
+    62,
+    63,
+    64,
+    65,
+    66,
+    67,
+    69,
+    70,
+    71,
+    72,
+    74,
+    75,
+    76,
+    77,
+    78,
+    79,
+    80,
+    81,
+    82,
+    83,
+    84,
+    82,
+    82,
 };
 
 int c = 0;
@@ -243,10 +544,6 @@ int left_turn_down[2] = {69, 0};
 int right_turn_up[2] = {0, 0};
 int left_turn_up[2] = {0, 0};
 
-
-
-
-
 void find_rightdown_point(int start_point, int end_point, int RoadName)
 {
     unsigned int j;
@@ -285,7 +582,7 @@ void find_rightdown_point(int start_point, int end_point, int RoadName)
 
 // 【Function6】找左下拐点函数   abs
 // 输入： start点 end点  所要判断的下拐点的类型（环岛还是十字？）
-void find_leftdown_point(int start_point,int end_point,int RoadName)
+void find_leftdown_point(int start_point, int end_point, int RoadName)
 {
     unsigned int j;
     if (RoadName == 1)
@@ -378,7 +675,7 @@ void Cal_losttimes(int times)
             zuodiuxianshu++;
             if (flag_of_leftbreak == 0) // 如果在这一行之前没有遭遇断线，则计数
             {
-                l_start = i;////l_start首次丢线行
+                l_start = i; ////l_start首次丢线行
             }
         }
         else // 扫到线
@@ -402,7 +699,7 @@ void Cal_losttimes(int times)
         }
     }
 }
-int car_flag=0;
+int car_flag = 0;
 void Center_line_deal() // 中线处理
 {
     k_center = 0;
@@ -465,7 +762,6 @@ void Center_line_deal() // 中线处理
         Right_Add[ql] = 0;        ////标记右边界是否需要基础补线
         Right_Add2[ql] = 0;       ////标记右边界是否需要高级补线（动态斜率补线标志）
     }
-    
 
     int x = 0, y = 0; // 设x为行，y为列
     unsigned int temp = 0;
@@ -475,7 +771,7 @@ void Center_line_deal() // 中线处理
     {
         for (x = 184; x > 101; x--)
         {
-            for (y = 69; y >= 0; y--)////更新white_num_col[x]
+            for (y = 69; y >= 0; y--) ////更新white_num_col[x]
             {
                 if (image_use[y][x] == 0)
                 {
@@ -488,8 +784,8 @@ void Center_line_deal() // 中线处理
             }
             if (white_num_col[x] > white_num_col_max)
             {
-                white_num_col_max = white_num_col[x];////white_num_col_max最大白列白点数
-                white_num_col_line = x;////white_num_col_line最长白列
+                white_num_col_max = white_num_col[x]; ////white_num_col_max最大白列白点数
+                white_num_col_line = x;               ////white_num_col_line最长白列
             }
         }
     }
@@ -647,8 +943,6 @@ void Center_line_deal() // 中线处理
             }
         }
     }
-    
-
 
     ////最长白列法寻找边界
     for (y = 68; y > 1; y--) // x是减59—56  num是加0—4   ////白点为边界
@@ -758,17 +1052,17 @@ void Center_line_deal() // 中线处理
                 }
                 Add_Slope = 1.0 * (left_line[Left_Add_Start + 6] - left_line[Left_Add_Start + 1]) / 5; // 计算能识别的前几行图像斜率
 
-                //std::cout << "left_line[Left_Add_Start + 6]: " << left_line[Left_Add_Start + 6] << "   left_line[Left_Add_Start + 1]: " << left_line[Left_Add_Start + 1] << "   Add_Slope: " << Add_Slope << std::endl;
+                // std::cout << "left_line[Left_Add_Start + 6]: " << left_line[Left_Add_Start + 6] << "   left_line[Left_Add_Start + 1]: " << left_line[Left_Add_Start + 1] << "   Add_Slope: " << Add_Slope << std::endl;
                 if (Add_Slope > 0) // 限幅
                 {
                     Add_Slope = 0;
                 }
                 temp = (int)((y - (Left_Add_Start + 1)) * Add_Slope + left_line[Left_Add_Start + 1]); // 通过斜率推算补线的位置
-                Left_Last_Slope = Add_Slope;                                                           // 更新上次左边界斜率
+                Left_Last_Slope = Add_Slope;                                                          // 更新上次左边界斜率
 
                 Left_Line_New2[y] = range_protect(temp, 2, 184); // 不直接修改边界，只保存在补线数组里
-                //std::cout << "Left_Add_Start: " << Left_Add_Start << "  left:  " << y << "   " << temp << std::endl;
-                //std::cout << "get_first: " << (y - (Left_Add_Start + 1)) * Add_Slope << std::endl;
+                // std::cout << "Left_Add_Start: " << Left_Add_Start << "  left:  " << y << "   " << temp << std::endl;
+                // std::cout << "get_first: " << (y - (Left_Add_Start + 1)) * Add_Slope << std::endl;
             }
             /* 第一次补线，只记录，不在图像上显示 */
             //
@@ -790,7 +1084,7 @@ void Center_line_deal() // 中线处理
                     Add_Slope = 0;
                 }
                 temp_r = (int)((y - (Right_Add_Start + 1)) * Add_Slope + right_line[Right_Add_Start + 1]); // 通过斜率推算补线的位置
-                Right_Last_Slope = Add_Slope;                                                               // 更细上次右边界斜率
+                Right_Last_Slope = Add_Slope;                                                              // 更细上次右边界斜率
 
                 Right_Line_New2[y] = range_protect(temp_r, 2, 184); // 不直接修改边界，只保存在补线数组里
             }
@@ -846,43 +1140,49 @@ void Center_line_deal() // 中线处理
     ////统计左右边界丢线zuodiuxianshu l_start   youdiuxianshu r_start
     Cal_losttimes(sousuojieshuhang);
 
-    if(car_flag==0)
+    if (car_flag == 0)
     {
         check_starting_line();
-        if(star_lineflag==1) 
+        if (star_lineflag == 1)
         {
-            car_flag=1;
+            car_flag = 1;
         }
-    }else if(car_flag==1)
+    }
+    else if (car_flag == 1)
     {
         check_starting_line();
-        if(star_lineflag==0) car_flag=2;
-    }else if(car_flag==2)
+        if (star_lineflag == 0)
+            car_flag = 2;
+    }
+    else if (car_flag == 2)
     {
         check_starting_line();
-        if(star_lineflag==0)
+        if (star_lineflag == 0)
         {
-            car_flag=3;
+            car_flag = 3;
         }
-    }else if(car_flag==3)
+    }
+    else if (car_flag == 3)
     {
         check_starting_line();
-        if(star_lineflag==1)
+        if (star_lineflag == 1)
         {
-            car_flag=4;
+            car_flag = 4;
         }
-    }else if(car_flag==4)
+    }
+    else if (car_flag == 4)
     {
         check_starting_line();
-        if(star_lineflag==0)
+        if (star_lineflag == 0)
         {
-            car_flag=5;
+            car_flag = 5;
         }
-    }else if(car_flag==5)
+    }
+    else if (car_flag == 5)
     {
-        
-        l_target=0;
-        r_target=0;
+
+        l_target = 0;
+        r_target = 0;
     }
 
     ////统计需要动态斜率补线的右边界行数 Right_Add_num Left_Add_num
@@ -1463,10 +1763,10 @@ void Mid_Line_Repair(int count)
                 if (Right_Line_New[i] - Half_width[i] <= 18)
                     center[i] = 18;
                 else if (right_huan_num == 8 || left_huan_num == 8 ||
-                            right_huan_num == 9 || left_huan_num == 9 ||
-                            right_huan_num == 1 || left_huan_num == 1 ||
-                            right_huan_num == 2 || left_huan_num == 2 ||
-                            youhuihuan_flag == 1 || lefthuihuan_flag == 1 || (huihuan_num > 18 && !poer_flag))
+                         right_huan_num == 9 || left_huan_num == 9 ||
+                         right_huan_num == 1 || left_huan_num == 1 ||
+                         right_huan_num == 2 || left_huan_num == 2 ||
+                         youhuihuan_flag == 1 || lefthuihuan_flag == 1 || (huihuan_num > 18 && !poer_flag))
                 {
                     center[i] = Right_Line_New[i] - Half_width_yuanshi[i]; //||huihuan_num>15||sousuojieshuhang<=3
                     // std::cout<<"循环1"<<std::endl;
@@ -1566,13 +1866,11 @@ float Point_Weight(void)
         else if ((left_num + right_num) / 2 < 380)
             quanzhi_num = 21;
         else if ((left_num + right_num) / 2 < 400)
-        quanzhi_num = 20;
+            quanzhi_num = 20;
     }
 
-
-
     ////注意实验
-    quanzhi_num=25;
+    quanzhi_num = 25;
     ////根据速度大小quanzhi_num 修改动态权值
     for (int i = quanzhi_num; i < quanzhi_num + 26; i++)
     {
@@ -1586,7 +1884,7 @@ float Point_Weight(void)
         for (int i = 0; i < 70; i++)
             weight_jubu[i] = Weight_park[i];
     }
-    
+
     if (park_flag == 1 && star_lineflag == 1)
     {
         for (i = 68; i >= 1; i--) // 使用加权平均
@@ -1595,7 +1893,7 @@ float Point_Weight(void)
             Sum += center[i] * weight_jubu[i];
             Weight_Count += weight_jubu[i];
         }
-        if(Weight_Count)
+        if (Weight_Count)
             Points = Sum / Weight_Count;
         if (Points > 184)
             Points = 184;
@@ -1613,8 +1911,8 @@ float Point_Weight(void)
                 Sum += center[i] * weight_jubu[i];
                 Weight_Count += weight_jubu[i];
             }
-            if(Weight_Count)
-                Points = Sum / Weight_Count;////Points为动态计算后的偏移 范围18~184
+            if (Weight_Count)
+                Points = Sum / Weight_Count; ////Points为动态计算后的偏移 范围18~184
             if (Points > 184)
                 Points = 184;
             if (Points < 18)
@@ -1628,7 +1926,7 @@ float Point_Weight(void)
                 Sum += center[i] * weight_jubu[i];
                 Weight_Count += weight_jubu[i];
             }
-            if(Weight_Count)
+            if (Weight_Count)
                 Points = Sum / Weight_Count;
             if (Points > 184)
                 Points = 184;
@@ -1640,8 +1938,8 @@ float Point_Weight(void)
     Point_last2 = Point_last1;
     Point_last1 = Points;
 
-    Points = Point_last1 * 0.7 + Point_last2 * 0.1 + Point_last3 * 0.05;////类平滑滤波
-    
+    Points = Point_last1 * 0.7 + Point_last2 * 0.1 + Point_last3 * 0.05; ////类平滑滤波
+
     /***** 使用最远行数据和目标点作为前瞻 *****/
     if (sousuojieshuhang < 30)
     {
@@ -1668,7 +1966,7 @@ void jieyahuansuan()
     }
 }
 
-int range_protect(int duty,int min,int max) // 限幅保护
+int range_protect(int duty, int min, int max) // 限幅保护
 {
     if (duty >= max)
     {
@@ -1922,12 +2220,12 @@ void regression(int type, int startline, int endline)
 void check_starting_line()
 {
     // int[] black_nums_stack = new int[20];
-    times2 = 0;////times2为指定行斑马线数
+    times2 = 0;                             ////times2为指定行斑马线数
     for (unsigned int y = 21; y <= 29; y++) // 27  32//斑马线识别（如果识别迟了就调小点，识别早了就大点）
     {
         black_blocks = 0;
-        cursor = 0; // 指向栈顶的游标
-        for (unsigned int x = left_line[35] + 5; x <= right_line[35] - 5; x++)////+-5防止边缘干扰
+        cursor = 0;                                                            // 指向栈顶的游标
+        for (unsigned int x = left_line[35] + 5; x <= right_line[35] - 5; x++) ////+-5防止边缘干扰
         {
             if (image_use[y][x] == 0)
             {
@@ -1952,13 +2250,13 @@ void check_starting_line()
                     cursor = 0;
                 }
             }
-        }////black_blocks记录总的斑马线块数，cursor记录当前斑马线块的长度
+        } ////black_blocks记录总的斑马线块数，cursor记录当前斑马线块的长度
         if (black_blocks >= 3 && black_blocks <= 10)
             times2++;
     }
     if (times2 >= 3 && times2 <= 9) // 6
     {
-        star_lineflag = 1;////起跑线标志位
+        star_lineflag = 1; ////起跑线标志位
     }
     else
     {

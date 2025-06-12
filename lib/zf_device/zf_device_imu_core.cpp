@@ -28,14 +28,14 @@ const char *imu_file_path[] =
 		"/sys/bus/iio/devices/iio:device1/in_magn_z_raw",
 };
 
-void imu_get_dev_info()
+bool imu_get_dev_info()
 {
 	char str[20] = {0};
 	if (file_read_string(imu_name_path, str) < 0)
 	{
 		printf("imu init error\r\n");
 		imu_type = DEV_NO_FIND;
-		return;
+		return 0;
 	}
 
 	if (strcmp(str, "IMU660RA") == 0)
@@ -56,7 +56,9 @@ void imu_get_dev_info()
 	else
 	{
 		imu_type = DEV_NO_FIND;
+		return 0;
 	}
+	return 1;
 }
 
 int16 imu_get_raw(const char *path)

@@ -1,12 +1,6 @@
-#include "image_deal.h"
-#include "thread.h"
-#include "isr.h"
-#include "key_board.h"
-#include "PID.h"
-#include "my_control.h"
-#include "traffic_circle.h"
+
 #include "headfile.h"
-#include "camera.h"
+
 int youhuihuan_flag = 0, lefthuihuan_flag = 0;
 int zuohuandao_flag = 0, zuohuandao_flag2 = 0, zuohuandao_flag3 = 0, buxianflag = 0;
 int zuochu_flag = 0, zuochu_flag2 = 0;
@@ -33,7 +27,7 @@ int flag_find_huan_leftmiddle_point = 0;
 int flag_find_huan_leftup_point = 0;
 int flag_find_huan_rightup_point = 0;
 extern int right_turn_up[2];
-void find_rightup_point(int start_point, int end_point)////5  65
+void find_rightup_point(int start_point, int end_point) ////5  65
 {
     int j;
 
@@ -205,7 +199,7 @@ void find_leftmiddle_point(int start_point, int end_point)
         //                    && left_line[i -1] >5&& left_line[i] >5&& left_line[i + 1] >5&& left_line[i + 2] >5&& left_line[i + 3] >5
         //            )
 
-        if (i <= 67 &&  (left_line[i - 4] - left_line[i]) <= 0 && abs(left_line[i - 4] - left_line[i]) <= 8 && (left_line[i + 4] - left_line[i]) <= 0 && abs(left_line[i + 4] - left_line[i]) <= 8 && left_line[i + 6] <= left_line[i + 2]  && left_line[i] > 10 && left_line[i - 2] > 10 && left_line[i + 2] > 10 )
+        if (i <= 67 && (left_line[i - 4] - left_line[i]) <= 0 && abs(left_line[i - 4] - left_line[i]) <= 8 && (left_line[i + 4] - left_line[i]) <= 0 && abs(left_line[i + 4] - left_line[i]) <= 8 && left_line[i + 6] <= left_line[i + 2] && left_line[i] > 10 && left_line[i - 2] > 10 && left_line[i + 2] > 10)
         {
             left_turn_middle[0] = (int)(i - 1);
             left_turn_middle[1] = left_line[i - 1];
@@ -371,7 +365,7 @@ void youhuandao_deal() // ????????
         //         }
         //      else
         //      {
-        
+
         if (right_turn_up[0] >= 20) // 21////????ть????
         {
             right_buxian2(right_turn_up[1] + 15, right_turn_up[0], left_line[68], 55);
@@ -680,14 +674,14 @@ void youhuandao() // ?????
         find_rightdown_point(65, 22, 2);
         right_turn_down[0] = 69;
         m = Right_Add_num - Left_Add_num;
-        if (right_huan_num == 0 && !right_huan_num && (m > 16) && sousuojieshuhang <= 7  && (Right_Add_num >= 20) && (Left_Add_num <= 3) && (zuodiuxianshu < 3)&&l_start>55 && (youdiuxianshu > 18) && k_left < -0.6 && k_left > -1.3)
+        if (right_huan_num == 0 && !right_huan_num && (m > 16) && sousuojieshuhang <= 7 && (Right_Add_num >= 20) && (Left_Add_num <= 3) && (zuodiuxianshu < 3) && l_start > 55 && (youdiuxianshu > 18) && k_left < -0.6 && k_left > -1.3)
         {
             youhuandao_flag = 1;
             right_huan_num = 1;
 
             time3 = 0;
         }
-        else if (right_huan_num == 1 && (l_start >= 55||l_start==0) && r_start <= 40) //&&(ad_guiyi[2]>100||ad_guiyi[0]>100)
+        else if (right_huan_num == 1 && (l_start >= 55 || l_start == 0) && r_start <= 40) //&&(ad_guiyi[2]>100||ad_guiyi[0]>100)
         {
             right_huan_num = 2;
             huan2_flag = 1;
@@ -731,7 +725,7 @@ void youhuandao() // ?????
         {
             right_huan_num = 8; //&&white_num_col[93]>50
         }
-        else if (right_huan_num == 8 && r_start < 60 &&youdiuxianshu > 15)
+        else if (right_huan_num == 8 && r_start < 60 && youdiuxianshu > 15)
         {
             right_huan_num = 9;
         }
@@ -823,7 +817,7 @@ void zuohuandao() // zuo????
         m = Left_Add_num - Right_Add_num; //
         find_leftup_point(10, 65);
         find_rightdown_point(65, 22, 2);
-        if (!left_huan_num && left_huan_num == 0 && (m > 13) && sousuojieshuhang <= 10&& (Left_Add_num >= 20) && (Right_Add_num <= 4) && (zuodiuxianshu > 20) && (youdiuxianshu < 4) && r_start>50 && k_right > 0.5 && k_right < 1.4)
+        if (!left_huan_num && left_huan_num == 0 && (m > 13) && sousuojieshuhang <= 10 && (Left_Add_num >= 20) && (Right_Add_num <= 4) && (zuodiuxianshu > 20) && (youdiuxianshu < 4) && r_start > 50 && k_right > 0.5 && k_right < 1.4)
         { //&&k_right>0.7&&k_right<2.0&&k_left<-0.7&&k_left>-2.0
             zuohuandao_flag = 1;
             left_huan_num = 1;
@@ -871,7 +865,7 @@ void zuohuandao() // zuo????
         {
             left_huan_num = 8; //&&Right_Add_num<3  28
         }
-        else if (left_huan_num == 8 && l_start < 60&&zuodiuxianshu < 20)
+        else if (left_huan_num == 8 && l_start < 60 && zuodiuxianshu < 20)
             left_huan_num = 9;
 
         else if (left_huan_num == 9 && l_start > 67 && r_start > 67)

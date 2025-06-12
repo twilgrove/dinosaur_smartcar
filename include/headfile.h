@@ -14,8 +14,8 @@
 #include <cmath>
 
 #include "opencv2/opencv.hpp"
+
 #include "udp.h"
-#include "zf_common_headfile.h"
 #include "pwm_ctrl.h"
 #include "GPIO.h"
 #include "key.h"
@@ -23,7 +23,19 @@
 #include "encoder.h"
 #include "tty.h"
 #include "IMUFilter.h"
+#include "zf_common_headfile.h"
+
+#include "my_control.h"
+#include "traffic_circle.h"
+#include "isr.h"
+#include "key_board.h"
+#include "PID.h"
+#include "camera.h"
+#include "image_deal.h"
+
 #include "john.h"
+
+#include "hardware_control.h"
 
 /* ----------------------------------------配置宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
@@ -48,7 +60,7 @@
 
 /* ----------------------------------------全局变量---------------------------------------- */
 
-extern int running;
+extern bool running;
 
 extern SerialPort tty;
 extern uint8_t deta[8];
@@ -97,7 +109,6 @@ extern GPIO buzzer;
 
 extern IMUFilter imu_filter;
 
-extern int running;
 extern cv::VideoCapture Camera;
 
 extern UdpSender ImgSender;
@@ -136,7 +147,12 @@ extern int Point_last1;
 extern int car_flag;
 
 void init();
+void img_process_thread();
 void car_main_control_thread();
+void debug1_thread();
+void hardware_control();
+void debug2_thread();
+void IO_thread();
 
 void project_manage(int signum);
 void reset(bool flag);

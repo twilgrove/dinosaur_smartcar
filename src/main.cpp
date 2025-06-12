@@ -1,47 +1,36 @@
 ﻿#include "headfile.h"
-#include "camera.h"
-
-#include "image_deal.h"
-#include "thread.h"
-#include "isr.h"
-#include "key_board.h"
-#include "PID.h"
-#include "my_control.h"
-#include "traffic_circle.h"
 
 int main()
 {
     try
     {
         init();
+
         std::cout << "wait key-1 to start............" << std::endl;
         while (!key1.readValue())
-        {
-        }
+            ;
 
-        std::cout << "CameraInit 结果: "
-                  << (CameraInit(Camera, 2, 100) ? "成功" : "失败")
-                  << std::endl;
         std::thread opencv(opencv_thread);           // opencv线程  包含无畸变处理
+        std::thread img_process(img_process_thread); // 图像处理线程
         std::thread car(car_main_control_thread);    // 小车控制线程
-        std::thread debugi(debugi_thread);           // 调试输入线程
-        std::thread motor_servo(motor_servo_thread); // 电机舵机线程
-        std::thread tiaoshi(tiaoshi_thread);         // 电机舵机线程
-        std::thread gpio(gpio_thread);               // 电机舵机线程
-        std::cout << "线程创建完成,等待join..." << std::endl;
+        std::thread hardware(hardware_control);      // 硬件控制线程
+        std::thread debug1(debug1_thread);           // 高速调试线程
+        std::thread debug2(debug2_thread);           // 低速调试线程
+        std::thread IO(IO_thread);                   // IO线程
 
-        gpio.join();
+        IO.join();
         car.join();
+        img_process.join();
         opencv.join();
-        debugi.join();
-        motor_servo.join();
-        tiaoshi.join();
+        debug1.join();
+        hardware.join();
+        debug2.join();
         std::cout << "程序正常退出" << std::endl;
     }
     catch (const std::exception &e)
     {
         std::cerr << e.what() << std::endl;
-        running = 0;
+        project_manage(-1);
     }
     return 0;
 }
@@ -49,20 +38,24 @@ int main()
 void init()
 {
     signal(SIGINT, project_manage); // 设置进程终止处理函数
+
     l_target = 6;
     r_target = 6;
+
+    std::cout << "Camera Init result: " << (CameraInit(Camera, 2, 100) ? "success,!" : "failed!!!") << std::endl;
+    std::cout << "IMU660RA Init result: " << (imu_get_dev_info() ? "success,!" : "failed!!!") << std::endl;
     ips200_init("/dev/fb0");
-    ips200_clear();
+
+    ips200_show_string(10, 10, "Init success!!! wait key-1 to start...");
 
 #if IMG_SEND
-    if (!ImgSender.init(DST_IP, UDP_PORT))
-        std::cerr << "图传UDP初始化失败" << std::endl;
+    std::cout << "ImgSender Init result: " << (ImgSender.init(DST_IP, UDP_PORT) ? "success,!" : "failed!!!") << std::endl;
 #endif
 }
 
-void car_main_control_thread()
+void img_process_thread()
 {
-    std::cout << "car_main_control_thread开始进入循环" << std::endl;
+    std::cout << "img_process_thread开始进入循环" << std::endl;
     while (running)
     {
         control_v++;

@@ -33,7 +33,7 @@ extern int16 imu_mag_x, imu_mag_y, imu_mag_z;
 extern const char *imu_file_path[];
 extern uint8 imu_type;
 
-void imu_get_dev_info();			 // 获取设备信息
+bool imu_get_dev_info();			 // 获取设备信息
 int16 imu_get_raw(const char *path); // 获取原始数据
 
 #endif

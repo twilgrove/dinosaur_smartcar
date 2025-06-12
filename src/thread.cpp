@@ -1,13 +1,6 @@
-﻿#include "image_deal.h"
-#include "thread.h"
-#include "isr.h"
-#include "key_board.h"
-#include "PID.h"
-#include "my_control.h"
-#include "traffic_circle.h"
-#include "headfile.h"
+﻿#include "headfile.h"
 
-void motor_servo_thread()
+void car_main_control_thread()
 {
     /*john code began*/
     Tread_Init();
@@ -25,45 +18,58 @@ void motor_servo_thread()
         Get_Speed(chujie, &Control_john); // 速度决策
         /*john code end*/
 
-        r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
-        l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
-        if (apply_deadzone(r_target, WHEEL_SPEED_DEADBAND))
-        {
-            rp_duty = rp_pid.get(r_target, r_now);
-        }
-        else
-        {
-            rp_pid.reset();
-            r_target = 0;
-            rp_duty = 0;
-        }
-        if (apply_deadzone(l_target, WHEEL_SPEED_DEADBAND))
-        {
-            lp_duty = lp_pid.get(l_target, l_now);
-        }
-        else
-        {
-            lp_pid.reset();
-            l_target = 0;
-            lp_duty = 0;
-        }
-
-        rp_duty = MAX_OUTPUT_LIMIT(rp_duty, WHEEL_MAX_PLUS_ns);
-        rp_duty = MIN_OUTPUT_LIMIT(rp_duty, WHEEL_MIN_PLUS_ns);
-        lp_duty = MAX_OUTPUT_LIMIT(lp_duty, WHEEL_MAX_PLUS_ns);
-        lp_duty = MIN_OUTPUT_LIMIT(lp_duty, WHEEL_MIN_PLUS_ns);
-        // sp_duty = MAX_OUTPUT_LIMIT(sp_duty, SERVO_MAX_PLUS_ns);
-        // sp_duty = MIN_OUTPUT_LIMIT(sp_duty, SERVO_MIN_PLUS_ns);
-
-        sp.set_duty(sp_duty);
-        lp.set_duty(lp_duty);
-        rp.set_duty(rp_duty);
-
         std::this_thread::sleep_for(std::chrono::milliseconds(20));
     }
 }
 
-void debugi_thread()
+void hardware_control()
+{
+    uint8_t t_10ms = 0;
+    while (running)
+    {
+        update_motor();
+
+        if (t_10ms++ >= 2)
+        {
+            update_servo();
+            t_10ms = 0;
+        }
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+    }
+}
+
+void IO_thread()
+{
+    while (running)
+    {
+
+        if (key1.readValue())
+        {
+            std::cout << "key-1..." << std::endl;
+            Camera.release();
+            reset(1);
+        }
+        if (key2.readValue())
+        {
+            std::cout << "key-2..." << std::endl;
+        }
+        if (key3.readValue())
+        {
+            std::cout << "key-3..." << std::endl;
+        }
+        if (key4.readValue())
+        {
+            std::cout << "key-4..." << std::endl;
+        }
+
+        switch1_value = switch1.readValue();
+        switch2_value = switch2.readValue();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
+    }
+}
+
+void debug1_thread()
 {
     while (running)
     {
@@ -120,7 +126,7 @@ void debugi_thread()
     }
 }
 
-void tiaoshi_thread()
+void debug2_thread()
 {
     while (running)
     {
@@ -133,36 +139,5 @@ void tiaoshi_thread()
         control_v = 0;
         /*john code end*/
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
-    }
-}
-
-void gpio_thread()
-{
-    while (running)
-    {
-
-        if (key1.readValue())
-        {
-            std::cout << "key-1..." << std::endl;
-            Camera.release();
-            reset(1);
-        }
-        if (key2.readValue())
-        {
-            std::cout << "key-2..." << std::endl;
-        }
-        if (key3.readValue())
-        {
-            std::cout << "key-3..." << std::endl;
-        }
-        if (key4.readValue())
-        {
-            std::cout << "key-4..." << std::endl;
-        }
-
-        switch1_value = switch1.readValue();
-        switch2_value = switch2.readValue();
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(10));
     }
 }

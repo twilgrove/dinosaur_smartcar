@@ -6,7 +6,7 @@ void Tread_Init()
 {
     sp.set_duty(SERVO_MID_PLUS_ns);
     sp_duty = SERVO_MID_PLUS_ns;
-    sp_pid.set_kp(1.05);
+    sp_pid.config.kp = 1.05;
 }
 
 TrackKind Choose_Kind(JOHNTURN *Control)
@@ -69,21 +69,21 @@ void Get_Kp(JOHNTURN *Control)
     if (Control->Track_kind == LINE)
     {
         if (fabs(Control->servo_turn) < 5)
-            sp_pid.set_kp(0.2);
+            sp_pid.config.kp = 0.2;
         else
-            sp_pid.set_kp(0.4 * (1 + Control->para));
+            sp_pid.config.kp = 0.4 * (1 + Control->para);
     }
     else
     {
         // sp_pid.set_kd(0.01);
         if (fabs(Control->servo_turn) < 1.5)
-            sp_pid.set_kp(0.2);
+            sp_pid.config.kp = 0.2;
         // else if (fabs(servo_turn) < 20)
         //     sp_pid.set_kp(0.3);
         // else if (fabs(servo_turn) < 30)
         //     sp_pid.set_kp(0.8);
         else
-            sp_pid.set_kp(0.52 * (1 + Control->para));
+            sp_pid.config.kp = 0.52 * (1 + Control->para);
     }
 }
 

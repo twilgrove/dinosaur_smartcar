@@ -1,10 +1,4 @@
-#include "image_deal.h"
-#include "thread.h"
-#include "isr.h"
-#include "key_board.h"
-#include "PID.h"
-#include "my_control.h"
-#include "traffic_circle.h"
+
 #include "headfile.h"
 // 定义差速模型宏及变量
 #define LDISTANCE 200 // 车身的前后轮中心距 mm
@@ -53,11 +47,11 @@ long long int Target_Speed1 = 0, Target_Speed2 = 0;
 float piancha; // 舵机偏差   通过摄像头中线处理得到
 int Set = 7;
 int lock_flag = 0;
-float g_fSpeedControlOutNew = 10000;     // pid算出的速度
-float g_fSpeedControlIntegral;           // pid速度积分部分
-float Real_speed = 0;                    // 现实生活中的速度
-int g_nRightMotorPulseSigma;             // 右边总脉冲
-int g_nLeftMotorPulseSigma;              // 左边总脉冲
+float g_fSpeedControlOutNew = 10000;            // pid算出的速度
+float g_fSpeedControlIntegral;                  // pid速度积分部分
+float Real_speed = 0;                           // 现实生活中的速度
+int g_nRightMotorPulseSigma;                    // 右边总脉冲
+int g_nLeftMotorPulseSigma;                     // 左边总脉冲
 unsigned int leijia_flag = 0, leijia_flag2 = 0; // 编码器累加标志
 int left_leijia = 0, right_leijia = 0;
 int left_leijia2 = 0, right_leijia2 = 0, right_leijia_por = 0, tingche_leijia_por = 0, huan2_leijia_por = 0;
@@ -76,7 +70,7 @@ int you_speed = 0;
 int zuo_speed = 0;
 int jiasu_part = 0, jiasha_part = 0;
 int chujie_num = 0;
-int chujie=0;
+int chujie = 0;
 // const unsigned int left[70]={
 // 97, 97, 96, 96, 95, 95, 95, 95, 94, 94,
 // 94, 93, 93, 93, 92, 92, 92, 91, 91, 91,
@@ -137,20 +131,20 @@ const unsigned int right[70] = {
 
 void proess() // 处理流程
 {
-    //Ostu();
-    // threshold1= my_adapt_threshold(mt9v03x_image[0],188,70);
-    // SignalProcess_grayfine_fill();
+    // Ostu();
+    //  threshold1= my_adapt_threshold(mt9v03x_image[0],188,70);
+    //  SignalProcess_grayfine_fill();
     //// 固定编码器值完成出库操作
     if (car_gogogo == 0)
     {
 
-        leijia_flag2 = 1;//编码器读值
-        if (right_leijia2 > 2100)////right_leijia2大于6000   car_gogogo=1
+        leijia_flag2 = 1;         // 编码器读值
+        if (right_leijia2 > 2100) ////right_leijia2大于6000   car_gogogo=1
         {
-            //if (c_r == 2) // zuo出库
-                //pwm_duty(ATOM1_CH1_P33_9, stree_max - 10);
-            //else if (c_r == 1) // zuo出库
-                //pwm_duty(ATOM1_CH1P33_9, stree_min + 10);
+            // if (c_r == 2) // zuo出库
+            // pwm_duty(ATOM1_CH1_P33_9, stree_max - 10);
+            // else if (c_r == 1) // zuo出库
+            // pwm_duty(ATOM1_CH1P33_9, stree_min + 10);
         }
         if (c_r == 2)                 // zuo出库
             dianjiqudong(6000, 8200); // 6000
@@ -160,7 +154,7 @@ void proess() // 处理流程
     ////出库完成，正式赛道
     if (car_gogogo)
     {
-        //po = adc_mean_filter(ADC_0, ADC0_CH8_A8, ADC_12BIT, 2);
+        // po = adc_mean_filter(ADC_0, ADC0_CH8_A8, ADC_12BIT, 2);
 
         if (po <= 100)
         {
@@ -170,7 +164,7 @@ void proess() // 处理流程
                 time11 = 0;
                 if (por_cnt == 0 && huihuan_num > 35 && !left_huan_num && !right_huan_num && !three_cross && !three_cross1 && !lefthuihuan_flag && !lefthuihuan_flag) //||three_cross_cnt==1  por_cnt==0&&
                 {
-                    poer_flag = 1;////避障标志位
+                    poer_flag = 1; ////避障标志位
                     //                     uart_putchar(WIRELESS_UART, '9');poer_flag por_cnt
                     //                     uart_putchar(WIRELESS_UART, '1');
                     //                     uart_putchar(WIRELESS_UART, ' ');
@@ -208,7 +202,7 @@ void proess() // 处理流程
             check_starting_line(); //&&sousuojieshuhang<16&&zhidao_juli<110   ////检测起跑线更新star_lineflag
             if (star_lineflag == 1)
             {
-                park_flag++;////park_flag==1时正常跑，==2入库操作
+                park_flag++; ////park_flag==1时正常跑，==2入库操作
                 //                             uart_putchar(WIRELESS_UART, '5');//
                 //                             uart_putchar(WIRELESS_UART, '5');
                 //                             uart_putchar(WIRELESS_UART, ' ');
@@ -270,17 +264,15 @@ void proess() // 处理流程
                 ruku_handle2();
         }
 
-
-
         ////出界保护
         chujiebaohu();
         if (chujie_num > 130 && chujie == 0 && park_flag != 2)
         {
             chujie = 1;
             {
-                //uart_putchar(WIRELESS_UART, 'o');//
-                //uart_putchar(WIRELESS_UART, 'k');
-                //uart_putchar(WIRELESS_UART, ' ');
+                // uart_putchar(WIRELESS_UART, 'o');//
+                // uart_putchar(WIRELESS_UART, 'k');
+                // uart_putchar(WIRELESS_UART, ' ');
             }
         }
 
@@ -1032,4 +1024,3 @@ void chujiebaohu()
         }
     }
 }
-

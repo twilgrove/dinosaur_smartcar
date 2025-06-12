@@ -8,9 +8,6 @@
 #ifndef CODE_IMAGE_DEAL_H_
 #define CODE_IMAGE_DEAL_H_
 
-#include <cmath>
-#include "headfile.h"
-
 void yuzhiget(void);
 extern int times2;
 extern int black_blocks;

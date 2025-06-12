@@ -7,7 +7,7 @@
 
 
 
-#include "key_board.h"
+#include "headfile.h"
 
 unsigned long int write_buf;
 unsigned long int huihuan_sd=320;

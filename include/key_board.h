@@ -9,9 +9,6 @@
 #define CODE_KEYBOARD_H_
 
 
-
-#include "headfile.h"
-
 //定义按键引脚
 #define KEY1    P22_0  //  0 1 2 3 ke
 #define KEY2    P22_1  //
@@ -62,4 +59,6 @@ extern unsigned long int por_top;
 void   flash_deal();
 void   flash_read2();
 void canshu_init();
+
+
 #endif /* CODE_KEYBOARD_H_ */

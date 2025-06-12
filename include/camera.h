@@ -1,7 +1,6 @@
 #ifndef _CAMERA_H_
 #define _CAMERA_H_
 
-#include "headfile.h"
 struct Img_Store
 {
     std::queue<cv::Mat> Img_Capture;                                                // 图像,类型：矩阵队列
@@ -20,11 +19,11 @@ struct Img_Store
     int ImgNum;
 };
 extern Img_Store Img_Store_c;
-extern Img_Store* Img_Store_pp;         // 图像存储与指针
+extern Img_Store *Img_Store_pp; // 图像存储与指针
 using namespace cv;
 
 bool CameraInit(VideoCapture &Camera, int Camera_EN, int FPS);
-void CameraImgGet(Img_Store *Img_Store_m,int runnings);
+void CameraImgGet(Img_Store *Img_Store_m, int runnings);
 void opencv_thread();
 void ImgSobel(Mat &Img);
 void ImgPrepare(Img_Store *Img_Store_p);

@@ -2,16 +2,15 @@
  * 文件名: pid.h
  * 日期: 2025.2.27
  * 作者: T.Grove
- * 描述: PID控制器头文件，支持位置式和增量式PID算法
- * 版本: v1.0.0
+ * 描述: PID控制器实现文件，支持位置式和增量式PID算法
+ * 版本: v1.1.0
  * 修改:
  *   - v1.0.0 (2025.2.27): 初始版本，实现基础的位置式和增量式PID算法
+ *   - v1.1.0 (2025.5.8): 改进版本，增加平滑积分,并封装参数为结构体
  */
 #ifndef PID_H
 #define PID_H
 
-#include <cmath>
-#include <stdexcept>
 /*
  *注意事项
  *    - 使用位置式PID时必须设置积分限幅参数，
@@ -23,36 +22,14 @@
  * 舵机:位置式PD
  * 电机:增量式PID
  */
-bool apply_deadzone(float target_speed, float deadband); // 死区补偿
 
-class pid
+enum class Mode
 {
-public:
-    enum class Mode
-    {
-        POSITION, // 位置式PID
-        INCREMENT // 增量式PID
-    };
-    // 模式,      比例系数,    积分系数,   微分系数, (积分限幅/输出增量限幅)绝对值, pid输出限幅
-    pid(Mode mode, float kp, float ki, float kd, float abs_process, float max_output, float min_output);
-
-    ~pid() = default;
-
-    void set_kp(float kp); // [通用] 设置比例系数
-    void set_ki(float ki); // [通用] 设置积分系数
-    void set_kd(float kd); // [通用] 设置微分系数
-
-    void set_integral(float min_integral, float max_integral);             // [位置式] 设置积分限幅
-    void set_delta_output(float min_delta_output, float max_delta_output); // [增量式] 设置输出增量限幅
-    void set_output(float min_output, float max_output);                   // [通用] 设置输出限幅
-
-    void set_alpha(float alpha);                              // [位置式] 设置微分滤波系数
-    void set_deadband(float deadband);                        // [通用] 设置误差死区范围
-    void set_integral_separation(float separation_threshold); // [位置式] 设置积分分离阈值
-    void set_differential_lead(bool differential_lead);       // [位置式] 设置微分先行使能
-    void reset();                                             // [通用] 重置PID控制器内部状态
-    float get(float set_value, float now_value);              // 计算PID输出
-
+    POSITION, // 位置式PID
+    INCREMENT // 增量式PID
+};
+struct PIDConfig
+{
     Mode mode_; // PID模式
     /* 基础参数 */
     float kp = 0; // [通用] 比例系数 - 控制系统对偏差的响应强度，不能为0
@@ -71,8 +48,29 @@ public:
     float alpha = 0;               // [位置式] 微分滤波系数 - 范围0-1，不使用设为0
     float deadband = 0;            // [通用] 误差死区范围 - 不使用设为0
     float integral_separation = 0; // [位置式] 积分分离阈值 - 不使用设为0
+    bool integral_enable = 0;      // [位置式] 积分因子使能 - 不使用设为0
     bool differential_lead = 0;    // [位置式] 微分先行使能 - 1:启用 0:禁用，不使用设为0
+};
+class pid
+{
+public:
+    // 模式,      比例系数,    积分系数,   微分系数, (积分限幅/输出增量限幅)绝对值, pid输出限幅
+    pid(Mode mode, float kp, float ki, float kd, float abs_process, float min_output, float max_output);
+    void init(const PIDConfig &cfg);
+    ~pid() = default;
 
+    void set_integral(float min_integral, float max_integral);             // [位置式] 设置积分限幅
+    void set_delta_output(float min_delta_output, float max_delta_output); // [增量式] 设置输出增量限幅
+    void set_output(float min_output, float max_output);                   // [通用] 设置输出限幅
+
+    void reset();                                // [通用] 重置PID控制器内部状态
+    float get(float set_value, float now_value); // 计算PID输出
+
+    bool apply_deadzone(float target_speed, float deadband); // 死区补偿
+    inline float my_fmaxf(float a, float b);
+    inline float my_fminf(float a, float b);
+    inline float my_fabs(float x);
+    PIDConfig config;
     /* 内部状态 */
     float prev_error = 0;          // [通用] 上一次误差 - 初始化必须置0
     float prev_delta_error = 0;    // [通用] 上一次误差变化量 - 初始化必须置0
@@ -81,4 +79,5 @@ public:
     float integral = 0;            // [位置式] 积分项 - 初始化必须置0
     float last_output = 0;         // [增量式] 上一次输出值 - 初始化必须置0
 };
+
 #endif // PID_H

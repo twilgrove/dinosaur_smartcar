@@ -1,16 +1,8 @@
-#include "image_deal.h"
-#include "thread.h"
-#include "isr.h"
-#include "key_board.h"
-#include "PID.h"
-#include "my_control.h"
-#include "traffic_circle.h"
 #include "headfile.h"
-#include "key_board.h"
 /* ----------------------------------------全局变量---------------------------------------- */
 
 /* 整车状态 */
-int running = 1;
+bool running = 1;
 
 /* 图传 */
 UdpSender ImgSender;
@@ -35,20 +27,20 @@ uint32_t lp_duty = 0;
 float l_target = 0; // 电机速度 ：0-200
 GPIO l_pin(72, "out", 0);
 pwm_ctrl lp(2, 0, 20000, lp_duty, "left_motor");
-pid lp_pid(pid::Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
+pid lp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
 
 /* 右电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
 uint32_t rp_duty = 0;
 float r_target = 0; // 电机速度 ：0-200
 GPIO r_pin(73, "out", 0);
 pwm_ctrl rp(1, 0, 20000, rp_duty, "right_motor");
-pid rp_pid(pid::Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
+pid rp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
 
 /* 舵机：频率200hz，周期5,000,000ns，脉冲宽度1300,000-1,600,000ns*/
 uint32_t sp_duty = SERVO_MID_PLUS_ns;
 uint32_t last_sp_duty = SERVO_MID_PLUS_ns;
 pwm_ctrl sp(8, 6, 5000000, sp_duty, "servo");
-pid sp_pid(pid::Mode::POSITION, 1, 0, 0, 1000, SERVO_MAX_PLUS_ns - SERVO_MID_PLUS_ns, SERVO_MIN_PLUS_ns - SERVO_MID_PLUS_ns);
+pid sp_pid(Mode::POSITION, 1, 0, 0, 1000, SERVO_MAX_PLUS_ns - SERVO_MID_PLUS_ns, SERVO_MIN_PLUS_ns - SERVO_MID_PLUS_ns);
 
 /* 按键 */
 Key key1(16, Key::up);
