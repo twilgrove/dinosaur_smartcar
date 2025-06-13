@@ -40,7 +40,8 @@
 /* ----------------------------------------配置宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
-#define IMG_SEND 0 // 图传使能
+#define VOFA_DEBUG_EN 0 // vofa调试使能
+#define IMG_SEND_EN 0   // 图传使能
 
 #define UDP_PORT 8080          // 图传接收端口
 #define DST_IP "192.168.43.10" // 图传接收IP
@@ -58,14 +59,34 @@
 #define MAX_OUTPUT_LIMIT(x, max) ((x) > (max) ? (max) : (x)) // 输出限幅
 #define MIN_OUTPUT_LIMIT(x, min) ((x) < (min) ? (min) : (x)) // 输出限幅
 
-/* ----------------------------------------全局变量---------------------------------------- */
+/* ----------------------------------------函数声明---------------------------------------- */
+void init();
+void img_process_thread();
+void car_main_control_thread();
+void debug1_thread();
+void hardware_control();
+void debug2_thread();
+void IO_thread();
 
-extern bool running;
+void project_manage(int signum);
+void reset(bool flag);
+/* ----------------------------------------结构体声明---------------------------------------- */
+typedef struct
+{
+    bool program_running; // 程序运行状态
+    bool car_running;     // 小车运行状态
+    bool Camera_running;  // 摄像头运行状态
+    bool IMU_running;     // IMU运行状态
+} car_state;
+
+/* --------------------------------------全局变量声明---------------------------------------- */
+
+extern car_state car;
 
 extern SerialPort tty;
-extern uint8_t deta[8];
-extern float value;
-extern uint32_t value_int;
+extern uint8_t tty_data[8];
+extern float tty_value;
+extern uint32_t tty_value_int;
 
 extern ENCODER left_encoder;
 extern float l_now;
@@ -145,16 +166,5 @@ extern unsigned int car_gogogo;
 extern int Point_last1;
 
 extern int car_flag;
-
-void init();
-void img_process_thread();
-void car_main_control_thread();
-void debug1_thread();
-void hardware_control();
-void debug2_thread();
-void IO_thread();
-
-void project_manage(int signum);
-void reset(bool flag);
 
 #endif

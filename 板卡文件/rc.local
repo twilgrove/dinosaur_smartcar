@@ -1,0 +1,27 @@
+#! /bin/bash -e
+
+do_start()
+{
+insmod /usr/lib/modules/4.19.190+/aic8800_bsp.ko
+insmod /usr/lib/modules/4.19.190+/aic8800_fdrv.ko
+
+sleep 3
+
+/bin/wifi &
+~/smart_car_control &
+}
+do_stop()
+{
+rmmod aic8800_fdrv.ko
+rmmod aic8800_bsp.ko
+}
+case "$1" in
+   start)
+     do_start
+   ;;  
+   stop)
+     do_stop
+   ;;  
+ esac
+ 
+exit 0

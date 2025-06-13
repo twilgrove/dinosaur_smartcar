@@ -31,7 +31,7 @@ ENCODER::ENCODER(int pwmNum, int gpioNum) : base_addr(PWM_BASE_ADDR + pwmNum * P
     low_buffer = map_register(base_addr + LOW_BUFFER_OFFSET, PAGE_SIZE);      // 低脉冲缓冲寄存器映射
     full_buffer = map_register(base_addr + FULL_BUFFER_OFFSET, PAGE_SIZE);    // 脉冲周期缓冲寄存器映射
 
-    printf("Registers mapped successfully\n");
+    printf("Registers mapped success\n");
     PWM_Init();
 }
 
@@ -54,7 +54,7 @@ void ENCODER::PWM_Init(void)
 
     REG_WRITE(control_buffer, control_reg);
 
-    printf("PWM initialized with control register: 0x%08X\n", control_reg);
+    // printf("PWM initialized with control register: 0x%08X\n", control_reg);
 }
 
 // 清空计数器

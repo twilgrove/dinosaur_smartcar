@@ -1,0 +1,103 @@
+#!/bin/bash
+
+# 先检查是否有正在运行的 wpa_supplicant 进程，如果有，则终止它
+cleanup_wpa_supplicant() {
+    if pgrep -x "wpa_supplicant" > /dev/null; then
+        echo "Stopping existing wpa_supplicant process..."
+        pkill wpa_supplicant
+        sleep 2  # 等待进程完全停止
+    fi
+
+    # 删除可能残留的 wpa_supplicant 控制接口锁文件
+    if [ -e /var/run/wpa_supplicant/wlan0 ]; then
+        echo "Removing stale wpa_supplicant lock file..."
+        rm -f /var/run/wpa_supplicant/wlan0
+    fi
+}
+
+# 连接 Wi-Fi
+connect_wifi() {
+    echo "Starting wpa_supplicant..."
+    wpa_supplicant -B -i wlan0 -c /etc/wpa_supplicant.conf
+    sleep 5  # 等待 Wi-Fi 连接
+
+    # 获取当前 SSID
+    ssid=$(grep 'ssid="' /etc/wpa_supplicant.conf | sed 's/.*ssid="\([^"]*\)".*/\1/')
+
+    # 根据 SSID 选择 IP 配置
+    if [ "$ssid" == "cys" ]; then
+        ifconfig wlan0 192.168.43.113 netmask 255.255.255.0 up
+    elif [ "$ssid" == "john" ]; then
+        ifconfig wlan0 192.168.41.52 netmask 255.255.255.0 up
+    else
+        udhcpc -i wlan0
+    fi
+
+    echo "Wi-Fi config is OK"
+    echo "IP Address: $(ifconfig wlan0 | grep 'inet ' | awk '{print $2}')"
+}
+
+# 更新 wpa_supplicant 配置文件
+update_wpa_supplicant_config() {
+    new_ssid=$1
+    new_psk=$2
+
+    # 检查 wpa_supplicant.conf 中是否已经有 ssid 和 psk
+    if ! grep -q 'ssid="' /etc/wpa_supplicant.conf; then
+        echo "ssid not found, adding ssid"
+        # 如果没有 ssid，则添加到 network={} 后
+        sed -i '/network={/a \ \tssid="'$new_ssid'"' /etc/wpa_supplicant.conf
+    else
+        # 如果 ssid 存在，则更新它
+        sed -i "/^[[:space:]]*ssid=\"/c\\\tssid=\"$new_ssid\"" /etc/wpa_supplicant.conf
+    fi
+
+    if ! grep -q 'psk="' /etc/wpa_supplicant.conf; then
+        echo "psk not found, adding psk"
+        # 如果没有 psk，则添加到 network={} 后
+        sed -i '/network={/a \ \tpsk="'$new_psk'"' /etc/wpa_supplicant.conf
+    else
+        # 如果 psk 存在，则更新它
+        escaped_psk=$(printf '%s\n' "$new_psk" | sed -e 's/[\/&]/\\&/g')
+        sed -i "/^[[:space:]]*psk=\"/c\\\tpsk=\"$escaped_psk\"" /etc/wpa_supplicant.conf
+    fi
+}
+
+# 处理不同的命令选项
+if [ "$1" == "" ]; then
+    cleanup_wpa_supplicant  # 清理旧的进程和锁文件
+    connect_wifi  # 连接 Wi-Fi
+
+elif [ "$1" == "-i" ]; then
+    echo "New Wi-Fi SSID:"
+    read new_ssid
+    echo "New Wi-Fi Password:"
+    read new_psk  
+
+    if [ -z "$new_ssid" ] || [ -z "$new_psk" ]; then
+        echo "SSID or password cannot be empty"
+        exit 1
+    fi
+
+    # 更新 wpa_supplicant 配置文件
+    update_wpa_supplicant_config "$new_ssid" "$new_psk"
+
+    sync
+
+    cleanup_wpa_supplicant  # 先清理旧的进程和锁文件
+    connect_wifi  # 重新连接 Wi-Fi
+
+elif [ "$1" == "-o" ]; then
+    ssid=$(grep 'ssid="' /etc/wpa_supplicant.conf | sed 's/.*ssid="\([^"]*\)".*/\1/')
+    psk=$(grep 'psk="' /etc/wpa_supplicant.conf | sed 's/.*psk="\([^"]*\)".*/\1/')
+
+    echo "SSID: $ssid"
+    echo "Password: $psk"
+else
+    echo "Invalid command"
+    echo "Usage:"
+    echo "  wifi        # Connect to the current Wi-Fi"
+    echo "  wifi -i     # Set new Wi-Fi SSID and password"
+    echo "  wifi -o     # Get current Wi-Fi SSID and password"
+    exit 1
+fi

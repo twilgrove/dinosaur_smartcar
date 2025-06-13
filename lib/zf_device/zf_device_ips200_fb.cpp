@@ -31,9 +31,9 @@ void ips200_clear(void)
 void ips200_full(const uint16 color)
 {
     uint16 i, j;
-    for (i = 0; i < 120; i++)
+    for (i = 0; i < 240; i++)
     {
-        for (j = 0; j < 160; j++)
+        for (j = 0; j < 320; j++)
         {
             ips200_draw_point(i, j, color);
         }
@@ -252,11 +252,6 @@ void ips200_init(const char *path)
         exit(EXIT_FAILURE);
     }
 
-    // if (0 > (fd = open(path, O_RDWR))) {
-    //     perror("open error");
-    //     exit(EXIT_FAILURE);
-    // }
-
     /* 获取参数信息 */
     ioctl(fd, FBIOGET_VSCREENINFO, &fb_var);
     ioctl(fd, FBIOGET_FSCREENINFO, &fb_fix);
@@ -275,9 +270,9 @@ void ips200_init(const char *path)
     }
 
     // 刷屏全黑
-    for (uint16 i = 0; i < 120; i++)
+    for (uint16 i = 0; i < 240; i++)
     {
-        for (uint16 j = 0; j < 160; j++)
+        for (uint16 j = 0; j < 320; j++)
         {
             ips200_draw_point(i, j, IPS200_DEFAULT_BGCOLOR);
         }

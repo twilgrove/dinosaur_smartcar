@@ -43,3 +43,29 @@ void update_servo()
 void update_isp()
 {
 }
+
+void IMU_Camera_Check()
+{
+
+    if (car.Camera_running && car.IMU_running)
+    {
+        ips200_show_string(10, 30, "Camera and IMU init OK!!!");
+        return;
+    }
+    else
+    {
+        if (!car.Camera_running && !car.IMU_running)
+            ips200_show_string(10, 30, "Camera and IMU are init failed!!!");
+        else if (!car.Camera_running)
+            ips200_show_string(10, 30, "Camera is init failed!!!");
+        else if (!car.IMU_running)
+            ips200_show_string(10, 30, "IMU is init failed!!!");
+
+        ips200_show_string(10, 50, "Wait key-1 to restart...");
+        std::cout << "Wait key-1 to restart..." << std::endl;
+
+        while (!key1.readValue() && car.program_running)
+            ;
+        reset(1);
+    }
+}

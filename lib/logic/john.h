@@ -1,11 +1,6 @@
 #ifndef _JOHN_H_
 #define _JOHN_H_
 
-#include "headfile.h"
-#include "image_deal.h"
-#include <chrono>
-#include <iostream>
-
 enum TrackKind
 {
     LINE,

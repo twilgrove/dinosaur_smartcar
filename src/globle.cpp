@@ -2,7 +2,7 @@
 /* ----------------------------------------全局变量---------------------------------------- */
 
 /* 整车状态 */
-bool running = 1;
+car_state car = {1, 0, 0, 0};
 
 /* 图传 */
 UdpSender ImgSender;
@@ -11,9 +11,9 @@ std::mutex image_mutex;
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B115200);
-uint8_t deta[8];
-float value = 0;
-uint32_t value_int = 0;
+uint8_t tty_data[8];
+float tty_value = 0;
+uint32_t tty_value_int = 0;
 
 /* 编码器,10ms更新一次 */
 ENCODER left_encoder(0, 51);
@@ -23,19 +23,24 @@ float r_now = 0;
 
 /* 电机速度 ：0-200*/
 /* 左电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
-uint32_t lp_duty = 0;
+uint32_t lp_duty = 20000;
 float l_target = 0; // 电机速度 ：0-200
-GPIO l_pin(72, "out", 0);
+GPIO l_pin(72, "out", 1);
 pwm_ctrl lp(2, 0, 20000, lp_duty, "left_motor");
 pid lp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
 
 /* 右电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
-uint32_t rp_duty = 0;
+uint32_t rp_duty = 20000;
 float r_target = 0; // 电机速度 ：0-200
 GPIO r_pin(73, "out", 0);
 pwm_ctrl rp(1, 0, 20000, rp_duty, "right_motor");
 pid rp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
 
+/*风扇*/
+uint32_t lfs_duty = 1200000;
+pwm_ctrl l_fs(4, 1, 20000000, lfs_duty, "left_fs");
+uint32_t rfs_duty = 1200000;
+pwm_ctrl r_fs(4, 2, 20000000, rfs_duty, "right_fs");
 /* 舵机：频率200hz，周期5,000,000ns，脉冲宽度1300,000-1,600,000ns*/
 uint32_t sp_duty = SERVO_MID_PLUS_ns;
 uint32_t last_sp_duty = SERVO_MID_PLUS_ns;

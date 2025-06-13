@@ -4,4 +4,6 @@
 void update_motor();
 void update_servo();
 void update_isp();
+
+void IMU_Camera_Check();
 #endif

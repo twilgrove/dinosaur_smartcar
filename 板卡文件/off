@@ -1,0 +1,9 @@
+#!/bin/bash
+
+sync
+
+rmmod /usr/lib/modules/4.19.190+/aic8800_fdrv.ko
+rmmod /usr/lib/modules/4.19.190+/aic8800_bsp.ko
+
+reboot
+

@@ -1,4 +1,5 @@
-#include "john.h"
+
+#include "headfile.h"
 
 JOHNTURN Control_john;
 
