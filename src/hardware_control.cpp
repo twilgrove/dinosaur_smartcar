@@ -1,6 +1,6 @@
 #include "headfile.h"
 
-void update_motor()
+void Update_motor()
 {
     r_now = static_cast<float>(std::abs(right_encoder.pulse_counter_update()));
     l_now = static_cast<float>(std::abs(left_encoder.pulse_counter_update()));
@@ -35,23 +35,16 @@ void update_motor()
     rp.set_duty(rp_duty);
 }
 
-void update_servo()
+void Update_servo()
 {
     sp.set_duty(sp_duty);
-}
-
-void update_isp()
-{
 }
 
 void IMU_Camera_Check()
 {
 
     if (car.Camera_running && car.IMU_running)
-    {
-        ips200_show_string(10, 30, "Camera and IMU init OK!!!");
         return;
-    }
     else
     {
         if (!car.Camera_running && !car.IMU_running)

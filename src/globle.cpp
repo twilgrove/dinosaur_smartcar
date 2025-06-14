@@ -2,12 +2,24 @@
 /* ----------------------------------------全局变量---------------------------------------- */
 
 /* 整车状态 */
-car_state car = {1, 0, 0, 0};
-
-/* 图传 */
+car_state car = {
+    true,   // program_running
+    false,  // car_running
+    false,  // Camera_running
+    0,      // cam_frame
+    false,  // IMU_running
+    {0, 0}, // start
+    {0, 0}, // now
+    0,      // total_seconds
+    0,      // minutes
+    0,      // seconds
+};
+/* 图像显示 */
 UdpSender ImgSender;
 cv::Mat image_to_send;
 std::mutex image_mutex;
+cv::Mat image_to_show;
+unsigned char image_show[90][240];
 
 /* 串口 */
 SerialPort tty("/dev/ttyS1", B115200);

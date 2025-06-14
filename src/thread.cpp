@@ -27,11 +27,11 @@ void hardware_control()
     static uint8_t t_10ms = 0;
     while (car.program_running)
     {
-        // update_motor();
+        // Update_motor();
 
         if (t_10ms++ >= 2)
         {
-            // update_servo();
+            // Update_servo();
             t_10ms = 0;
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
@@ -46,6 +46,7 @@ void IO_thread()
         if (key1.readValue())
         {
             std::cout << "key-1..." << std::endl;
+            ips200_clear();
             Camera.release();
             reset(1);
         }
@@ -71,8 +72,16 @@ void IO_thread()
 
 void debug1_thread()
 {
+    static uint8_t t_100ms = 0;
+    ips200_show_string(10, 70, "Frame rate:");
+    ips200_show_string(10, 50, "run time:");
     while (car.program_running)
     {
+
+        if (t_100ms++ >= 5)
+        {
+            t_100ms = 0;
+        }
 #if VOFA_DEBUG_EN
         if (tty.readData(tty_data, 8))
         {
@@ -112,19 +121,20 @@ void debug1_thread()
             }
         }
 #endif
-
-        // transpose_matrix(&image_use[0][0], &image_transposed[0][0], 188, 70);
-        // ips200_show_gray_image(0, 0, &image_use[0][0], 188, 70);
-
 #if IMG_SEND_EN
         if (!image_to_send.empty())
         {
-            std::lock_guard<std::mutex> lock(image_mutex);
+            image_mutex.lock();
             ImgSender.sendImage(image_to_send); // 发送图像
-            std::lock_guard<std::mutex> ulock(image_mutex);
+            image_mutex.unlock();
         }
 #endif
-        std::this_thread::sleep_for(std::chrono::milliseconds(30));
+
+        ips200_show_gray_image(0, 220, &image_show[0][0], 240, 90);
+
+        Update_time();
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 }
 
@@ -140,6 +150,9 @@ void debug2_thread()
         // opencv_v = 0;
         // control_v = 0;
         // /*john code end*/
+
+        ips200_show_uint(100, 70, car.cam_frame, 3);
+        car.cam_frame = 0;
         std::this_thread::sleep_for(std::chrono::milliseconds(1000));
     }
 }

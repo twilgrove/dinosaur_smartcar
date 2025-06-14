@@ -3,8 +3,8 @@
 
 #include <math.h>
 #include <string.h>
-#include "stdio.h"
-#include "stdlib.h"
+#include <stdio.h>
+#include <stdlib.h>
 #include <iostream>
 #include <thread>
 #include <mutex>
@@ -12,6 +12,7 @@
 #include <atomic>
 #include <vector>
 #include <cmath>
+#include <sys/time.h>
 
 #include "opencv2/opencv.hpp"
 
@@ -40,12 +41,13 @@
 /* ----------------------------------------配置宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
+#define KEY1_START_EN 1 // 按键启动使能
 #define VOFA_DEBUG_EN 0 // vofa调试使能
-#define IMG_SEND_EN 0   // 图传使能
+#define IMG_SEND_EN 1   // 图传使能
 
-#define UDP_PORT 8080          // 图传接收端口
-#define DST_IP "192.168.43.10" // 图传接收IP
-#define MAX_PACKET_SIZE 1024   // 图传接收最大包大小
+#define UDP_PORT 8080           // 图传接收端口
+#define DST_IP "192.168.43.180" // 图传接收IP
+#define MAX_PACKET_SIZE 1024    // 图传接收最大包大小
 
 #define WHEEL_MAX_PLUS_ns 20000 // 电机最大值
 #define WHEEL_MIN_PLUS_ns 1     // 电机最小值
@@ -61,7 +63,7 @@
 
 /* ----------------------------------------函数声明---------------------------------------- */
 void init();
-void img_process_thread();
+void img_process();
 void car_main_control_thread();
 void debug1_thread();
 void hardware_control();
@@ -70,13 +72,22 @@ void IO_thread();
 
 void project_manage(int signum);
 void reset(bool flag);
+void Update_time();
+void Update_motor();
+void Update_servo();
+void Show_image();
 /* ----------------------------------------结构体声明---------------------------------------- */
 typedef struct
 {
-    bool program_running; // 程序运行状态
-    bool car_running;     // 小车运行状态
-    bool Camera_running;  // 摄像头运行状态
-    bool IMU_running;     // IMU运行状态
+    bool program_running;      // 程序运行状态
+    bool car_running;          // 小车运行状态
+    bool Camera_running;       // 摄像头运行状态
+    uint8_t cam_frame;         // 摄像头帧率
+    bool IMU_running;          // IMU运行状态
+    struct timeval start, now; // 运行开始和当前时间
+    double total_seconds;      // 总秒数
+    int minutes;               // 分钟
+    double seconds;            // 秒
 } car_state;
 
 /* --------------------------------------全局变量声明---------------------------------------- */
@@ -135,6 +146,8 @@ extern cv::VideoCapture Camera;
 extern UdpSender ImgSender;
 extern std::mutex image_mutex;
 extern cv::Mat image_to_send;
+extern cv::Mat image_to_show;
+extern unsigned char image_show[90][240];
 extern cv::Mat get_image;
 extern cv::Mat get_color;
 

@@ -7,6 +7,7 @@
 #include <vector>
 #include <opencv2/opencv.hpp>
 
+#define OUTOUT_ENABLE 0
 #define PORT 8080
 #define MAX_PACKET_SIZE 1024
 #define HEADER_SIZE 8
@@ -37,9 +38,11 @@ int main()
 
     std::cout << "接收器已启动，等待图像..." << std::endl;
 
+#if OUTOUT_ENABLE
     cv::VideoWriter writer;
     bool writer_initialized = false;
-
+#endif
+    cv::namedWindow("Received Image", cv::WINDOW_NORMAL);
     while (true)
     {
         // 接收头部
@@ -83,11 +86,17 @@ int main()
 
         // 解码图像并显示
         cv::Mat img = cv::imdecode(img_buf, cv::IMREAD_COLOR);
+        cv::resizeWindow("Received Image", 935, 400);
         if (!img.empty())
         {
             cv::imshow("Received Image", img);
-            cv::waitKey(1);
+            if (cv::waitKey(1) == 'q')
+            {
+                std::cout << "按下 'q' 键，退出程序" << std::endl;
+                break;
+            }
 
+#if OUTOUT_ENABLE
             if (!writer_initialized)
             {
                 writer.open("output.avi", cv::VideoWriter::fourcc('M', 'J', 'P', 'G'), 30,
@@ -99,6 +108,7 @@ int main()
             {
                 writer.write(img);
             }
+#endif
         }
         else
         {
