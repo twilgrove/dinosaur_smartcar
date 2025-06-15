@@ -192,6 +192,7 @@ void img_process()
 	{
 		image_mutex.lock();			  // 锁住图像数据，确保线程安全
 		image_to_send = haha.clone(); // 拷贝图像数据
+
 		cv::resize(Img_Store_pp->Img_OTSU, image_to_show, cv::Size(240, 90));
 		for (int y = 0; y < 90; ++y)
 		{
@@ -209,6 +210,7 @@ void opencv_thread()
 {
 	while (car.program_running)
 	{
+		// Test_period("opencv");
 
 		cv::Mat Img;   // 原图  无畸变图
 		Camera >> Img; // 将视频流转为图像流
@@ -243,6 +245,6 @@ void opencv_thread()
 		else
 			std::cout << "image is empty!!!" << std::endl;
 
-		std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		std::this_thread::sleep_for(std::chrono::milliseconds(OPENCV_THREAD_PERIOD));
 	}
 }

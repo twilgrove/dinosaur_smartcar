@@ -8,6 +8,10 @@ void project_manage(int signum)
     {
     case 2: // 程序被终端中断(Ctrl+C)
         std::cout << "process have been stopped, close resources..." << std::endl;
+        rp.enable_or_disable(0);
+        lp.enable_or_disable(0);
+        r_fs.enable_or_disable(0);
+        l_fs.enable_or_disable(0);
         ips200_clear();
         car.program_running = 0;
         break;
@@ -26,6 +30,9 @@ void reset(bool flag)
 {
     if (flag)
     {
+        ips200_clear();
+        Camera.release();
+
         std::cout << "\33[33m" << PROGRAM_NAME << ":\33[0m program reset..." << std::endl;
 
         // 获取程序的执行路径
@@ -64,8 +71,27 @@ void Update_time()
     car.minutes = (int)(car.total_seconds / 60);
     car.seconds = car.total_seconds - car.minutes * 60;
 
-    ips200_show_int(85, 50, car.minutes, 2);
-    ips200_show_string(104, 50, "m");
-    ips200_show_float(115, 50, car.seconds, 2, 2);
-    ips200_show_string(155, 50, "s");
+    // ips200_show_int(85, 50, car.minutes, 2);
+    // ips200_show_string(104, 50, "m");
+    // ips200_show_float(115, 50, car.seconds, 2, 2);
+    // ips200_show_string(155, 50, "s");
+}
+
+void Test_period(const char *threadName)
+{
+    using namespace std::chrono;
+    static steady_clock::time_point start = steady_clock::now();
+
+    auto now = steady_clock::now();
+    auto elapsed = duration_cast<milliseconds>(now - start);
+
+    auto seconds = elapsed.count() / 1000;
+    auto ms = elapsed.count() % 1000;
+
+    std::cout << "[" << threadName << "] "
+              << seconds << "s "
+              << std::setw(3) << std::setfill(' ') << ms << "ms"
+              << std::endl;
+
+    start = now;
 }

@@ -3,11 +3,15 @@
 
 /* 整车状态 */
 car_state car = {
-    true,   // program_running
-    false,  // car_running
-    false,  // Camera_running
-    0,      // cam_frame
-    false,  // IMU_running
+    true,  // program_running
+    false, // car_running
+    false, // Camera_running
+    0,     // cam_frame
+    false, // IMU_running
+
+    false, // IMG_send
+    false, // IMG_display
+
     {0, 0}, // start
     {0, 0}, // now
     0,      // total_seconds
@@ -35,29 +39,29 @@ float r_now = 0;
 
 /* 电机速度 ：0-200*/
 /* 左电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
-uint32_t lp_duty = 20000;
+uint32_t lp_duty = 0;
 float l_target = 0; // 电机速度 ：0-200
-GPIO l_pin(72, "out", 1);
+GPIO l_pin(72, "out", 0);
 pwm_ctrl lp(2, 0, 20000, lp_duty, "left_motor");
-pid lp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
+pid lp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MIN_PLUS_ns, WHEEL_MAX_PLUS_ns);
 
 /* 右电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
-uint32_t rp_duty = 20000;
+uint32_t rp_duty = 0;
 float r_target = 0; // 电机速度 ：0-200
 GPIO r_pin(73, "out", 0);
 pwm_ctrl rp(1, 0, 20000, rp_duty, "right_motor");
-pid rp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MAX_PLUS_ns, WHEEL_MIN_PLUS_ns);
+pid rp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MIN_PLUS_ns, WHEEL_MAX_PLUS_ns);
 
 /*风扇*/
-uint32_t lfs_duty = 1200000;
+uint32_t lfs_duty = 1000000;
 pwm_ctrl l_fs(4, 1, 20000000, lfs_duty, "left_fs");
-uint32_t rfs_duty = 1200000;
+uint32_t rfs_duty = 1000000;
 pwm_ctrl r_fs(4, 2, 20000000, rfs_duty, "right_fs");
 /* 舵机：频率200hz，周期5,000,000ns，脉冲宽度1300,000-1,600,000ns*/
 uint32_t sp_duty = SERVO_MID_PLUS_ns;
 uint32_t last_sp_duty = SERVO_MID_PLUS_ns;
 pwm_ctrl sp(8, 6, 5000000, sp_duty, "servo");
-pid sp_pid(Mode::POSITION, 1, 0, 0, 1000, SERVO_MAX_PLUS_ns - SERVO_MID_PLUS_ns, SERVO_MIN_PLUS_ns - SERVO_MID_PLUS_ns);
+pid sp_pid(Mode::POSITION, 1, 0, 0, 1000, SERVO_MIN_PLUS_ns - SERVO_MID_PLUS_ns, SERVO_MAX_PLUS_ns - SERVO_MID_PLUS_ns);
 
 /* 按键 */
 Key key1(16, Key::up);
