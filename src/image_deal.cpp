@@ -1140,22 +1140,28 @@ void Center_line_deal() // 中线处理
     ////统计左右边界丢线zuodiuxianshu l_start   youdiuxianshu r_start
     Cal_losttimes(sousuojieshuhang);
 
+    // star_lineflag斑马线存在标志  1:存在  0:不存在
+    // car_flag  0发车  1已经第一次检测到斑马线  2.真是赛道
     if (car_flag == 0)
     {
         check_starting_line();
         if (star_lineflag == 1)
         {
-            car_flag = 1;
+            car_flag = 1; //
         }
     }
     else if (car_flag == 1)
     {
+
         check_starting_line();
         if (star_lineflag == 0)
             car_flag = 2;
     }
     else if (car_flag == 2)
     {
+
+        gettimeofday(&car.start, NULL);
+        std::cout << "start run car !!!" << std::endl;
         check_starting_line();
         if (star_lineflag == 0)
         {
@@ -1180,9 +1186,8 @@ void Center_line_deal() // 中线处理
     }
     else if (car_flag == 5)
     {
-
-        l_target = 0;
-        r_target = 0;
+        // l_target = 0;
+        // r_target = 0;
     }
 
     ////统计需要动态斜率补线的右边界行数 Right_Add_num Left_Add_num

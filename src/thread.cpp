@@ -38,9 +38,8 @@ void l_debug_thread()
 
         if (t1000ms.tick())
         {
-            std::cout << "fps: " << (uint32_t)car.cam_frame << std::endl;
+            // std::cout << "fps: " << (uint32_t)car.cam_frame << std::endl;
             car.cam_frame = 0;
-            Update_time();
         }
         std::this_thread::sleep_for(std::chrono::milliseconds(L_DEBUG_THREAD_PERIOD));
     }

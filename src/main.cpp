@@ -36,7 +36,6 @@ void init()
 {
     signal(SIGINT, project_manage); // 设置进程终止处理函数
 
-    gettimeofday(&car.start, NULL);
     std::cout << "ImgSender Init  " << (ImgSender.init(DST_IP, UDP_PORT) ? "success" : "failed!!!") << std::endl;
 
     ips200_init("/dev/fb0");
@@ -59,7 +58,10 @@ void init()
         }
     }
 #endif
+
     Update_ips();
+    l_target = 5;
+    r_target = 5;
 }
 
 void h_debug_thread()
@@ -83,43 +85,55 @@ void h_debug_thread()
         }
 
 #if VOFA_DEBUG_EN
+
+#define wheel rp_pid
+#define target r_target
+#define now r_now
+#define duty rp_duty
+#define pid_output rp_pid.last_output
         if (tty.readData(tty_data, 8))
         {
             if (tty_data[0] == 0x55)
             {
                 std::memcpy(&tty_value, &tty_data[4], sizeof(float)); // 复制4字节到 float 变量
-                tty_value_int = (uint32_t)tty_value;
                 if (tty_data[1] == 0xcc)
                 {
                     if (tty_data[2] == 0x01) // 通道1
                     {
                         std::cout << "channel_1" << std::endl;
-                        lp_pid.config.kp = tty_value;
+                        wheel.config.kp = tty_value;
+                        std::cout << "Kp:" << wheel.config.kp << std::endl;
                     }
                     else if (tty_data[2] == 0x02) // 通道2
                     {
                         std::cout << "channel_2" << std::endl;
-                        lp_pid.config.ki = tty_value;
+                        wheel.config.ki = tty_value;
+                        std::cout << "Ki:" << wheel.config.ki << std::endl;
                     }
                     else if (tty_data[2] == 0x03) // 通道3
                     {
                         std::cout << "channel_3" << std::endl;
-                        lp_pid.config.kd = tty_value;
+                        wheel.config.kd = tty_value;
+                        std::cout << "Kd:" << wheel.config.kd << std::endl;
                     }
                     else if (tty_data[2] == 0x04) // 通道4
                     {
                         std::cout << "channel_4" << std::endl;
-                        lp_pid.config.min_output = -tty_value;
-                        lp_pid.config.max_output = tty_value;
+                        wheel.config.max_integral = tty_value;
+                        wheel.config.min_integral = -tty_value;
+                        std::cout << "max_integral:" << wheel.config.max_integral << std::endl;
+                        std::cout << "min_integral:" << wheel.config.min_integral << std::endl;
                     }
                     else if (tty_data[2] == 0x05) // 通道5
                     {
                         std::cout << "channel_5" << std::endl;
-                        l_target = tty_value;
+                        target = tty_value;
+                        std::cout << "l_target:" << target << std::endl;
                     }
                 }
             }
         }
+        tty.printf("data:%.2f,%.2f,%d\n", now, target, duty);
 #endif
 
         std::this_thread::sleep_for(std::chrono::milliseconds(H_DEBUG_THREAD_PERIOD));
@@ -131,10 +145,13 @@ void hardware_control()
     static Timer t10ms(HARDWARE_THREAD_PERIOD, 10);
     while (car.program_running)
     {
+        Update_runing_state();
         Update_motor();
 
         if (t10ms.tick())
+        {
             Update_servo();
+        }
         std::this_thread::sleep_for(std::chrono::milliseconds(HARDWARE_THREAD_PERIOD));
     }
 }

@@ -10,6 +10,7 @@ void project_manage(int signum)
         std::cout << "process have been stopped, close resources..." << std::endl;
         rp.enable_or_disable(0);
         lp.enable_or_disable(0);
+        sp.enable_or_disable(0);
         r_fs.enable_or_disable(0);
         l_fs.enable_or_disable(0);
         ips200_clear();
@@ -61,7 +62,28 @@ void reset(bool flag)
         return;
     }
 }
+void Update_runing_state()
+{
+    if (car.car_running == 1)
+    {
+        if (car_flag == 5) // 停止线停止
+        {
 
+            std::cout << "stop line !!!" << std::endl;
+            Update_time();
+            car.car_running = 0;
+            Update_ips();
+            return;
+        }
+        if (chujie == 1) // 出界停止
+        {
+            std::cout << "out of load !!!" << std::endl;
+            car.car_running = 0;
+            Update_ips();
+            return;
+        }
+    }
+}
 void Update_time()
 {
     gettimeofday(&car.now, NULL);
@@ -71,6 +93,7 @@ void Update_time()
     car.minutes = (int)(car.total_seconds / 60);
     car.seconds = car.total_seconds - car.minutes * 60;
 
+    std::cout << "running time: " << car.minutes << "m" << car.seconds << "s" << std::endl;
     // ips200_show_int(85, 50, car.minutes, 2);
     // ips200_show_string(104, 50, "m");
     // ips200_show_float(115, 50, car.seconds, 2, 2);

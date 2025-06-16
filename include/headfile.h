@@ -42,12 +42,12 @@
 /* ----------------------------------------配置宏定义---------------------------------------- */
 #define PROGRAM_NAME "Smart_Car"
 
-#define KEY1_START_EN 0 // 按键启动使能
+#define KEY1_START_EN 1 // 按键启动使能
 #define VOFA_DEBUG_EN 0 // vofa调试使能
 
 #define OPENCV_THREAD_PERIOD 10   // opencv线程周期(ms)
 #define CAR_THREAD_PERIOD 20      // 算法控制线程周期(ms)
-#define HARDWARE_THREAD_PERIOD 5  // 硬件控制线程周期(ms)
+#define HARDWARE_THREAD_PERIOD 2  // 硬件控制线程周期(ms)
 #define H_DEBUG_THREAD_PERIOD 50  // 高速调试线程周期(ms)
 #define L_DEBUG_THREAD_PERIOD 500 // 低速调试线程周期(ms)
 #define IO_THREAD_PERIOD 10       // IO线程周期(ms)
@@ -60,6 +60,7 @@
 #define WHEEL_MIN_PLUS_ns 0     // 电机最小值
 #define WHEEL_SPEED_DEADBAND 3  // 电机速度死区
 #define WHEEL_SPEED_MAX 100     // 电机速度最大值
+#define WHEEL_SPEED_PID_KP 100  // 电机速度PID增益系数
 
 #define SERVO_MID_PLUS_ns 1540000 // 舵机中值
 #define SERVO_MAX_PLUS_ns 1680000 // 舵机最大值(左转)
@@ -82,6 +83,7 @@ void project_manage(int signum);
 void reset(bool flag);
 void Test_period(const char *threadName);
 void Update_time();
+void Update_runing_state();
 void Update_motor();
 void Update_ips();
 void Update_servo();

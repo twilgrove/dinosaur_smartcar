@@ -4,7 +4,7 @@
 /* 整车状态 */
 car_state car = {
     true,  // program_running
-    false, // car_running
+    true,  // car_running
     false, // Camera_running
     0,     // cam_frame
     false, // IMU_running
@@ -26,7 +26,7 @@ cv::Mat image_to_show;
 unsigned char image_show[90][240];
 
 /* 串口 */
-SerialPort tty("/dev/ttyS1", B115200);
+SerialPort tty("/dev/ttyS1", B921600);
 uint8_t tty_data[8];
 float tty_value = 0;
 uint32_t tty_value_int = 0;
@@ -43,14 +43,14 @@ uint32_t lp_duty = 0;
 float l_target = 0; // 电机速度 ：0-200
 GPIO l_pin(72, "out", 0);
 pwm_ctrl lp(2, 0, 20000, lp_duty, "left_motor");
-pid lp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MIN_PLUS_ns, WHEEL_MAX_PLUS_ns);
+pid lp_pid(Mode::POSITION, 15, 9, 30, 40, 0, WHEEL_MAX_PLUS_ns / WHEEL_SPEED_PID_KP);
 
 /* 右电机：频率50khz，周期20000ns，脉冲宽度0-20000ns*/
 uint32_t rp_duty = 0;
 float r_target = 0; // 电机速度 ：0-200
 GPIO r_pin(73, "out", 0);
 pwm_ctrl rp(1, 0, 20000, rp_duty, "right_motor");
-pid rp_pid(Mode::INCREMENT, 40, 20, 0, 1500, WHEEL_MIN_PLUS_ns, WHEEL_MAX_PLUS_ns);
+pid rp_pid(Mode::POSITION, 15, 10, 30, 60, 0, WHEEL_MAX_PLUS_ns / WHEEL_SPEED_PID_KP);
 
 /*风扇*/
 uint32_t lfs_duty = 1000000;
